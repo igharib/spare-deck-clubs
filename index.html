@@ -118,8 +118,8 @@
     .slide {
       position: absolute; inset: 0;
       opacity: 0; pointer-events: none;
-      transition: opacity 0.38s var(--ease), transform 0.38s var(--ease);
-      transform: translateY(18px);
+      transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+      transform: translateY(28px);
       overflow-y: auto; overflow-x: hidden;
       display: flex; flex-direction: column;
     }
@@ -531,7 +531,60 @@
     }
 
     /* Slides where the visual comes first in DOM but should appear after content on mobile */
+    /* ═══ LOGO MARQUEE ═══ */
+    .logo-marquee-wrap {
+      width: 100%; max-width: 1040px; margin-top: 32px;
+      display: flex; flex-direction: column; gap: 24px;
+      overflow: hidden;
+      -webkit-mask: linear-gradient(90deg, transparent, #fff 8%, #fff 92%, transparent);
+      mask: linear-gradient(90deg, transparent, #fff 8%, #fff 92%, transparent);
+    }
+    .logo-marquee { overflow: hidden; width: 100%; }
+    .logo-track {
+      display: flex; gap: 28px; align-items: center;
+      width: max-content;
+      will-change: transform;
+    }
+    .logo-marquee--left  .logo-track { animation: marquee-left  30s linear infinite; }
+    .logo-marquee--right .logo-track { animation: marquee-right 30s linear infinite; }
+    @keyframes marquee-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+    @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    @media (hover: hover) {
+      .logo-marquee-wrap:hover .logo-track { animation-play-state: paused; }
+    }
+    .logo-item {
+      flex-shrink: 0; width: 150px; height: 76px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px 18px;
+    }
+    .logo-item img {
+      max-width: 100%; max-height: 100%; object-fit: contain;
+      filter: opacity(0.85);
+      transition: filter 0.2s;
+    }
+    @media (hover: hover) {
+      .logo-item:hover img { filter: opacity(1); }
+    }
+    @media (max-width: 860px) {
+      .logo-item { width: 170px; height: 88px; padding: 12px 16px; }
+      .logo-track { gap: 16px; }
+      .logo-marquee-wrap { margin-top: 20px; gap: 16px; }
+      .logo-item img { filter: grayscale(0) opacity(1); }
+    }
+
     .mob-only { display: none !important; }
+
+    .video-touch-guard {
+      display: none;
+      position: absolute; inset: 0;
+      z-index: 5; background: transparent;
+      touch-action: none;
+    }
+    @media (max-width: 860px) {
+      .video-touch-guard { display: block; }
+    }
 
     .swipe-hint {
       display: none;
@@ -912,6 +965,14 @@
       .tp-bot-section > p { font-size: 0.62rem !important; margin-top: 8px !important; padding-left: 6px !important; }
     }
   </style>
+  <!-- Start of HubSpot Embed Code -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4312659.js"></script>
+  <!-- End of HubSpot Embed Code -->
+  <!-- Apollo Website Tracker -->
+  <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+o.onload=function(){window.trackingFunctions.onLoad({appId:"69d7a761ed14a0000da574c6"})},
+document.head.appendChild(o)}initApollo();</script>
 </head>
 <body>
 
@@ -954,6 +1015,10 @@
     <div class="nav-group-label">Platform</div>
     <button class="nav-btn" data-slide="1" onclick="goTo(1)">
       <span class="nb-dot"></span> Overview
+    </button>
+
+    <button class="nav-btn" data-slide="15" onclick="goTo(15)">
+      <span class="nb-dot"></span> Schools
     </button>
 
     <div class="nav-group-label">Capabilities</div>
@@ -1036,6 +1101,10 @@
     <div class="mob-nav-group">Platform</div>
     <button class="mob-nav-item" data-mob-slide="1" onclick="mobGoTo(1)">
       <span class="mob-nav-dot"></span> Overview
+    </button>
+
+    <button class="mob-nav-item" data-mob-slide="15" onclick="mobGoTo(15)">
+      <span class="mob-nav-dot"></span> Schools
     </button>
 
     <div class="mob-nav-group">Capabilities</div>
@@ -1127,11 +1196,17 @@
         <!-- Bottom panel: video -->
         <div class="intro-video" style="display:flex; flex-direction:column; justify-content:center; padding:12px 32px 20px; background:var(--bg-subtle); overflow:hidden;">
           <div class="video-wrap" style="flex:1; max-height:100%;">
-            <!-- Google Drive embed — plays on first click -->
-            <iframe id="spare-video-hero" title="Spare at CISA – product demo"
-                    src="https://drive.google.com/file/d/1T3jTUYERLc1mHG0FKJJsZuH6aejDfWic/preview"
-                    style="position:absolute;inset:0;width:100%;height:100%;border:none;"
-                    allow="autoplay; encrypted-media; fullscreen"></iframe>
+            <!-- Poster shown until play is clicked -->
+            <img id="spare-video-poster" src="assets/live-at-cisa.png"
+                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right bottom;display:block;border-radius:inherit;" alt="Spare at CISA" />
+            <!-- YouTube IFrame API target -->
+            <div id="spare-video-hero" style="display:none;position:absolute;inset:0;width:100%;height:100%;"></div>
+            <div class="v-overlay" id="v-overlay-hero" onclick="playVideoHero()">
+              <div class="hero-play-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <div class="video-touch-guard" id="video-touch-guard"></div>
           </div>
           <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:8px; font-weight:500;">Spare Live @ CISA</p>
         </div>
@@ -1194,7 +1269,7 @@
       <div class="slide-content">
         <div class="slide-tag"><span class="tag-dot"></span> Payments & Financials</div>
         <h2>No cash.<br>No chaos.<br>Full visibility.</h2>
-        <p class="slide-sub">Collect school fees, handle cafeteria payments, and track every transaction from a single dashboard. Parents pay via app; students tap, scan, or wave.</p>
+        <p class="slide-sub">Collect school fees, handle cafeteria payments, and track every transaction from a single dashboard. Parents pay via app; students tap or scan.</p>
         <ul class="flist">
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Fee Payments:</strong> Collect school fees through app or on campus with full balance visibility</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Cashless Payments:</strong> Card, QR code, NFC wristband, or student ID, no cash required</span></li>
@@ -1597,6 +1672,79 @@
     </div>
   </div>
 
+  <!-- 15 · SCHOOLS -->
+  <div class="slide" id="s-15">
+    <div class="slide-inner centered">
+      <div class="slide-tag"><span class="tag-dot"></span> Trusted By Schools</div>
+      <h2>Powering schools<br>across the globe.</h2>
+      <p class="slide-sub" style="max-width:520px;">Hundreds of schools trust Spare to run their operations every day.</p>
+      <div class="logo-marquee-wrap">
+        <div class="logo-marquee logo-marquee--left">
+          <div class="logo-track">
+            <div class="logo-item"><img src="assets/logos/JESS.png" alt="JESS Dubai" /></div>
+            <div class="logo-item"><img src="assets/logos/KCbahamas.png" alt="King's College Bahamas" /></div>
+            <div class="logo-item"><img src="assets/logos/AIS-dubai.png" alt="Australian International School Dubai" /></div>
+            <div class="logo-item"><img src="assets/logos/DESS.png" alt="DESS" /></div>
+            <div class="logo-item"><img src="assets/logos/Metropolitan.png" alt="Metropolitan School" /></div>
+            <div class="logo-item"><img src="assets/logos/dbs.png" alt="Dubai British School" /></div>
+            <div class="logo-item"><img src="assets/logos/KCALICANTE.png" alt="King's College Alicante" /></div>
+            <div class="logo-item"><img src="assets/logos/UAS.png" alt="Universal American School" /></div>
+            <div class="logo-item"><img src="assets/logos/DC.svg.png" alt="Dubai College" /></div>
+            <div class="logo-item"><img src="assets/logos/AIS.png" alt="American International School" /></div>
+            <div class="logo-item"><img src="assets/logos/KINGS-Charmartin.png" alt="King's College Chamartín" /></div>
+            <div class="logo-item"><img src="assets/logos/DIS2.png" alt="Deira International School" /></div>
+            <div class="logo-item"><img src="assets/logos/ASB.png" alt="American School of Bahrain" /></div>
+            <!-- duplicate for seamless loop -->
+            <div class="logo-item"><img src="assets/logos/JESS.png" alt="JESS Dubai" /></div>
+            <div class="logo-item"><img src="assets/logos/KCbahamas.png" alt="King's College Bahamas" /></div>
+            <div class="logo-item"><img src="assets/logos/AIS-dubai.png" alt="Australian International School Dubai" /></div>
+            <div class="logo-item"><img src="assets/logos/DESS.png" alt="DESS" /></div>
+            <div class="logo-item"><img src="assets/logos/Metropolitan.png" alt="Metropolitan School" /></div>
+            <div class="logo-item"><img src="assets/logos/dbs.png" alt="Dubai British School" /></div>
+            <div class="logo-item"><img src="assets/logos/KCALICANTE.png" alt="King's College Alicante" /></div>
+            <div class="logo-item"><img src="assets/logos/UAS.png" alt="Universal American School" /></div>
+            <div class="logo-item"><img src="assets/logos/DC.svg.png" alt="Dubai College" /></div>
+            <div class="logo-item"><img src="assets/logos/AIS.png" alt="American International School" /></div>
+            <div class="logo-item"><img src="assets/logos/KINGS-Charmartin.png" alt="King's College Chamartín" /></div>
+            <div class="logo-item"><img src="assets/logos/DIS2.png" alt="Deira International School" /></div>
+            <div class="logo-item"><img src="assets/logos/ASB.png" alt="American School of Bahrain" /></div>
+          </div>
+        </div>
+        <div class="logo-marquee logo-marquee--right">
+          <div class="logo-track">
+            <div class="logo-item"><img src="assets/logos/NIS.png" alt="NIS" /></div>
+            <div class="logo-item"><img src="assets/logos/AFLEC.png" alt="AFLEC" /></div>
+            <div class="logo-item"><img src="assets/logos/Mermoz.png" alt="Lycée Mermoz" /></div>
+            <div class="logo-item"><img src="assets/logos/CAC.png" alt="CAC" /></div>
+            <div class="logo-item"><img src="assets/logos/LFIGP.png" alt="Lycée Français International" /></div>
+            <div class="logo-item"><img src="assets/logos/Citizens.svg" alt="Citizens School" /></div>
+            <div class="logo-item"><img src="assets/logos/DHA.png" alt="DHA School" /></div>
+            <div class="logo-item"><img src="assets/logos/LFIB.png" alt="Lycée Français International de Bahreïn" /></div>
+            <div class="logo-item"><img src="assets/logos/DUNE.png" alt="Dune" /></div>
+            <div class="logo-item"><img src="assets/logos/sisd3.png" alt="SISD" /></div>
+            <div class="logo-item"><img src="assets/logos/BSB.png" alt="British School of Bahrain" /></div>
+            <div class="logo-item"><img src="assets/logos/LFIA.png" alt="Lycée Français d'Alexandrie" /></div>
+            <div class="logo-item"><img src="assets/logos/Clarion.png" alt="Clarion School" /></div>
+            <!-- duplicate for seamless loop -->
+            <div class="logo-item"><img src="assets/logos/NIS.png" alt="NIS" /></div>
+            <div class="logo-item"><img src="assets/logos/AFLEC.png" alt="AFLEC" /></div>
+            <div class="logo-item"><img src="assets/logos/Mermoz.png" alt="Lycée Mermoz" /></div>
+            <div class="logo-item"><img src="assets/logos/CAC.png" alt="CAC" /></div>
+            <div class="logo-item"><img src="assets/logos/LFIGP.png" alt="Lycée Français International" /></div>
+            <div class="logo-item"><img src="assets/logos/Citizens.svg" alt="Citizens School" /></div>
+            <div class="logo-item"><img src="assets/logos/DHA.png" alt="DHA School" /></div>
+            <div class="logo-item"><img src="assets/logos/LFIB.png" alt="Lycée Français International de Bahreïn" /></div>
+            <div class="logo-item"><img src="assets/logos/DUNE.png" alt="Dune" /></div>
+            <div class="logo-item"><img src="assets/logos/sisd3.png" alt="SISD" /></div>
+            <div class="logo-item"><img src="assets/logos/BSB.png" alt="British School of Bahrain" /></div>
+            <div class="logo-item"><img src="assets/logos/LFIA.png" alt="Lycée Français d'Alexandrie" /></div>
+            <div class="logo-item"><img src="assets/logos/Clarion.png" alt="Clarion School" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <!-- ═══════════════ NAV ARROWS ═══════════════ -->
@@ -1801,7 +1949,7 @@
 </div>
 
 <script>
-  const TOTAL = 15;
+  const TOTAL = 16;
   let current = 0;
   let animating = false;
 
@@ -1816,11 +1964,12 @@
   const labels = [
     'Intro','Overview','Payments','Cafeteria','Operations',
     'Marketplace','Communication','Parent App','Admin','Point of Sale',
-    'Parent App Tour','Scale & Trust','Onboarding','Secure Payments','Get Started'
+    'Parent App Tour','Scale & Trust','Onboarding','Secure Payments','Get Started',
+    'Schools'
   ];
 
   // Navigation order — matches the sidebar sequence (slide 10 sits between 7 and 8)
-  const NAV_ORDER = [0, 1, 2, 3, 4, 5, 6, 7, 10, 8, 9, 11, 12, 13, 14];
+  const NAV_ORDER = [0, 1, 15, 2, 3, 4, 5, 6, 7, 10, 8, 9, 11, 12, 13, 14];
 
   function goTo(idx, dir) {
     if (idx === current || animating) return;
@@ -1832,7 +1981,7 @@
     slides[prevIdx].classList.add(isForward ? 'exit-up' : 'exit-down');
 
     current = idx;
-    slides[current].style.transform = isForward ? 'translateY(18px)' : 'translateY(-18px)';
+    slides[current].style.transform = isForward ? 'translateY(28px)' : 'translateY(-28px)';
     slides[current].style.opacity = '0';
     slides[current].classList.add('active');
     slides[current].scrollTop = 0;
@@ -1841,13 +1990,13 @@
       requestAnimationFrame(() => {
         slides[current].style.transform = '';
         slides[current].style.opacity = '';
-        slides[current].style.transition = 'opacity 0.38s cubic-bezier(0.4,0,0.2,1), transform 0.38s cubic-bezier(0.4,0,0.2,1)';
+        slides[current].style.transition = 'opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1)';
 
         setTimeout(() => {
           slides[prevIdx].classList.remove('exit-up', 'exit-down');
           slides[current].style.transition = '';
           animating = false;
-        }, 400);
+        }, 680);
       });
     });
 
@@ -1876,6 +2025,8 @@
     const activeBtn = navBtns.find(b => parseInt(b.dataset.slide) === current);
     if (activeBtn) activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     syncMobNav(current);
+    // Re-enable video guard when returning to intro slide
+    if (videoGuard) videoGuard.style.pointerEvents = current === 0 ? '' : 'none';
   }
 
   // Keyboard
@@ -1902,12 +2053,13 @@
 
   // Touch / swipe — respect scrollable content; navigate only at boundaries
   // Pinch-to-zoom is fully ignored (multi-touch sets touchPinch flag)
-  let touchStartY = 0, touchScrollEl = null, touchPinch = false;
+  let touchStartY = 0, touchScrollEl = null, touchPinch = false, touchActive = false;
   const stageEl = document.getElementById('stage');
 
   stageEl.addEventListener('touchstart', e => {
     if (e.touches.length > 1) { touchPinch = true; return; } // pinch/zoom — ignore entirely
     touchPinch = false;
+    touchActive = true;
     touchStartY = e.touches[0].clientY;
     // Walk up from touch target to find the nearest scrollable ancestor
     let el = e.target;
@@ -1930,10 +2082,12 @@
   function clearSwipeHints() {
     swipeHintNext.classList.remove('visible', 'ready');
     swipeHintPrev.classList.remove('visible', 'ready');
+    swipeHintNext.style.opacity = '';
+    swipeHintPrev.style.opacity = '';
   }
 
   document.addEventListener('touchmove', e => {
-    if (touchPinch || !e.touches.length) return;
+    if (!touchActive || touchPinch || !e.touches.length) return;
     const dy = touchStartY - e.touches[0].clientY;
     const abs = Math.abs(dy);
     if (abs < 20) { clearSwipeHints(); return; }
@@ -1947,6 +2101,7 @@
   }, { passive: true });
 
   stageEl.addEventListener('touchend', e => {
+    touchActive = false;
     clearSwipeHints();
     if (touchPinch) { touchPinch = false; return; } // was a pinch — never navigate
     if (!e.changedTouches.length) return;
@@ -1963,7 +2118,46 @@
     dy > 0 ? next() : prev();
   });
 
-  stageEl.addEventListener('touchcancel', () => { touchPinch = false; touchScrollEl = null; clearSwipeHints(); });
+  stageEl.addEventListener('touchcancel', () => { touchPinch = false; touchActive = false; touchScrollEl = null; clearSwipeHints(); });
+
+  // Video iframe touch guard — intercepts touches on the Drive embed
+  const videoGuard = document.getElementById('video-touch-guard');
+  if (videoGuard) {
+    let guardStartY = 0;
+    videoGuard.addEventListener('touchstart', e => {
+      if (e.touches.length > 1) return;
+      guardStartY = e.touches[0].clientY;
+      touchStartY = guardStartY;
+      touchActive = true;
+    }, { passive: true });
+    videoGuard.addEventListener('touchmove', e => {
+      if (!e.touches.length) return;
+      const dy = guardStartY - e.touches[0].clientY;
+      const abs = Math.abs(dy);
+      if (abs < 20) { clearSwipeHints(); return; }
+      const progress = Math.min(abs / 100, 1);
+      const hint = dy > 0 ? swipeHintNext : swipeHintPrev;
+      const other = dy > 0 ? swipeHintPrev : swipeHintNext;
+      other.classList.remove('visible', 'ready');
+      hint.style.opacity = 0.25 + progress * 0.75;
+      hint.classList.add('visible');
+      hint.classList.toggle('ready', progress >= 1);
+    }, { passive: true });
+    videoGuard.addEventListener('touchend', e => {
+      touchActive = false;
+      clearSwipeHints();
+      if (!e.changedTouches.length) return;
+      const dy = guardStartY - e.changedTouches[0].clientY;
+      const abs = Math.abs(dy);
+      if (abs < 15) {
+        // Tap — trigger play then step aside so future taps reach the iframe
+        playVideoHero();
+        videoGuard.style.pointerEvents = 'none';
+        return;
+      }
+      if (abs >= 100) { dy > 0 ? next() : prev(); }
+    }, { passive: true });
+  }
 
   // Reset animating if tab regains focus mid-transition
   document.addEventListener('visibilitychange', () => { if (!document.hidden) animating = false; });
@@ -1993,15 +2187,38 @@
   syncMobNav(0);
 
   // Video - hero (YouTube embed)
+  // YouTube IFrame API
+  var ytPlayer = null;
+  var ytReady  = false;
+  var ytPlayPending = false;
+
+  (function() {
+    var s = document.createElement('script');
+    s.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  })();
+
+  window.onYouTubeIframeAPIReady = function() {
+    ytPlayer = new YT.Player('spare-video-hero', {
+      videoId: 'EdrYTFpQ7bY',
+      playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
+      events: {
+        onReady: function() {
+          ytReady = true;
+          document.getElementById('spare-video-hero').style.display = 'block';
+          if (ytPlayPending) { ytPlayer.playVideo(); ytPlayPending = false; }
+        }
+      }
+    });
+  };
+
   function playVideoHero() {
-    const GD_ID = '1T3jTUYERLc1mHG0FKJJsZuH6aejDfWic';
     const poster  = document.getElementById('spare-video-poster');
     const overlay = document.getElementById('v-overlay-hero');
-    const iframe  = document.getElementById('spare-video-hero');
-    poster.style.display  = 'none';
-    overlay.classList.add('hidden');
-    iframe.src = 'https://drive.google.com/file/d/' + GD_ID + '/preview';
-    iframe.style.display  = 'block';
+    if (poster)  poster.style.display  = 'none';
+    if (overlay) overlay.style.display = 'none';
+    if (ytReady) { ytPlayer.playVideo(); }
+    else         { ytPlayPending = true; }
   }
 
   // Counter animation
@@ -2121,9 +2338,10 @@
         throw new Error('Failed');
       }
     } catch {
+      document.getElementById('dl-error').style.display = 'block';
+    } finally {
       btn.textContent = 'Get the Deck';
       btn.disabled = false;
-      document.getElementById('dl-error').style.display = 'block';
     }
   }
 
