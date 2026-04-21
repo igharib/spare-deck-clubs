@@ -122,6 +122,8 @@
       transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
       transform: translateY(28px);
       overflow-y: auto; overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
       display: flex; flex-direction: column;
     }
     .slide::-webkit-scrollbar { width: 4px; }
@@ -604,10 +606,19 @@
       .nav-progress-bar { display: none; }
       .nav-counter { margin-bottom: 0; font-size: 0.8rem; min-width: 44px; text-align: right; }
       .nav-cta { display: none !important; }
-      #stage { flex: 1; min-height: 0; height: auto; }
+      #stage {
+        flex: 0 0 auto;
+        min-height: 0;
+        height: calc(100dvh - var(--mobile-nav-h, 57px));
+      }
       .slide { padding-top: 0; }
       #nav-arrows { left: 16px; bottom: 12px; }
-      .slide-inner { padding: 28px 24px; flex-direction: column; gap: 28px; min-height: 100%; }
+      .slide-inner {
+        padding: 28px 24px;
+        flex-direction: column;
+        gap: 28px;
+        min-height: calc(100dvh - var(--mobile-nav-h, 57px));
+      }
       .slide-content { max-width: 100%; }
       .slide-inner.centered { text-align: left; justify-content: flex-start; padding-top: 28px; }
       .platform-grid { grid-template-columns: 1fr 1fr; }
@@ -925,7 +936,7 @@
     .a-nb-title { position:absolute; left:50%; transform:translateX(-50%); font-size:15px; font-weight:700; color:#111; white-space:nowrap; }
     .a-back { color:#1CABCC; font-size:13px; font-weight:500; display:flex; align-items:center; gap:3px; cursor:pointer; z-index:2; padding:4px 8px 4px 4px; border-radius:8px; }
     .a-nb-r { margin-left:auto; z-index:2; }
-    .a-scr { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; padding-bottom:58px; }
+    .a-scr { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior-y:contain; touch-action:pan-y; padding-bottom:58px; }
     .a-scr::-webkit-scrollbar { display:none; }
     .a-card { background:#fff; border-radius:14px; margin:10px; padding:14px; box-shadow:0 1px 3px rgba(0,0,0,0.06); }
     .a-sec { padding:12px 14px 6px; font-size:11px; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:0.5px; }
@@ -2748,6 +2759,16 @@ document.head.appendChild(o)}initApollo();</script>
   const cafeteriaSub = document.getElementById('cafeteria-sub');
   const cafeteriaList = document.getElementById('cafeteria-list');
 
+  function syncMobileNavHeight() {
+    if (window.innerWidth > 860) {
+      document.documentElement.style.removeProperty('--mobile-nav-h');
+      return;
+    }
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+    document.documentElement.style.setProperty('--mobile-nav-h', nav.offsetHeight + 'px');
+  }
+
   const SCHOOL_CAFETERIA = {
     title: 'Fast, cash-free dining with pre-ordering and reduced queues.',
     sub: 'Students pay with wristbands, QR codes, NFC cards, or student IDs. Parents pre-order meals. No cash, no queues, no hassle.',
@@ -2828,6 +2849,7 @@ document.head.appendChild(o)}initApollo();</script>
     syncPersonaCopy();
     if (current === 10) initTour();
     updateUI();
+    syncMobileNavHeight();
     history.replaceState(null, '', p === 'catering' ? '?p=catering' : window.location.pathname);
   }
 
@@ -2875,6 +2897,7 @@ document.head.appendChild(o)}initApollo();</script>
   }
 
   function updateUI() {
+    syncMobileNavHeight();
     const pos = NAV_ORDER.indexOf(current);
     navBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.slide) === current));
     progressFill.style.width = ((pos + 1) / NAV_ORDER.length * 100) + '%';
@@ -2887,6 +2910,12 @@ document.head.appendChild(o)}initApollo();</script>
     syncMobNav(current);
     // Re-enable video guard when returning to intro slide
     if (videoGuard) videoGuard.style.pointerEvents = current === 0 ? '' : 'none';
+  }
+
+  window.addEventListener('resize', syncMobileNavHeight, { passive: true });
+  window.addEventListener('orientationchange', syncMobileNavHeight, { passive: true });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', syncMobileNavHeight, { passive: true });
   }
 
   // Keyboard
@@ -2927,7 +2956,7 @@ document.head.appendChild(o)}initApollo();</script>
     try {
       while (el && el !== stageEl) {
         const oy = window.getComputedStyle(el).overflowY;
-        if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight + 4) {
+        if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight + 24) {
           touchScrollEl = el;
           break;
         }
@@ -2969,8 +2998,8 @@ document.head.appendChild(o)}initApollo();</script>
     if (Math.abs(dy) <= 100) return;
     if (touchScrollEl) {
       try {
-        const atBottom = touchScrollEl.scrollTop + touchScrollEl.clientHeight >= touchScrollEl.scrollHeight - 6;
-        const atTop    = touchScrollEl.scrollTop <= 6;
+        const atBottom = touchScrollEl.scrollTop + touchScrollEl.clientHeight >= touchScrollEl.scrollHeight - 16;
+        const atTop    = touchScrollEl.scrollTop <= 16;
         if (dy > 0 && !atBottom) return;
         if (dy < 0 && !atTop)    return;
       } catch (_) { return; }
@@ -3443,6 +3472,7 @@ document.head.appendChild(o)}initApollo();</script>
   if (iphVp) {
     iphVp.addEventListener('wheel',      e => e.stopPropagation(), { passive: true });
     iphVp.addEventListener('touchstart', e => e.stopPropagation(), { passive: true });
+    iphVp.addEventListener('touchmove',  e => e.stopPropagation(), { passive: true });
     iphVp.addEventListener('touchend',   e => e.stopPropagation(), { passive: true });
     // Hide scroll hint as soon as user scrolls inside the phone
     iphVp.addEventListener('scroll', () => {
@@ -3455,6 +3485,7 @@ document.head.appendChild(o)}initApollo();</script>
   if (commPhoneVp) {
     commPhoneVp.addEventListener('wheel', e => e.stopPropagation(), { passive: true });
     commPhoneVp.addEventListener('touchstart', e => e.stopPropagation(), { passive: true });
+    commPhoneVp.addEventListener('touchmove', e => e.stopPropagation(), { passive: true });
     commPhoneVp.addEventListener('touchend', e => e.stopPropagation(), { passive: true });
   }
 
