@@ -555,6 +555,7 @@
       body { flex-direction: column; }
       #nav { width: 100%; height: auto; flex-direction: row; align-items: center; padding: 12px 16px; border-right: none; border-bottom: 1px solid var(--border); }
       .nav-logo { margin-bottom: 0; }
+      .persona-toggle-label, .persona-toggle { display: none; }
       .nav-sections { display: none; }
       .nav-group-label { display: none; }
       .nav-bottom { margin-top: 0; margin-left: auto; display: flex; align-items: center; gap: 10px; }
@@ -597,6 +598,26 @@
         padding: 24px 20px 20px !important;
         border-right: none !important;
         border-bottom: 1px solid var(--border);
+      }
+      .hero-persona-toggle {
+        display: flex;
+        background: var(--bg-subtle);
+        border-color: var(--border);
+        box-shadow: 0 14px 30px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
+      }
+      .hero-pt-btn.active {
+        background: #fff;
+        color: var(--text);
+        box-shadow: 0 10px 22px rgba(15,23,42,0.08), 0 1px 4px rgba(15,23,42,0.06);
+      }
+      .mob-persona-toggle {
+        background: var(--bg-subtle);
+        border-color: var(--border);
+      }
+      .mob-pt-btn.active {
+        background: #fff;
+        color: var(--text);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
       }
       .intro-left h1 { font-size: 1.75rem !important; margin-bottom: 10px !important; }
       .intro-left p { font-size: 0.86rem !important; margin-bottom: 16px !important; }
@@ -1104,9 +1125,9 @@
     }
     .pt-btn.active { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
 
-    /* Floating audience pill, always visible in top-right of stage */
+    /* Floating audience pill, visible in the upper-left whitespace of the stage */
     #persona-float {
-      position: fixed; top: 14px; right: 20px; z-index: 30;
+      position: fixed; top: 24px; left: calc(var(--nav-w) + 64px); z-index: 30;
       display: flex; align-items: center;
       background: #fff; border: 1.5px solid var(--border);
       border-radius: 100px; padding: 4px; gap: 2px;
@@ -1139,6 +1160,37 @@
       color: var(--text-muted); cursor: pointer; transition: all 0.15s; font-family: inherit;
     }
     .mob-pt-btn.active { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .hero-persona-toggle {
+      display: none;
+      width: 100%;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbfc 100%);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 16px;
+      padding: 5px;
+      gap: 4px;
+      margin-bottom: 18px;
+      box-shadow: 0 14px 30px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
+    }
+    .hero-pt-btn {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 11px 12px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+    .hero-pt-btn.active {
+      background: #fff;
+      color: var(--text);
+      box-shadow: 0 10px 22px rgba(15,23,42,0.08), 0 1px 4px rgba(15,23,42,0.06);
+    }
   </style>
   <!-- Start of HubSpot Embed Code -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4312659.js"></script>
@@ -1183,7 +1235,6 @@ document.head.appendChild(o)}initApollo();</script>
   </div>
 
   <!-- Persona Toggle -->
-  <div class="persona-toggle-label">I represent:</div>
   <div class="persona-toggle">
     <button class="pt-btn active" data-persona="school" onclick="switchPersona('school')">Schools</button>
     <button class="pt-btn" data-persona="catering" onclick="switchPersona('catering')">Caterers</button>
@@ -1479,6 +1530,10 @@ document.head.appendChild(o)}initApollo();</script>
 
       <!-- LEFT: one big container -->
       <div class="intro-left" style="display:flex; flex-direction:column; justify-content:center; padding:44px 36px 44px 52px; border-right:1px solid var(--border); background:#fff;">
+        <div class="hero-persona-toggle">
+          <button class="hero-pt-btn active" data-persona="school" onclick="switchPersona('school')">Schools</button>
+          <button class="hero-pt-btn" data-persona="catering" onclick="switchPersona('catering')">Caterers</button>
+        </div>
         <div class="slide-tag" style="margin-bottom:16px;"><span class="tag-dot"></span> School Operations Platform</div>
         <h1 style="font-size:clamp(1.8rem,2.8vw,2.8rem); margin-bottom:14px; letter-spacing:-1.2px;">Run your school.<br>Not your <span class="accent">spreadsheets.</span></h1>
         <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.7; margin-bottom:24px;">Spare replaces the patchwork of tools with one unified platform: payments, cafeteria, operations, marketplace, and parent communication.</p>
@@ -2138,6 +2193,10 @@ document.head.appendChild(o)}initApollo();</script>
   <div class="slide" id="s-16">
     <div class="intro-layout" style="display:grid; grid-template-columns:1fr 1fr; height:100vh; overflow:hidden; gap:0;">
       <div class="intro-left" style="display:flex; flex-direction:column; justify-content:center; padding:44px 36px 44px 52px; border-right:1px solid var(--border); background:#fff;">
+        <div class="hero-persona-toggle">
+          <button class="hero-pt-btn" data-persona="school" onclick="switchPersona('school')">Schools</button>
+          <button class="hero-pt-btn active" data-persona="catering" onclick="switchPersona('catering')">Caterers</button>
+        </div>
         <div class="slide-tag" style="margin-bottom:16px;"><span class="tag-dot"></span> Cafeteria Vendor Platform</div>
         <h1 style="font-size:clamp(1.8rem,2.8vw,2.8rem); margin-bottom:14px; letter-spacing:-1.2px;">Built for catering<br>operations <span class="accent">at scale.</span></h1>
         <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.7; margin-bottom:24px;">Spare gives catering companies the tools to manage menus, POS, multi-location reporting, and parent ordering, all in one platform.</p>
@@ -2685,7 +2744,7 @@ document.head.appendChild(o)}initApollo();</script>
     NAV_ORDER = p === 'school' ? SCHOOL_NAV_ORDER : CATERING_NAV_ORDER;
     syncTourConfig();
 
-    document.querySelectorAll('.pt-btn, .mob-pt-btn, .pf-btn').forEach(b => b.classList.toggle('active', b.dataset.persona === p));
+    document.querySelectorAll('.pt-btn, .mob-pt-btn, .pf-btn, .hero-pt-btn').forEach(b => b.classList.toggle('active', b.dataset.persona === p));
 
     document.getElementById('school-nav').classList.toggle('hidden', p !== 'school');
     document.getElementById('catering-nav').classList.toggle('hidden', p !== 'catering');
