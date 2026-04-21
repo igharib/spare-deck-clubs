@@ -223,11 +223,123 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.1), 0 2px 12px rgba(0,196,204,0.08);
       display: block;
     }
+    .photo-visual {
+      border-radius: 22px;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      box-shadow: 0 28px 64px rgba(0,0,0,0.14), 0 4px 16px rgba(0,196,204,0.12);
+    }
+    .ui-visual {
+      border-radius: 16px;
+      width: 100%;
+      display: block;
+      box-shadow: 0 20px 56px rgba(0,0,0,0.12), 0 2px 12px rgba(0,196,204,0.1);
+      border: 1px solid var(--border);
+    }
+    .comm-showcase {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 0;
+    }
+    .comm-showcase .iph { width: 300px; }
+    .comm-showcase .iph-vp { height: 540px; }
+    .comm-showcase .a-scr { padding-bottom: 0; }
+    .comm-showcase .a-scr img {
+      width: 100%;
+      display: block;
+    }
+    .comm-phone-note {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(226,232,240,0.9);
+      color: var(--text-muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+    }
+    .comm-phone-note svg {
+      width: 12px;
+      height: 12px;
+      color: var(--teal-dark);
+      flex-shrink: 0;
+    }
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      width: 100%;
+      max-width: 1080px;
+    }
+    .dash-card {
+      position: relative;
+      background:
+        radial-gradient(circle at top left, rgba(0,196,204,0.14), transparent 36%),
+        linear-gradient(180deg, #ffffff 0%, #f8fbfc 100%);
+      border: 1px solid rgba(0, 155, 163, 0.14);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 26px 64px rgba(15,23,42,0.12), 0 10px 28px rgba(0,196,204,0.08);
+      text-align: left;
+    }
+    .dash-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+      pointer-events: none;
+    }
+    .dash-card-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+    }
+    .dash-card-head {
+      padding: 14px 18px 0;
+    }
+    .dash-card-title {
+      padding: 10px 18px 0;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+    .dash-card-sub {
+      padding: 6px 18px 0;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+    .dash-card-frame {
+      margin: 16px;
+      padding: 12px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(244,250,251,0.98) 100%);
+      border: 1px solid rgba(226,232,240,0.95);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+    .dash-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      aspect-ratio: 2936 / 1546;
+      border-radius: 12px;
+    }
 
     /* ── PLATFORM GRID ── */
     .platform-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-      margin-top: 36px; width: 100%; max-width: 780px;
+      margin-top: 16px; width: 100%; max-width: 780px;
     }
     .pg-card {
       background: var(--bg-subtle); border: 1px solid var(--border);
@@ -321,7 +433,7 @@
     .v-overlay:hover { background: rgba(10,20,40,0.2); }
     .v-overlay.hidden { display: none; }
 
-    /* Hero video overlay — no tint, poster shows clean */
+    /* Hero video overlay, no tint, poster shows clean */
     #v-overlay-hero { background: transparent !important; }
 
     /* Standard play button (non-hero) */
@@ -335,7 +447,7 @@
     .v-overlay:hover .play-btn { transform: scale(1.08); }
     .play-btn svg { width: 20px; height: 20px; color: var(--teal); margin-left: 2px; }
 
-    /* Hero branded play button — teal gradient + pulse */
+    /* Hero branded play button, teal gradient + pulse */
     .hero-play-btn {
       width: 62px; height: 62px; border-radius: 50%;
       background: linear-gradient(135deg, #29F2E4 0%, #1CABCC 60%, #009BA3 100%);
@@ -457,6 +569,14 @@
       .platform-grid { grid-template-columns: 1fr 1fr; }
       .stats-grid { grid-template-columns: repeat(2,1fr); margin: 16px 0; }
       .why-grid-sm { grid-template-columns: 1fr 1fr; }
+      .dash-grid { grid-template-columns: 1fr; gap: 14px; }
+      .dash-card { border-radius: 18px; }
+      .dash-card-head { padding: 12px 14px 0; }
+      .dash-card-title { padding: 8px 14px 0; font-size: 0.92rem; }
+      .dash-card-sub { padding: 6px 14px 0; font-size: 0.74rem; }
+      .dash-card-frame { margin: 12px; padding: 10px; border-radius: 14px; }
+      .comm-showcase .iph { width: min(100%, 290px); }
+      .comm-showcase .iph-vp { height: 470px; }
       h1, .h1 { font-size: 2rem; }
       h2, .h2 { font-size: 1.6rem; }
       .phone-item img { width: 100px; }
@@ -854,7 +974,7 @@
     .store-item-lbl { font-size:11px; font-weight:600; color:#333; line-height:1.3; }
     .store-badge { display:inline-block; background:#e8f4fd; color:#1CABCC; font-size:9px; font-weight:700; padding:2px 6px; border-radius:6px; margin-top:6px; }
 
-    /* Mobile-only "Guided Tour" label — hidden on desktop */
+    /* Mobile-only "Guided Tour" label, hidden on desktop */
     .tour-mob-title { display: none; }
 
     /* tp-top/bot sections: behave normally (block) on desktop */
@@ -910,18 +1030,18 @@
       .tp-top-section .slide-tag { display: none; }
       #tp-crumb { display: none; }
 
-      /* Hide title + description above phone — dropdown already shows screen name */
+      /* Hide title + description above phone, dropdown already shows screen name */
       #tp-title { display: none !important; }
       .tour-step-desc { display: none; }
 
-      /* Phone size — no heavy shadow on mobile */
+      /* Phone size, no heavy shadow on mobile */
       .iph {
         width: 230px;
         box-shadow: 0 0 0 1.5px #3a3a3c, inset 0 0 0 1px #3a3a3c;
       }
       .iph-vp { height: 390px; }
 
-      /* Back / Next buttons — equal width, centred below phone */
+      /* Back / Next buttons, equal width, centred below phone */
       .tp-nav-row {
         margin-top: 0;
         gap: 10px;
@@ -959,12 +1079,66 @@
       }
 
 
-      /* Hint — compact single line */
+      /* Hint, compact single line */
       .tour-hint { font-size: 0.68rem; margin-top: 12px; }
 
-      /* Disclaimer — minimal footnote */
+      /* Disclaimer, minimal footnote */
       .tp-bot-section > p { font-size: 0.62rem !important; margin-top: 8px !important; padding-left: 6px !important; }
     }
+
+    /* ═══════════ PERSONA TOGGLE ═══════════ */
+    .persona-toggle-label {
+      font-size: 0.62rem; font-weight: 700; color: #94A3B8;
+      text-transform: uppercase; letter-spacing: 0.7px;
+      padding: 0 2px 6px; flex-shrink: 0;
+    }
+    .persona-toggle {
+      display: flex; background: var(--bg-subtle); border: 1px solid var(--border);
+      border-radius: 10px; padding: 3px; margin-bottom: 20px; gap: 2px; flex-shrink: 0;
+    }
+    .pt-btn {
+      flex: 1; padding: 8px 4px; border-radius: 8px; border: none;
+      background: transparent; font-size: 0.75rem; font-weight: 600;
+      color: var(--text-muted); cursor: pointer; transition: all 0.15s;
+      white-space: nowrap; font-family: inherit;
+    }
+    .pt-btn.active { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+
+    /* Floating audience pill, always visible in top-right of stage */
+    #persona-float {
+      position: fixed; top: 14px; right: 20px; z-index: 30;
+      display: flex; align-items: center;
+      background: #fff; border: 1.5px solid var(--border);
+      border-radius: 100px; padding: 4px; gap: 2px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.1), 0 0 0 3px rgba(0,196,204,0.15);
+      animation: floatPulse 2.5s ease-out 1s forwards;
+    }
+    @keyframes floatPulse {
+      0%   { box-shadow: 0 2px 16px rgba(0,0,0,0.1), 0 0 0 3px rgba(0,196,204,0.15); }
+      50%  { box-shadow: 0 2px 16px rgba(0,0,0,0.1), 0 0 0 8px rgba(0,196,204,0.25); }
+      100% { box-shadow: 0 2px 16px rgba(0,0,0,0.1), 0 0 0 3px rgba(0,196,204,0); }
+    }
+    .pf-btn {
+      padding: 7px 14px; border-radius: 100px; border: none;
+      background: transparent; font-size: 0.78rem; font-weight: 600;
+      color: var(--text-muted); cursor: pointer; transition: all 0.2s;
+      white-space: nowrap; font-family: inherit;
+    }
+    .pf-btn.active { background: var(--teal); color: #fff; }
+    .pf-btn:not(.active):hover { color: var(--text); background: var(--bg-subtle); }
+    @media (max-width: 860px) { #persona-float { display: none; } }
+    .persona-nav { display: contents; }
+    .persona-nav.hidden { display: none; }
+    .mob-persona-toggle {
+      display: flex; background: var(--bg-subtle); border: 1px solid var(--border);
+      border-radius: 10px; padding: 3px; margin: 0 12px 4px; gap: 2px;
+    }
+    .mob-pt-btn {
+      flex: 1; padding: 9px 6px; border-radius: 8px; border: none;
+      background: transparent; font-size: 0.82rem; font-weight: 600;
+      color: var(--text-muted); cursor: pointer; transition: all 0.15s; font-family: inherit;
+    }
+    .mob-pt-btn.active { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
   </style>
   <!-- Start of HubSpot Embed Code -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4312659.js"></script>
@@ -1008,7 +1182,15 @@ document.head.appendChild(o)}initApollo();</script>
     </svg>
   </div>
 
+  <!-- Persona Toggle -->
+  <div class="persona-toggle-label">I represent:</div>
+  <div class="persona-toggle">
+    <button class="pt-btn active" data-persona="school" onclick="switchPersona('school')">Schools</button>
+    <button class="pt-btn" data-persona="catering" onclick="switchPersona('catering')">Caterers</button>
+  </div>
+
   <div class="nav-sections" id="navSections">
+    <div class="persona-nav" id="school-nav">
     <button class="nav-btn active" data-slide="0" onclick="goTo(0)">
       <span class="nb-dot"></span> Intro
     </button>
@@ -1049,9 +1231,6 @@ document.head.appendChild(o)}initApollo();</script>
     <button class="nav-btn" data-slide="8" onclick="goTo(8)">
       <span class="nb-dot"></span> Admin Dashboard
     </button>
-    <button class="nav-btn" data-slide="9" onclick="goTo(9)">
-      <span class="nb-dot"></span> Point of Sale
-    </button>
 
     <div class="nav-group-label">Why Spare</div>
     <button class="nav-btn" data-slide="11" onclick="goTo(11)">
@@ -1068,12 +1247,76 @@ document.head.appendChild(o)}initApollo();</script>
     <button class="nav-btn" data-slide="14" onclick="goTo(14)" style="color:var(--teal); font-weight:600;">
       <span class="nb-dot" style="background:var(--teal);"></span> Get Started
     </button>
+    </div><!-- /school-nav -->
+
+    <div class="persona-nav hidden" id="catering-nav">
+      <button class="nav-btn" data-slide="16" onclick="goTo(16)">
+        <span class="nb-dot"></span> Intro
+      </button>
+      <div class="nav-group-label">Platform</div>
+      <button class="nav-btn" data-slide="17" onclick="goTo(17)">
+        <span class="nb-dot"></span> Overview
+      </button>
+      <button class="nav-btn" data-slide="15" onclick="goTo(15)">
+        <span class="nb-dot"></span> Schools We Serve
+      </button>
+      <div class="nav-group-label">Capabilities</div>
+      <button class="nav-btn" data-slide="3" onclick="goTo(3)">
+        <span class="nb-dot"></span> Cafeteria
+      </button>
+      <button class="nav-btn" data-slide="18" onclick="goTo(18)">
+        <span class="nb-dot"></span> Menu Management
+      </button>
+      <button class="nav-btn" data-slide="23" onclick="goTo(23)">
+        <span class="nb-dot"></span> Inventory
+      </button>
+      <button class="nav-btn" data-slide="2" onclick="goTo(2)">
+        <span class="nb-dot"></span> Payments
+      </button>
+      <button class="nav-btn" data-slide="9" onclick="goTo(9)">
+        <span class="nb-dot"></span> Point of Sale
+      </button>
+      <button class="nav-btn" data-slide="6" onclick="goTo(6)">
+        <span class="nb-dot"></span> Communication
+      </button>
+      <div class="nav-group-label">Product</div>
+      <button class="nav-btn" data-slide="7" onclick="goTo(7)">
+        <span class="nb-dot"></span> Parent App
+      </button>
+      <button class="nav-btn" data-slide="10" onclick="goTo(10)" style="padding-left:22px;font-size:0.78rem;">
+        <span class="nb-dot"></span> ↳ Guided Tour
+      </button>
+      <button class="nav-btn" data-slide="8" onclick="goTo(8)">
+        <span class="nb-dot"></span> Admin Dashboard
+      </button>
+      <div class="nav-group-label">Operations</div>
+      <button class="nav-btn" data-slide="19" onclick="goTo(19)">
+        <span class="nb-dot"></span> Multi-Location
+      </button>
+      <button class="nav-btn" data-slide="20" onclick="goTo(20)">
+        <span class="nb-dot"></span> Reporting
+      </button>
+      <div class="nav-group-label">Why Spare</div>
+      <button class="nav-btn" data-slide="11" onclick="goTo(11)">
+        <span class="nb-dot"></span> Scale & Trust
+      </button>
+      <button class="nav-btn" data-slide="12" onclick="goTo(12)">
+        <span class="nb-dot"></span> Onboarding
+      </button>
+      <button class="nav-btn" data-slide="13" onclick="goTo(13)">
+        <span class="nb-dot"></span> Secure Payments
+      </button>
+      <div class="nav-group-label" aria-hidden="true"></div>
+      <button class="nav-btn" data-slide="21" onclick="goTo(21)" style="color:var(--teal); font-weight:600;">
+        <span class="nb-dot" style="background:var(--teal);"></span> Get Started
+      </button>
+    </div><!-- /catering-nav -->
   </div>
 
   <div class="nav-bottom">
     <div class="nav-progress-bar"><div class="nav-progress-fill" id="progressFill"></div></div>
     <div class="nav-counter" id="navCounter">1 / 15</div>
-    <!-- Hamburger — visible only on mobile -->
+    <!-- Hamburger, visible only on mobile -->
     <button class="mob-menu-btn" onclick="openMobNav()" aria-label="Sections">
       <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <line x1="2" y1="4.5" x2="16" y2="4.5"/>
@@ -1094,7 +1337,11 @@ document.head.appendChild(o)}initApollo();</script>
     <button class="mob-nav-close" onclick="closeMobNav()">✕</button>
   </div>
   <div class="mob-nav-body">
-
+    <div class="mob-persona-toggle">
+      <button class="mob-pt-btn active" data-persona="school" onclick="switchPersona('school')">Schools</button>
+      <button class="mob-pt-btn" data-persona="catering" onclick="switchPersona('catering')">Caterers</button>
+    </div>
+    <div id="mob-school-nav">
     <button class="mob-nav-item" data-mob-slide="0" onclick="mobGoTo(0)">
       <span class="mob-nav-dot"></span> Intro
     </button>
@@ -1135,9 +1382,6 @@ document.head.appendChild(o)}initApollo();</script>
     <button class="mob-nav-item" data-mob-slide="8" onclick="mobGoTo(8)">
       <span class="mob-nav-dot"></span> Admin Dashboard
     </button>
-    <button class="mob-nav-item" data-mob-slide="9" onclick="mobGoTo(9)">
-      <span class="mob-nav-dot"></span> Point of Sale
-    </button>
 
     <div class="mob-nav-group">Why Spare</div>
     <button class="mob-nav-item" data-mob-slide="11" onclick="mobGoTo(11)">
@@ -1156,6 +1400,72 @@ document.head.appendChild(o)}initApollo();</script>
       </button>
       <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="mob-nav-cta-btn">Book a Demo →</a>
     </div>
+    </div><!-- /mob-school-nav -->
+
+    <div class="hidden" id="mob-catering-nav">
+      <button class="mob-nav-item" data-mob-slide="16" onclick="mobGoTo(16)">
+        <span class="mob-nav-dot"></span> Intro
+      </button>
+      <div class="mob-nav-group">Platform</div>
+      <button class="mob-nav-item" data-mob-slide="17" onclick="mobGoTo(17)">
+        <span class="mob-nav-dot"></span> Overview
+      </button>
+      <button class="mob-nav-item" data-mob-slide="15" onclick="mobGoTo(15)">
+        <span class="mob-nav-dot"></span> Schools We Serve
+      </button>
+      <div class="mob-nav-group">Capabilities</div>
+      <button class="mob-nav-item" data-mob-slide="3" onclick="mobGoTo(3)">
+        <span class="mob-nav-dot"></span> Cafeteria
+      </button>
+      <button class="mob-nav-item" data-mob-slide="18" onclick="mobGoTo(18)">
+        <span class="mob-nav-dot"></span> Menu Management
+      </button>
+      <button class="mob-nav-item" data-mob-slide="23" onclick="mobGoTo(23)">
+        <span class="mob-nav-dot"></span> Inventory
+      </button>
+      <button class="mob-nav-item" data-mob-slide="2" onclick="mobGoTo(2)">
+        <span class="mob-nav-dot"></span> Payments
+      </button>
+      <button class="mob-nav-item" data-mob-slide="9" onclick="mobGoTo(9)">
+        <span class="mob-nav-dot"></span> Point of Sale
+      </button>
+      <button class="mob-nav-item" data-mob-slide="6" onclick="mobGoTo(6)">
+        <span class="mob-nav-dot"></span> Communication
+      </button>
+      <div class="mob-nav-group">Product</div>
+      <button class="mob-nav-item" data-mob-slide="7" onclick="mobGoTo(7)">
+        <span class="mob-nav-dot"></span> Parent App
+      </button>
+      <button class="mob-nav-item mob-nav-item-sub" data-mob-slide="10" onclick="mobGoTo(10)">
+        <span class="mob-nav-dot"></span> ↳ Guided Tour
+      </button>
+      <button class="mob-nav-item" data-mob-slide="8" onclick="mobGoTo(8)">
+        <span class="mob-nav-dot"></span> Admin Dashboard
+      </button>
+      <div class="mob-nav-group">Operations</div>
+      <button class="mob-nav-item" data-mob-slide="19" onclick="mobGoTo(19)">
+        <span class="mob-nav-dot"></span> Multi-Location
+      </button>
+      <button class="mob-nav-item" data-mob-slide="20" onclick="mobGoTo(20)">
+        <span class="mob-nav-dot"></span> Reporting
+      </button>
+      <div class="mob-nav-group">Why Spare</div>
+      <button class="mob-nav-item" data-mob-slide="11" onclick="mobGoTo(11)">
+        <span class="mob-nav-dot"></span> Scale & Trust
+      </button>
+      <button class="mob-nav-item" data-mob-slide="12" onclick="mobGoTo(12)">
+        <span class="mob-nav-dot"></span> Onboarding
+      </button>
+      <button class="mob-nav-item" data-mob-slide="13" onclick="mobGoTo(13)">
+        <span class="mob-nav-dot"></span> Secure Payments
+      </button>
+      <div class="mob-nav-cta-row">
+        <button class="mob-nav-item" data-mob-slide="21" onclick="mobGoTo(21)" style="color:var(--teal);font-weight:700;margin-bottom:10px;">
+          <span class="mob-nav-dot" style="background:var(--teal);"></span> Get Started
+        </button>
+        <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="mob-nav-cta-btn">Book a Demo →</a>
+      </div>
+    </div><!-- /mob-catering-nav -->
 
   </div>
 </div>
@@ -1270,18 +1580,41 @@ document.head.appendChild(o)}initApollo();</script>
       <div class="slide-content">
         <div class="slide-tag"><span class="tag-dot"></span> Payments & Financials</div>
         <h2>No cash.<br>No chaos.<br>Full visibility.</h2>
-        <p class="slide-sub">Collect school fees, handle cafeteria payments, and track every transaction from a single dashboard. Parents pay via app; students tap or scan.</p>
+        <p
+          class="slide-sub"
+          id="payments-sub"
+          data-school="Collect school fees, handle cafeteria payments, and track every transaction from a single dashboard. Parents pay via app; students tap or scan."
+          data-catering="Handle cafeteria payments and track every transaction from a single dashboard. Parents pay via app; students tap or scan."
+        >Collect school fees, handle cafeteria payments, and track every transaction from a single dashboard. Parents pay via app; students tap or scan.</p>
         <ul class="flist">
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Fee Payments:</strong> Collect school fees through app or on campus with full balance visibility</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Cashless Payments:</strong> Card, QR code, NFC wristband, or student ID, no cash required</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Easy Recharge:</strong> Parents top up their child's balance through the dedicated app or at an on-campus terminal</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Centralized Dashboard:</strong> All collections, balances, and reports in one place</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Easy Bank Reconciliation:</strong> Clean, structured reports make matching transactions to bank statements fast and straightforward</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>20+ Payment Gateways:</strong> Local and global, adaptable to any region</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Service & Convenience Fees:</strong> Caterers can configure a per-transaction fee, fully controlled from the dashboard</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Flexible Discounts:</strong> Apply discounts based on student type, membership, order value, payment method, or time of day</span></li>
         </ul>
       </div>
       <div class="slide-visual">
         <picture>
-          <source media="(max-width: 860px)" srcset="assets/spare-bracelet-child.png" />
-          <img src="assets/p13_img0.jpg" alt="Payments and merchant dashboard" class="screenshot" />
+          <source
+            media="(max-width: 860px)"
+            id="payments-visual-mobile"
+            srcset="assets/spare-bracelet-child.png"
+          />
+          <img
+            src="assets/Catering-dashboard.png"
+            alt="Payments dashboard"
+            class="screenshot"
+            id="payments-visual"
+            data-school-src="assets/Catering-dashboard.png"
+            data-school-mobile-src="assets/Catering-dashboard.png"
+            data-school-alt="Payments dashboard"
+            data-catering-src="assets/Catering-dashboard.png"
+            data-catering-mobile-src="assets/Catering-dashboard.png"
+            data-catering-alt="Catering payments dashboard"
+          />
         </picture>
       </div>
     </div>
@@ -1291,20 +1624,19 @@ document.head.appendChild(o)}initApollo();</script>
   <div class="slide" id="s-3">
     <div class="slide-inner">
       <div class="slide-visual">
-        <picture>
-          <source media="(max-width: 860px)" srcset="assets/cashless-tap.webp" />
-          <img src="assets/payments-financials.jpg" alt="Cafeteria experience" class="screenshot" />
-        </picture>
+        <img src="assets/sparetap.webp" alt="Student tapping wristband to pay" class="screenshot photo-visual" />
       </div>
       <div class="slide-content">
         <div class="slide-tag"><span class="tag-dot"></span> Cafeteria Experience</div>
-        <h2>Fast, cash-free dining with pre-ordering and reduced queues.</h2>
-        <p class="slide-sub">Students pay with wristbands, QR codes, NFC cards, or student IDs. Parents pre-order meals. No cash, no queues, no hassle.</p>
-        <ul class="flist">
+        <h2 id="cafeteria-title">Fast, cash-free dining with pre-ordering and reduced queues.</h2>
+        <p class="slide-sub" id="cafeteria-sub">Students pay with wristbands, QR codes, NFC cards, or student IDs. Parents pre-order meals. No cash, no queues, no hassle.</p>
+        <ul class="flist" id="cafeteria-list">
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Wristband and QR payments:</strong> Tap-to-pay at any cafeteria station</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Online pre-ordering:</strong> Parents select meals in advance from the app</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Meal plans:</strong> Subscribe students to recurring meal plans</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Meal plans:</strong> Parents subscribe to weekly, monthly, or yearly plans from the app with full visibility on their child's meals</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Handheld and Windows POS:</strong> Flexible hardware for any setup</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Flexible student flows:</strong> Customizable checkout per campus, staffed counter, self-service kiosk, or a mix of both</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Subsidized meals:</strong> Schools, governments, or third parties can top up student balances or fund free meal entitlements directly</span></li>
         </ul>
       </div>
     </div>
@@ -1327,7 +1659,7 @@ document.head.appendChild(o)}initApollo();</script>
       <div class="slide-visual">
         <picture>
           <source media="(max-width: 860px)" srcset="assets/pickup-request-phone.png" />
-          <img src="assets/commerce-marketplace.jpg" alt="Management and operations" class="screenshot" />
+          <img src="assets/pickup.png" alt="Management and operations" class="screenshot" />
         </picture>
       </div>
     </div>
@@ -1375,10 +1707,25 @@ document.head.appendChild(o)}initApollo();</script>
         </ul>
       </div>
       <div class="slide-visual">
-        <picture>
-          <source media="(max-width: 860px)" srcset="assets/resource-hub-phone.png" />
-          <img src="assets/management-operations.jpg" alt="Communication and engagement" class="screenshot" />
-        </picture>
+        <div class="comm-showcase">
+          <div>
+            <div class="iph">
+              <div class="iph-isle"><div></div></div>
+              <div class="iph-vp" id="comm-iph-vp">
+                <div class="ts on" style="display:flex;">
+                  <div class="a-scr" id="comm-feed-scr">
+                    <img src="assets/app-newsfeed.png" alt="Parent app newsfeed" draggable="false" />
+                  </div>
+                </div>
+              </div>
+              <div class="iph-bar"><div></div></div>
+            </div>
+            <div class="comm-phone-note">
+              <svg viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 1v14M3 4l3-3 3 3M3 12l3 3 3-3"/></svg>
+              Scroll to explore the feed
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1389,7 +1736,17 @@ document.head.appendChild(o)}initApollo();</script>
       <div class="slide-tag"><span class="tag-dot"></span> Parent App Experience</div>
       <h2>Simple for parents.<br>Seamless for students.</h2>
       <p class="slide-sub" style="max-width:540px; margin-bottom:28px;">Every parent interaction, from topping up a wallet to ordering lunch, is one tap away.</p>
-      <img src="assets/parent-flow.jpg" alt="Parent App Experience" class="screenshot" style="max-width:860px; width:100%;" />
+      <img
+        src="assets/parent-flow.jpg"
+        alt="Parent App Experience"
+        class="screenshot"
+        style="max-width:860px; width:100%;"
+        id="parent-app-visual"
+        data-school-src="assets/parent-flow.jpg"
+        data-school-alt="Parent App Experience"
+        data-catering-src="assets/caterer-parentapp.png"
+        data-catering-alt="Caterer parent app experience"
+      />
     </div>
   </div>
 
@@ -1399,7 +1756,28 @@ document.head.appendChild(o)}initApollo();</script>
       <div class="slide-tag"><span class="tag-dot"></span> Admin Experience</div>
       <h2>Your operations, fully visible.</h2>
       <p class="slide-sub" style="max-width:560px; margin-bottom:28px;">Two views. One platform. The merchant dashboard tracks revenue and inventory; the school dashboard manages students, attendance, and billing.</p>
-      <img src="assets/parent-app-screens.jpg" alt="Admin Experience: Merchant and School Dashboards" class="screenshot" style="max-width:960px; width:100%;" />
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-head">
+            <div class="dash-card-label">Merchant View</div>
+          </div>
+          <div class="dash-card-title">Catering operations in one place</div>
+          <div class="dash-card-sub">Track sales, returns, recharges, stock, and restock requests from a dashboard built for vendors.</div>
+          <div class="dash-card-frame">
+            <img src="assets/Catering-dashboard.png" alt="Merchant dashboard" />
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-head">
+            <div class="dash-card-label">School View</div>
+          </div>
+          <div class="dash-card-title">Administrative oversight with clarity</div>
+          <div class="dash-card-sub">Manage users, attendance, fees, communication, transport, and family balances from the school side.</div>
+          <div class="dash-card-frame">
+            <img src="assets/school-dashboard.png" alt="School dashboard" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1411,9 +1789,11 @@ document.head.appendChild(o)}initApollo();</script>
         <h2>Fast checkout.<br>Zero queues.<br>Every station.</h2>
         <p class="slide-sub">Spare's POS system turns any cafeteria into a frictionless, cashless experience. From handheld terminals to fixed kiosks, checkout is instant.</p>
         <ul class="flist">
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Handheld and Fixed POS:</strong> Windows-based terminals and mobile handhelds for any setup</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Wristband, QR, and NFC:</strong> Students tap, scan, or wave to pay in seconds</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Handheld and Fixed POS:</strong> Windows or Android terminals and mobile handhelds for any setup</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Self-Service Ready:</strong> Support staffed counters, self-service kiosks, or mixed checkout setups per campus</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Wristband, QR, and NFC:</strong> Students tap or scan to pay in seconds</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Pre-order Integration:</strong> Orders placed ahead of time flow straight to the POS queue</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Restock Requests at POS:</strong> Cashiers can submit restock requests directly from the POS when items run low</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Real-time Reporting:</strong> Live sales, item counts, and cashless reconciliation</span></li>
         </ul>
       </div>
@@ -1470,80 +1850,87 @@ document.head.appendChild(o)}initApollo();</script>
           <div class="iph-isle"><div></div></div>
           <div class="iph-vp" id="iph-vp">
 
-            <!-- DASHBOARD — natural 886×2686, displayed 266×807 -->
+            <!-- DASHBOARD, natural 886×2686, displayed 266×807 -->
             <div class="ts on" id="ts-dashboard">
               <div class="a-scr">
                 <img src="assets/app-dashboard.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- TICKET — natural 1179×2556, displayed 266×576 -->
+            <!-- TICKET, natural 1179×2556, displayed 266×576 -->
             <div class="ts" id="ts-ticket">
               <div class="a-scr">
                 <img src="assets/app-ticket.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- BALANCE — natural 886×8619, displayed 266×2590 -->
+            <!-- BALANCE, natural 886×8619, displayed 266×2590 -->
             <div class="ts" id="ts-balance">
               <div class="a-scr">
                 <img src="assets/app-balance.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- STUDENT AREA — natural 886×2180, displayed 266×654 -->
+            <!-- STUDENT AREA, natural 886×2180, displayed 266×654 -->
             <div class="ts" id="ts-student">
               <div class="a-scr">
                 <img src="assets/app-student.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- SETTINGS — natural 886×3834, displayed 266×1151 -->
+            <!-- SETTINGS, natural 886×3834, displayed 266×1151 -->
             <div class="ts" id="ts-settings">
               <div class="a-scr">
                 <img src="assets/app-settings.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- SCHOOL TAB — natural 886×3554, displayed 266×1067 -->
+            <!-- SCHOOL TAB, natural 886×3554, displayed 266×1067 -->
             <div class="ts" id="ts-school">
               <div class="a-scr">
                 <img src="assets/app-school.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- NEWS FEED — natural 886×4448, displayed 266×1335 -->
+            <!-- NEWS FEED, natural 886×4448, displayed 266×1335 -->
             <div class="ts" id="ts-newsfeed">
               <div class="a-scr">
                 <img src="assets/app-newsfeed.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- ONLINE STORE — natural 886×2003, displayed 266×601 -->
+            <!-- ONLINE STORE, natural 886×2003, displayed 266×601 -->
             <div class="ts" id="ts-store">
               <div class="a-scr">
                 <img src="assets/app-store.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- VIDEOS & MEDIA — natural 886×1920, displayed 266×576 -->
+            <!-- VIDEOS & MEDIA, natural 886×1920, displayed 266×576 -->
             <div class="ts" id="ts-videos">
               <div class="a-scr">
                 <img src="assets/app-videos.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- SCHOOL FEES — natural 886×1919, displayed 266×576 -->
+            <!-- SCHOOL FEES, natural 886×1919, displayed 266×576 -->
             <div class="ts" id="ts-fees">
               <div class="a-scr">
                 <img src="assets/app-fees.png" style="width:100%;display:block;" draggable="false" />
               </div>
             </div>
 
-            <!-- CALENDAR — natural 886×1916, displayed 266×575 -->
+            <!-- CALENDAR, natural 886×1916, displayed 266×575 -->
             <div class="ts" id="ts-calendar">
               <div class="a-scr">
-                <img src="assets/app-calendar.png" style="width:100%;display:block;" draggable="false" />
+                <img
+                  src="assets/school-calendar.JPEG"
+                  style="width:100%;display:block;"
+                  draggable="false"
+                  id="tour-calendar-visual"
+                  data-school-src="assets/school-calendar.JPEG"
+                  data-catering-src="assets/merchants-menu.JPEG"
+                />
               </div>
             </div>
 
@@ -1553,7 +1940,7 @@ document.head.appendChild(o)}initApollo();</script>
               Scroll to explore
             </div>
 
-            <!-- Fixed bottom navigation — always visible above all screens -->
+            <!-- Fixed bottom navigation, always visible above all screens -->
             <div class="iph-bnav">
               <!-- Spare tab: actual Spare mark SVG, viewBox cropped to mark only -->
               <button class="iph-bnav-btn active" id="bnav-spare" onclick="tourNavGo('dashboard')" title="Home">
@@ -1746,7 +2133,258 @@ document.head.appendChild(o)}initApollo();</script>
     </div>
   </div>
 
+
+  <!-- 16 · CATERING HERO -->
+  <div class="slide" id="s-16">
+    <div class="intro-layout" style="display:grid; grid-template-columns:1fr 1fr; height:100vh; overflow:hidden; gap:0;">
+      <div class="intro-left" style="display:flex; flex-direction:column; justify-content:center; padding:44px 36px 44px 52px; border-right:1px solid var(--border); background:#fff;">
+        <div class="slide-tag" style="margin-bottom:16px;"><span class="tag-dot"></span> Cafeteria Vendor Platform</div>
+        <h1 style="font-size:clamp(1.8rem,2.8vw,2.8rem); margin-bottom:14px; letter-spacing:-1.2px;">Built for catering<br>operations <span class="accent">at scale.</span></h1>
+        <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.7; margin-bottom:24px;">Spare gives catering companies the tools to manage menus, POS, multi-location reporting, and parent ordering, all in one platform.</p>
+        <div class="intro-cta-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
+          <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary">Book a Demo</a>
+          <button class="btn btn-outline" onclick="openDownload()">Download PDF</button>
+          <button class="btn btn-ghost" onclick="goTo(17)">Explore Platform</button>
+        </div>
+        <div class="intro-stats" style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding-top:20px; border-top:1px solid var(--border);">
+          <div class="trust-item"><strong>10M+</strong><span>Transactions</span></div>
+          <div class="trust-item"><strong>15M+</strong><span>Meals Served</span></div>
+          <div class="trust-item"><strong>100K+</strong><span>Students Fed</span></div>
+          <div class="trust-item"><strong>8+</strong><span>Countries</span></div>
+        </div>
+      </div>
+      <div class="intro-right" style="display:grid; grid-template-rows:1fr 1fr; height:100vh; overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:center; padding:24px 32px 12px; background:#fff; overflow:hidden;">
+          <img src="assets/payments-financials.jpg" alt="Cashless cafeteria payments"
+            style="max-width:100%; max-height:100%; object-fit:cover; border-radius:12px; display:block;" />
+        </div>
+        <div class="intro-video" style="display:flex; flex-direction:column; justify-content:center; padding:12px 32px 20px; background:var(--bg-subtle); overflow:hidden;">
+          <div class="video-wrap" style="flex:1; max-height:100%;">
+            <img id="spare-video-catering-poster" src="assets/live-at-cisa.png"
+                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right bottom;display:block;border-radius:inherit;" alt="Spare at CISA" />
+            <div id="spare-video-catering" style="display:none;position:absolute;inset:0;width:100%;height:100%;"></div>
+            <div class="v-overlay" id="v-overlay-catering" onclick="playVideoCatering()" style="background:transparent;">
+              <div class="hero-play-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:8px; font-weight:500;">Spare Live @ CISA</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 17 · CATERING OVERVIEW -->
+  <div class="slide" id="s-17">
+    <div class="slide-inner centered">
+      <div class="slide-tag"><span class="tag-dot"></span> All Your Operations. One Platform.</div>
+      <h2>Everything a catering company needs,<br>finally in one platform.</h2>
+      <p class="slide-sub" style="max-width:620px; margin-bottom:16px;">From cashless POS to consolidated multi-country reporting, Spare gives catering vendors the tools to run lean, delight students, and grow their school contracts.</p>
+      <div class="platform-grid" style="grid-template-columns:repeat(4,1fr); max-width:1040px;">
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="pg-info"><h4>Fast Checkout & POS</h4><p>Multiple checkout flows per campus. Wristband, QR, NFC, or student ID.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
+          <div class="pg-info"><h4>Menus, Combos & Specials</h4><p>Digital menu builder with combos, daily specials, and per-campus customization.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0112 0v2"/><path d="M2 20h20"/></svg></div>
+          <div class="pg-info"><h4>Pre-Orders & Meal Plans</h4><p>Advance ordering with cut-off times. Daily, weekly, monthly, or yearly plans.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6.5L22 9.5l-5 5 1.18 6.88L12 18l-6.18 3.38L7 14.5 2 9.5l7-1z"/></svg></div>
+          <div class="pg-info"><h4>Pricing, Subsidies & Promotions</h4><p>Dynamic pricing, school and government subsidized meals, vouchers, staff pricing, and combo deals.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+          <div class="pg-info"><h4>Multi-Country Operations</h4><p>Multi-currency, multi-language, and per-region compliance across all markets.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div class="pg-info"><h4>Consolidated Dashboard</h4><p>All contracts, locations, and transactions in one real-time view.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div class="pg-info"><h4>Dedicated Parent App</h4><p>Parents get their own full-featured app to order, pay, track meals, and get updates.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+          <div class="pg-info"><h4>Communication & Newsletters</h4><p>Push notifications, event alerts, and special-day promotions to parents.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+          <div class="pg-info"><h4>Payments & Reconciliation</h4><p>20+ gateways, instant settlements, and audit-ready financial exports.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div class="pg-info"><h4>Service & Convenience Fees</h4><p>Charge a configurable service or convenience fee per transaction.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="pg-info"><h4>Allergen & Dietary Tracking</h4><p>Per-item allergen flags, halal, vegetarian, and custom dietary compliance.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+          <div class="pg-info"><h4>Inventory Management</h4><p>Track stock per location, reduce waste, and plan supply from pre-order data.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="pg-info"><h4>Home Delivery</h4><p>Campus or home delivery as an optional add-on for parents who want it.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="pg-info"><h4>Reports & Insights</h4><p>Revenue per location, item-level performance, trends, and exportable data.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="pg-info"><h4>Onboarding & Support</h4><p>Dedicated onboarding team, staff training, and a named account manager from day one.</p></div>
+        </div>
+        <div class="pg-card">
+          <div class="pg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div class="pg-info"><h4>Staff Management</h4><p>Assign roles, manage access, and control permissions per location and campus.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 18 · MENU MANAGEMENT -->
+  <div class="slide" id="s-18">
+    <div class="slide-inner">
+      <div class="slide-content">
+        <div class="slide-tag"><span class="tag-dot"></span> Menu & Pre-Ordering</div>
+        <h2>Build once, publish anywhere,<br>and keep every menu up to date.</h2>
+        <p class="slide-sub">Spare gives vendors a centralized menu management system to publish weekly menus, special offerings, and tailored school menus across every location they serve.</p>
+        <ul class="flist">
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Centralized menu builder:</strong> Create and manage menus for multiple schools from one place, using a master product list and a simple checkbox flow to add items into each school menu</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Buffet and special-day menus:</strong> Publish themed menus, one-off events, and buffet days with instant parent visibility</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Allergen and dietary tagging:</strong> Add allergen, halal, vegetarian, and other dietary labels to every item</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Combos and customizable meals:</strong> Offer combo deals and build-your-own dishes like salads, noodles, and other flexible meal formats</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Per-school customization:</strong> Tailor menus, pricing, item availability, and per-day availability by location without duplicating work</span></li>
+        </ul>
+      </div>
+      <div class="slide-visual">
+        <img src="assets/merchantproducts.png" alt="Menu management dashboard" class="ui-visual" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 19 · MULTI-LOCATION -->
+  <div class="slide" id="s-19">
+    <div class="slide-inner">
+      <div class="slide-visual">
+        <img src="assets/reach-map.jpg" alt="Multi-location school contracts" class="screenshot" />
+      </div>
+      <div class="slide-content">
+        <div class="slide-tag"><span class="tag-dot"></span> Multi-Location Management</div>
+        <h2>All your school contracts.<br>One dashboard.</h2>
+        <p class="slide-sub">Whether you serve 5 schools or 50, Spare gives you a unified view of every location, menus, sales, staff, and students, without switching between systems.</p>
+        <ul class="flist">
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Centralized Dashboard:</strong> See all locations, transaction volumes, and revenue in one unified view</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Per-Location Menus:</strong> Customize menus per school or push a unified menu across all locations at once</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Staff & Access Control:</strong> Assign roles and manage access per location without sharing credentials</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Scalable Infrastructure:</strong> Add new school contracts with zero additional IT setup overhead</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 20 · REPORTING -->
+  <div class="slide" id="s-20">
+    <div class="slide-inner">
+      <div class="slide-content">
+        <div class="slide-tag"><span class="tag-dot"></span> Reporting & Analytics</div>
+        <h2>Every transaction.<br>Every location.<br>One report.</h2>
+        <p class="slide-sub">Spare's reporting suite gives you complete financial visibility across all your school contracts, daily summaries, per-location breakdowns, and audit-ready exports.</p>
+        <ul class="flist">
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Revenue Summary:</strong> One consolidated report with a full revenue breakdown across all your locations</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Real-Time Sales Dashboard:</strong> Live transaction feeds and revenue totals across all locations</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Per-Location Breakdowns:</strong> Compare performance across schools and identify your highest-revenue contracts</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Cashless Reconciliation:</strong> Automatic settlement matching between POS and payment gateway, no manual work</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Export-Ready Data:</strong> One-click CSV/PDF exports for finance teams and school invoicing</span></li>
+        </ul>
+      </div>
+      <div class="slide-visual">
+        <img src="assets/caterting-revenue.png" alt="Revenue reporting dashboard" class="ui-visual" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 21 · CATERING GET STARTED -->
+  <div class="slide" id="s-21">
+    <div class="slide-inner centered cta-inner" style="padding-top:60px; padding-bottom:60px;">
+      <div class="slide-tag" style="background:rgba(255,255,255,0.2); color:#fff; border:none;">
+        <span class="tag-dot" style="background:#fff;"></span> Ready to Get Started
+      </div>
+      <h2 style="color:#fff; margin-bottom:14px;">Ready to grow your<br>catering operation?</h2>
+      <p class="slide-sub" style="color:rgba(255,255,255,0.85); max-width:520px;">
+        Spare gives catering companies cashless POS, digital menus, pre-orders, multi-location management, and real-time reporting, all in one platform built for school environments.
+      </p>
+      <div class="hero-actions" style="justify-content:center; margin-bottom:28px;">
+        <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-white">Book a Demo</a>
+        <button class="btn btn-outline-white" onclick="openDownload()">Download PDF</button>
+      </div>
+      <div class="cta-trust">
+        <div class="ct-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 10M+ transactions processed</div>
+        <div class="ct-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 15M+ meals served across 8+ countries</div>
+        <div class="ct-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fast, guided implementation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 22 · DEDICATED PARENT APP (CATERING) -->
+  <div class="slide" id="s-22">
+    <div class="slide-inner">
+      <div class="slide-content">
+        <div class="slide-tag"><span class="tag-dot"></span> Dedicated Parent App</div>
+        <h2>Your parents get their own app. Built for your operation.</h2>
+        <p class="slide-sub">Parents order, pay, and manage their child's meals from a dedicated app, giving you a direct channel to every family you serve.</p>
+        <ul class="flist">
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Meal Ordering:</strong> Parents browse your menu and pre-order meals directly from the app</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Meal Plan Subscriptions:</strong> Subscribe to weekly, monthly, or yearly plans with auto-renewal and full flexibility</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Balance Top-Up:</strong> Recharge the child's account anytime, from anywhere</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Eating Visibility:</strong> Parents see exactly what their child ate, when, and how much was spent</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Allergen Preferences:</strong> Set dietary flags once, applied automatically across every order</span></li>
+        </ul>
+      </div>
+      <div class="slide-visual">
+        <img src="assets/parent-app-screens.jpg" alt="Dedicated parent app" class="screenshot photo-visual" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 23 · INVENTORY -->
+  <div class="slide" id="s-23">
+    <div class="slide-inner">
+      <div class="slide-content">
+        <div class="slide-tag"><span class="tag-dot"></span> Inventory & Stock Management</div>
+        <h2>Centralized inventory control,<br>with less waste and better planning.</h2>
+        <p class="slide-sub">Spare provides a centralized inventory management system that helps schools and caterers reduce waste while maintaining full control over stock.</p>
+        <ul class="flist">
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Reduce waste:</strong> Link inventory with sales and consumption data to minimize over-ordering and food waste</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Real-time stock visibility:</strong> View stock levels across all schools or drill down into individual locations</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Centralized dashboard:</strong> Monitor and manage inventory across multiple sites in one place</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Warehouse management:</strong> Track stock across warehouses, branches, and storage locations</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Stock movement tracking:</strong> Full visibility on transfers, usage, and replenishment</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Better demand planning:</strong> Use data insights to optimize purchasing and avoid shortages</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Cashier restock requests:</strong> Enable frontline staff to request stock directly from POS, ensuring timely replenishment</span></li>
+        </ul>
+      </div>
+      <div class="slide-visual">
+        <img src="assets/inventory.png" alt="Inventory and stock dashboard" class="ui-visual" />
+      </div>
+    </div>
+  </div>
+
 </main>
+
+<!-- ═══════════════ FLOATING PERSONA PILL ═══════════════ -->
+<div id="persona-float">
+  <button class="pf-btn active" data-persona="school" onclick="switchPersona('school')">🏫 Schools</button>
+  <button class="pf-btn" data-persona="catering" onclick="switchPersona('catering')">🍽️ Caterers</button>
+</div>
 
 <!-- ═══════════════ NAV ARROWS ═══════════════ -->
 <div id="nav-arrows">
@@ -1950,9 +2588,9 @@ document.head.appendChild(o)}initApollo();</script>
 </div>
 
 <script>
-  const TOTAL = 16;
   let current = 0;
   let animating = false;
+  let currentPersona = 'school';
 
   const slides = Array.from(document.querySelectorAll('.slide'));
   const navBtns = Array.from(document.querySelectorAll('.nav-btn'));
@@ -1966,11 +2604,104 @@ document.head.appendChild(o)}initApollo();</script>
     'Intro','Overview','Payments','Cafeteria','Operations',
     'Marketplace','Communication','Parent App','Admin','Point of Sale',
     'Parent App Tour','Scale & Trust','Onboarding','Secure Payments','Get Started',
-    'Schools'
+    'Schools',
+    'Intro','Overview','Menu Management','Multi-Location','Reporting','Get Started',
+    'Parent App','Inventory'
   ];
 
-  // Navigation order — matches the sidebar sequence (slide 10 sits between 7 and 8)
-  const NAV_ORDER = [0, 1, 15, 2, 3, 4, 5, 6, 7, 10, 8, 9, 11, 12, 13, 14];
+  const SCHOOL_NAV_ORDER   = [0, 1, 15, 2, 3, 4, 5, 6, 7, 10, 8, 11, 12, 13, 14];
+  const CATERING_NAV_ORDER = [16, 17, 15, 3, 18, 23, 2, 9, 6, 7, 10, 8, 19, 20, 11, 12, 13, 21];
+  let NAV_ORDER = SCHOOL_NAV_ORDER;
+  const paymentsSub = document.getElementById('payments-sub');
+  const paymentsVisual = document.getElementById('payments-visual');
+  const paymentsVisualMobile = document.getElementById('payments-visual-mobile');
+  const parentAppVisual = document.getElementById('parent-app-visual');
+  const cafeteriaTitle = document.getElementById('cafeteria-title');
+  const cafeteriaSub = document.getElementById('cafeteria-sub');
+  const cafeteriaList = document.getElementById('cafeteria-list');
+
+  const SCHOOL_CAFETERIA = {
+    title: 'Fast, cash-free dining with pre-ordering and reduced queues.',
+    sub: 'Students pay with wristbands, QR codes, NFC cards, or student IDs. Parents pre-order meals. No cash, no queues, no hassle.',
+    list: `
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Wristband and QR payments:</strong> Tap-to-pay at any cafeteria station</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Online pre-ordering:</strong> Parents select meals in advance from the app</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Meal plans:</strong> Parents subscribe to weekly, monthly, or yearly plans from the app with full visibility on their child's meals</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Handheld and Windows POS:</strong> Flexible hardware for any setup</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Flexible student flows:</strong> Customizable checkout per campus, staffed counter, self-service kiosk, or a mix of both</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Subsidized meals:</strong> Schools, governments, or third parties can top up student balances or fund free meal entitlements directly</span></li>
+    `
+  };
+
+  const CATERING_CAFETERIA = {
+    title: 'Ordering, meal plans, and safer service in one cafeteria flow.',
+    sub: 'Parents order, pay, and manage their child&apos;s meals from the app, while students move through checkout with the right items, balances, and restrictions applied automatically.',
+    list: `
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Meal ordering:</strong> Parents browse your menu and pre-order meals directly from the app</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Meal plan subscriptions:</strong> Weekly, monthly, or yearly plans with full flexibility for every family</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Balance top-up and cashless checkout:</strong> Parents recharge anytime, while students pay with wristbands, QR, NFC, or ID at service</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Subsidized meals:</strong> Support school-funded, government-funded, or third-party meal entitlements directly within the checkout flow</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Eating visibility:</strong> Parents can see exactly what their child ate, when, and how much was spent</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Allergen protection:</strong> If parents set dietary or allergen restrictions, blocked items are automatically prevented at checkout if the student tries to buy them</span></li>
+      <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Flexible service setups:</strong> Support staffed counters, self-service kiosks, or mixed campus service models</span></li>
+    `
+  };
+
+  function syncPersonaCopy() {
+    const isCatering = currentPersona === 'catering';
+
+    if (paymentsSub) {
+      paymentsSub.textContent = isCatering
+        ? paymentsSub.dataset.catering
+        : paymentsSub.dataset.school;
+    }
+
+    if (paymentsVisual) {
+      paymentsVisual.src = isCatering ? paymentsVisual.dataset.cateringSrc : paymentsVisual.dataset.schoolSrc;
+      paymentsVisual.alt = isCatering ? paymentsVisual.dataset.cateringAlt : paymentsVisual.dataset.schoolAlt;
+      if (paymentsVisualMobile) {
+        paymentsVisualMobile.srcset = isCatering
+          ? paymentsVisual.dataset.cateringMobileSrc
+          : paymentsVisual.dataset.schoolMobileSrc;
+      }
+    }
+
+    if (parentAppVisual) {
+      parentAppVisual.src = isCatering ? parentAppVisual.dataset.cateringSrc : parentAppVisual.dataset.schoolSrc;
+      parentAppVisual.alt = isCatering ? parentAppVisual.dataset.cateringAlt : parentAppVisual.dataset.schoolAlt;
+    }
+
+    if (cafeteriaTitle && cafeteriaSub && cafeteriaList) {
+      const config = isCatering ? CATERING_CAFETERIA : SCHOOL_CAFETERIA;
+      cafeteriaTitle.textContent = config.title;
+      cafeteriaSub.innerHTML = config.sub;
+      cafeteriaList.innerHTML = config.list;
+    }
+  }
+
+  function switchPersona(p) {
+    if (p === currentPersona) return;
+    currentPersona = p;
+    NAV_ORDER = p === 'school' ? SCHOOL_NAV_ORDER : CATERING_NAV_ORDER;
+    syncTourConfig();
+
+    document.querySelectorAll('.pt-btn, .mob-pt-btn, .pf-btn').forEach(b => b.classList.toggle('active', b.dataset.persona === p));
+
+    document.getElementById('school-nav').classList.toggle('hidden', p !== 'school');
+    document.getElementById('catering-nav').classList.toggle('hidden', p !== 'catering');
+    document.getElementById('mob-school-nav').classList.toggle('hidden', p !== 'school');
+    document.getElementById('mob-catering-nav').classList.toggle('hidden', p !== 'catering');
+
+    const targetSlide = NAV_ORDER.includes(current) ? current : NAV_ORDER[0];
+    slides[current].classList.remove('active');
+    current = targetSlide;
+    slides[current].classList.add('active');
+    slides[current].scrollTop = 0;
+    syncPersonaCopy();
+    if (current === 10) initTour();
+    updateUI();
+    history.replaceState(null, '', p === 'catering' ? '?p=catering' : window.location.pathname);
+  }
 
   function goTo(idx, dir) {
     if (idx === current || animating) return;
@@ -2019,7 +2750,7 @@ document.head.appendChild(o)}initApollo();</script>
     const pos = NAV_ORDER.indexOf(current);
     navBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.slide) === current));
     progressFill.style.width = ((pos + 1) / NAV_ORDER.length * 100) + '%';
-    navCounter.textContent = (pos + 1) + ' / ' + TOTAL;
+    navCounter.textContent = (pos + 1) + ' / ' + NAV_ORDER.length;
     btnPrev.disabled = pos === 0;
     btnNext.disabled = pos === NAV_ORDER.length - 1;
     arrLabel.textContent = labels[current];
@@ -2042,7 +2773,7 @@ document.head.appendChild(o)}initApollo();</script>
   // Do NOT intercept wheel events originating inside the phone viewport (allow app scroll)
   let wheelTimeout;
   document.getElementById('stage').addEventListener('wheel', e => {
-    if (e.target.closest('#iph-vp')) return; // let phone content scroll naturally
+    if (e.target.closest('#iph-vp, #comm-iph-vp')) return; // let phone content scroll naturally
     const activeSlide = slides[current];
     const atTop = activeSlide.scrollTop <= 0;
     const atBottom = activeSlide.scrollTop + activeSlide.clientHeight >= activeSlide.scrollHeight - 2;
@@ -2052,13 +2783,13 @@ document.head.appendChild(o)}initApollo();</script>
     wheelTimeout = setTimeout(() => { e.deltaY > 0 ? next() : prev(); }, 60);
   }, { passive: false });
 
-  // Touch / swipe — respect scrollable content; navigate only at boundaries
+  // Touch / swipe, respect scrollable content; navigate only at boundaries
   // Pinch-to-zoom is fully ignored (multi-touch sets touchPinch flag)
   let touchStartY = 0, touchScrollEl = null, touchPinch = false, touchActive = false;
   const stageEl = document.getElementById('stage');
 
   stageEl.addEventListener('touchstart', e => {
-    if (e.touches.length > 1) { touchPinch = true; return; } // pinch/zoom — ignore entirely
+    if (e.touches.length > 1) { touchPinch = true; return; } // pinch/zoom, ignore entirely
     touchPinch = false;
     touchActive = true;
     touchStartY = e.touches[0].clientY;
@@ -2104,7 +2835,7 @@ document.head.appendChild(o)}initApollo();</script>
   stageEl.addEventListener('touchend', e => {
     touchActive = false;
     clearSwipeHints();
-    if (touchPinch) { touchPinch = false; return; } // was a pinch — never navigate
+    if (touchPinch) { touchPinch = false; return; } // was a pinch, never navigate
     if (!e.changedTouches.length) return;
     const dy = touchStartY - e.changedTouches[0].clientY;
     if (Math.abs(dy) <= 100) return;
@@ -2121,7 +2852,7 @@ document.head.appendChild(o)}initApollo();</script>
 
   stageEl.addEventListener('touchcancel', () => { touchPinch = false; touchActive = false; touchScrollEl = null; clearSwipeHints(); });
 
-  // Video iframe touch guard — intercepts touches on the Drive embed
+  // Video iframe touch guard, intercepts touches on the Drive embed
   const videoGuard = document.getElementById('video-touch-guard');
   if (videoGuard) {
     let guardStartY = 0;
@@ -2151,7 +2882,7 @@ document.head.appendChild(o)}initApollo();</script>
       const dy = guardStartY - e.changedTouches[0].clientY;
       const abs = Math.abs(dy);
       if (abs < 15) {
-        // Tap — trigger play then step aside so future taps reach the iframe
+        // Tap, trigger play then step aside so future taps reach the iframe
         playVideoHero();
         videoGuard.style.pointerEvents = 'none';
         return;
@@ -2189,9 +2920,8 @@ document.head.appendChild(o)}initApollo();</script>
 
   // Video - hero (YouTube embed)
   // YouTube IFrame API
-  var ytPlayer = null;
-  var ytReady  = false;
-  var ytPlayPending = false;
+  var ytPlayer = null, ytReady = false, ytPlayPending = false;
+  var ytPlayer2 = null, ytReady2 = false, ytPlayPending2 = false;
 
   (function() {
     var s = document.createElement('script');
@@ -2211,6 +2941,17 @@ document.head.appendChild(o)}initApollo();</script>
         }
       }
     });
+    ytPlayer2 = new YT.Player('spare-video-catering', {
+      videoId: 'EdrYTFpQ7bY',
+      playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
+      events: {
+        onReady: function() {
+          ytReady2 = true;
+          document.getElementById('spare-video-catering').style.display = 'block';
+          if (ytPlayPending2) { ytPlayer2.playVideo(); ytPlayPending2 = false; }
+        }
+      }
+    });
   };
 
   function playVideoHero() {
@@ -2220,6 +2961,15 @@ document.head.appendChild(o)}initApollo();</script>
     if (overlay) overlay.style.display = 'none';
     if (ytReady) { ytPlayer.playVideo(); }
     else         { ytPlayPending = true; }
+  }
+
+  function playVideoCatering() {
+    const poster  = document.getElementById('spare-video-catering-poster');
+    const overlay = document.getElementById('v-overlay-catering');
+    if (poster)  poster.style.display  = 'none';
+    if (overlay) overlay.style.display = 'none';
+    if (ytReady2) { ytPlayer2.playVideo(); }
+    else          { ytPlayPending2 = true; }
   }
 
   // Counter animation
@@ -2346,29 +3096,38 @@ document.head.appendChild(o)}initApollo();</script>
     }
   }
 
-  updateUI();
-
   // ═══ PARENT APP GUIDED TOUR ═══
 
   let scrollHintTimer; // module-level timer for the in-phone scroll hint
 
   // One step per unique screen
-  const TOUR_STEPS = [
+  const SCHOOL_TOUR_STEPS = [
     { scr:'dashboard', title:'Dashboard',         desc:'The home screen shows upcoming events, cashless wallet balance, and quick access to each student\'s area.' },
-    { scr:'ticket',    title:'Ticket & Receipts', desc:'Event tickets with QR codes are issued directly through the app. Parents tap to present at the gate — no paper needed.' },
-    { scr:'balance',   title:'Balance & Wallet',  desc:'Full transaction history, instant top-up, and per-student spending limits — all in one screen.' },
+    { scr:'ticket',    title:'Ticket & Receipts', desc:'Event tickets with QR codes are issued directly through the app. Parents tap to present at the gate, no paper needed.' },
+    { scr:'balance',   title:'Balance & Wallet',  desc:'Full transaction history, instant top-up, and per-student spending limits, all in one screen.' },
     { scr:'student',   title:'Student Area',      desc:'Each student has their own area showing spending activity, purchase history, pickup requests, and attendance.' },
     { scr:'settings',  title:'Student Settings',  desc:'Parents set daily spending limits, manage pickup permissions, and configure notification preferences per student.' },
     { scr:'school',    title:'School',            desc:'The School tab centralises everything published by the school: news, store, resources, fees, and more.' },
     { scr:'newsfeed',  title:'News Feed',         desc:'School-wide announcements, event posters, and community updates published directly by school staff.' },
     { scr:'store',     title:'Online Store',      desc:'Parents browse and order daily meals, uniforms, books, school trips, and supply items in one place.' },
-    { scr:'videos',    title:'Videos & Media',    desc:'Part of the Resource Hub — school channels, educational videos, and multimedia content. Videos & Media, School Life, and Quick Links are all part of the Resource Hub and are fully configurable by the school.' },
+    { scr:'videos',    title:'Videos & Media',    desc:'Part of the Resource Hub, school channels, educational videos, and multimedia content. Videos & Media, School Life, and Quick Links are all part of the Resource Hub and are fully configurable by the school.' },
     { scr:'fees',      title:'School Fees',       desc:'Parents view all outstanding fees, semester charges, bus fees, and complete payment history in one screen.' },
-    { scr:'calendar',  title:'Calendar & Events', desc:'Academic and events calendars, downloadable as PDF. Like School Life and Quick Links, this section is part of the configurable Resource Hub — each school decides what to show.' },
+    { scr:'calendar',  title:'Calendar & Events', desc:'Academic and events calendars, downloadable as PDF. Like School Life and Quick Links, this section is part of the configurable Resource Hub, each school decides what to show.' },
   ];
 
-  // One NAV_ITEMS entry per unique screen — steps are now 0–10 (no duplicates)
-  const NAV_ITEMS = [
+  const CATERING_TOUR_STEPS = SCHOOL_TOUR_STEPS
+    .filter(step => step.scr !== 'ticket' && step.scr !== 'fees')
+    .map(step => step.scr === 'calendar'
+      ? {
+          ...step,
+          title: 'Weekly Menus & Updates',
+          desc: 'Share weekly menus, buffet plans, and last-minute changes directly in the app, with instant notifications sent to parents as soon as updates go live.'
+        }
+      : step
+    );
+
+  // One NAV_ITEMS entry per unique screen
+  const SCHOOL_NAV_ITEMS = [
     { scr:'dashboard', label:'Dashboard',      steps:[0],   group:'Home'   },
     { scr:'ticket',    label:'Tickets',         steps:[1],   group:'Home'   },
     { scr:'balance',   label:'Balance',         steps:[2],   group:'Home'   },
@@ -2382,9 +3141,39 @@ document.head.appendChild(o)}initApollo();</script>
     { scr:'calendar',  label:'Calendar',         steps:[10],  group:'School' },
   ];
 
+  const CATERING_NAV_ITEMS = SCHOOL_NAV_ITEMS
+    .filter(item => item.scr !== 'ticket' && item.scr !== 'fees')
+    .map(item => {
+      const remappedSteps = item.steps
+        .map(step => step > 1 ? step - 1 : step)
+        .map(step => step > 8 ? step - 1 : step);
+      return item.scr === 'calendar'
+        ? { ...item, label: 'Menus & Updates', steps: remappedSteps }
+        : { ...item, steps: remappedSteps };
+    });
+
   const SCHOOL_SCREENS = new Set(['school','newsfeed','store','videos','fees','calendar']);
+  let TOUR_STEPS = SCHOOL_TOUR_STEPS;
+  let NAV_ITEMS = SCHOOL_NAV_ITEMS;
+  const tourCalendarVisual = document.getElementById('tour-calendar-visual');
 
   let tourStep = -1;
+
+  function syncTourConfig() {
+    if (currentPersona === 'catering') {
+      TOUR_STEPS = CATERING_TOUR_STEPS;
+      NAV_ITEMS = CATERING_NAV_ITEMS;
+    } else {
+      TOUR_STEPS = SCHOOL_TOUR_STEPS;
+      NAV_ITEMS = SCHOOL_NAV_ITEMS;
+    }
+
+    if (tourCalendarVisual) {
+      tourCalendarVisual.src = currentPersona === 'catering'
+        ? tourCalendarVisual.dataset.cateringSrc
+        : tourCalendarVisual.dataset.schoolSrc;
+    }
+  }
 
   function tourRender(n, dir) {
     const step = TOUR_STEPS[n];
@@ -2477,7 +3266,7 @@ document.head.appendChild(o)}initApollo();</script>
     if (tourStep < TOUR_STEPS.length - 1) {
       tourRender(tourStep + 1, 1);
     } else {
-      // Done — loop back to Dashboard
+      // Done, loop back to Dashboard
       tourRender(0, -1);
     }
   }
@@ -2514,6 +3303,7 @@ document.head.appendChild(o)}initApollo();</script>
   }
 
   function initTour() {
+    syncTourConfig();
     tourStep = -1;
     document.querySelectorAll('.ts').forEach(el => el.classList.remove('on','in-r','in-l','out-l','out-r'));
     document.getElementById('ts-dashboard').classList.add('on');
@@ -2532,6 +3322,24 @@ document.head.appendChild(o)}initApollo();</script>
       if (h) { clearTimeout(scrollHintTimer); h.classList.remove('show'); }
     }, { passive: true, capture: true });
   }
+
+  const commPhoneVp = document.getElementById('comm-iph-vp');
+  if (commPhoneVp) {
+    commPhoneVp.addEventListener('wheel', e => e.stopPropagation(), { passive: true });
+    commPhoneVp.addEventListener('touchstart', e => e.stopPropagation(), { passive: true });
+    commPhoneVp.addEventListener('touchend', e => e.stopPropagation(), { passive: true });
+  }
+
+  // Read persona from URL on load (?p=catering or ?p=school)
+  (function() {
+    const p = new URLSearchParams(window.location.search).get('p');
+    if (p === 'catering' || p === 'school') switchPersona(p);
+    else {
+      syncTourConfig();
+      syncPersonaCopy();
+      updateUI();
+    }
+  })();
 </script>
 <script type="text/javascript">
   window.$crisp=[];
