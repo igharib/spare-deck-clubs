@@ -564,6 +564,34 @@
       .nav-counter { margin-bottom: 0; font-size: 0.8rem; min-width: 44px; text-align: right; }
       .nav-cta { display: none !important; }
       #stage { height: calc(100vh - 57px); }
+      #persona-float {
+        position: fixed;
+        top: 69px;
+        left: 16px;
+        right: 16px;
+        z-index: 30;
+        width: auto;
+        padding: 5px;
+        gap: 4px;
+        border-radius: 16px;
+        background: var(--bg-subtle);
+        border-color: var(--border);
+        box-shadow: 0 14px 30px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
+      }
+      .pf-btn {
+        flex: 1;
+        min-width: 0;
+        padding: 11px 12px;
+        border-radius: 12px;
+        font-size: 0.94rem;
+        font-weight: 700;
+      }
+      .pf-btn.active {
+        background: #fff;
+        color: var(--text);
+        box-shadow: 0 10px 22px rgba(15,23,42,0.08), 0 1px 4px rgba(15,23,42,0.06);
+      }
+      .slide { padding-top: 72px; }
       #nav-arrows { left: 16px; bottom: 12px; }
       .slide-inner { padding: 28px 24px; flex-direction: column; gap: 28px; min-height: calc(100vh - 57px); }
       .slide-content { max-width: 100%; }
@@ -600,17 +628,7 @@
         border-right: none !important;
         border-bottom: 1px solid var(--border);
       }
-      .hero-persona-toggle {
-        display: flex;
-        background: var(--bg-subtle);
-        border-color: var(--border);
-        box-shadow: 0 14px 30px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
-      }
-      .hero-pt-btn.active {
-        background: #fff;
-        color: var(--text);
-        box-shadow: 0 10px 22px rgba(15,23,42,0.08), 0 1px 4px rgba(15,23,42,0.06);
-      }
+      .hero-persona-toggle { display: none; }
       .mob-persona-toggle {
         background: var(--bg-subtle);
         border-color: var(--border);
@@ -1148,7 +1166,6 @@
     }
     .pf-btn.active { background: var(--teal); color: #fff; }
     .pf-btn:not(.active):hover { color: var(--text); background: var(--bg-subtle); }
-    @media (max-width: 860px) { #persona-float { display: none; } }
     .persona-nav { display: contents; }
     .persona-nav.hidden { display: none; }
     .mob-persona-toggle {
