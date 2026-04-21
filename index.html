@@ -236,6 +236,22 @@
       box-shadow: 0 20px 56px rgba(0,0,0,0.12), 0 2px 12px rgba(0,196,204,0.1);
       border: 1px solid var(--border);
     }
+    #s-23 .slide-visual {
+      align-items: flex-end;
+    }
+    #s-23 .ui-visual {
+      width: min(100%, 560px);
+      margin-left: auto;
+    }
+    @media (min-width: 861px) {
+      #s-4 .slide-visual {
+        align-items: center;
+      }
+      #s-4 .screenshot {
+        width: min(100%, 300px);
+        margin: 0 auto;
+      }
+    }
     .comm-showcase {
       width: 100%;
       display: flex;
@@ -564,34 +580,7 @@
       .nav-counter { margin-bottom: 0; font-size: 0.8rem; min-width: 44px; text-align: right; }
       .nav-cta { display: none !important; }
       #stage { height: calc(100vh - 57px); }
-      #persona-float {
-        position: fixed;
-        top: 69px;
-        left: 16px;
-        right: 16px;
-        z-index: 30;
-        width: auto;
-        padding: 5px;
-        gap: 4px;
-        border-radius: 16px;
-        background: var(--bg-subtle);
-        border-color: var(--border);
-        box-shadow: 0 14px 30px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
-      }
-      .pf-btn {
-        flex: 1;
-        min-width: 0;
-        padding: 11px 12px;
-        border-radius: 12px;
-        font-size: 0.94rem;
-        font-weight: 700;
-      }
-      .pf-btn.active {
-        background: #fff;
-        color: var(--text);
-        box-shadow: 0 10px 22px rgba(15,23,42,0.08), 0 1px 4px rgba(15,23,42,0.06);
-      }
-      .slide { padding-top: 72px; }
+      .slide { padding-top: 56px; }
       #nav-arrows { left: 16px; bottom: 12px; }
       .slide-inner { padding: 28px 24px; flex-direction: column; gap: 28px; min-height: calc(100vh - 57px); }
       .slide-content { max-width: 100%; }
@@ -624,7 +613,7 @@
       .intro-left {
         flex-shrink: 0 !important;
         justify-content: flex-start !important;
-        padding: 24px 20px 20px !important;
+        padding: 16px 20px 20px !important;
         border-right: none !important;
         border-bottom: 1px solid var(--border);
       }
@@ -1166,6 +1155,37 @@
     }
     .pf-btn.active { background: var(--teal); color: #fff; }
     .pf-btn:not(.active):hover { color: var(--text); background: var(--bg-subtle); }
+    @media (max-width: 860px) {
+      #persona-float {
+        top: 65px;
+        left: 16px;
+        right: auto;
+        width: calc(100vw - 32px);
+        max-width: none;
+        justify-content: stretch;
+        align-items: stretch;
+        padding: 5px;
+        gap: 4px;
+        border-radius: 16px;
+        background: var(--bg-subtle);
+        border: 1px solid var(--border);
+        box-shadow: 0 14px 30px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
+        animation: none;
+      }
+      .pf-btn {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 11px 12px;
+        border-radius: 12px;
+        font-size: 0.94rem;
+        font-weight: 700;
+      }
+      .pf-btn.active {
+        background: #fff;
+        color: var(--text);
+        box-shadow: 0 10px 22px rgba(15,23,42,0.08), 0 1px 4px rgba(15,23,42,0.06);
+      }
+    }
     .persona-nav { display: contents; }
     .persona-nav.hidden { display: none; }
     .mob-persona-toggle {
@@ -2438,15 +2458,15 @@ document.head.appendChild(o)}initApollo();</script>
       <div class="slide-content">
         <div class="slide-tag"><span class="tag-dot"></span> Inventory & Stock Management</div>
         <h2>Centralized inventory control,<br>with less waste and better planning.</h2>
-        <p class="slide-sub">Spare provides a centralized inventory management system that helps schools and caterers reduce waste while maintaining full control over stock.</p>
+        <p class="slide-sub">Spare gives schools and caterers centralized inventory control to reduce waste while staying on top of stock.</p>
         <ul class="flist">
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Reduce waste:</strong> Link inventory with sales and consumption data to minimize over-ordering and food waste</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Real-time stock visibility:</strong> View stock levels across all schools or drill down into individual locations</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Centralized dashboard:</strong> Monitor and manage inventory across multiple sites in one place</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Warehouse management:</strong> Track stock across warehouses, branches, and storage locations</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Stock movement tracking:</strong> Full visibility on transfers, usage, and replenishment</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Better demand planning:</strong> Use data insights to optimize purchasing and avoid shortages</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Cashier restock requests:</strong> Enable frontline staff to request stock directly from POS, ensuring timely replenishment</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Reduce waste:</strong> Link inventory to sales and consumption data to cut over-ordering and food waste</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Real-time stock visibility:</strong> View stock across all schools or drill into each location</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Centralized dashboard:</strong> Monitor inventory across multiple sites in one place</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Warehouse management:</strong> Track stock across warehouses, branches, and storage points</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Stock movement tracking:</strong> Track transfers, usage, and replenishment</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Better demand planning:</strong> Use data to optimize purchasing and avoid shortages</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Cashier restock requests:</strong> Let frontline staff request stock directly from POS for faster replenishment</span></li>
         </ul>
       </div>
       <div class="slide-visual">
@@ -2459,8 +2479,8 @@ document.head.appendChild(o)}initApollo();</script>
 
 <!-- ═══════════════ FLOATING PERSONA PILL ═══════════════ -->
 <div id="persona-float">
-  <button class="pf-btn active" data-persona="school" onclick="switchPersona('school')">🏫 Schools</button>
-  <button class="pf-btn" data-persona="catering" onclick="switchPersona('catering')">🍽️ Caterers</button>
+  <button class="pf-btn active" data-persona="school" onclick="switchPersona('school')">Schools</button>
+  <button class="pf-btn" data-persona="catering" onclick="switchPersona('catering')">Caterers</button>
 </div>
 
 <!-- ═══════════════ NAV ARROWS ═══════════════ -->
