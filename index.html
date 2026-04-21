@@ -614,7 +614,7 @@
       .slide { padding-top: 0; }
       #nav-arrows { left: 16px; bottom: 12px; }
       .slide-inner {
-        padding: 28px 24px;
+        padding: 28px 24px calc(132px + env(safe-area-inset-bottom, 0px));
         flex-direction: column;
         gap: 28px;
         min-height: calc(100dvh - var(--mobile-nav-h, 57px));
