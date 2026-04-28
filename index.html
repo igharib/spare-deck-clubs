@@ -3102,8 +3102,11 @@ document.head.appendChild(o)}initApollo();</script>
       events: {
         onReady: function() {
           ytReady = true;
-          document.getElementById('spare-video-hero').style.display = 'block';
-          if (ytPlayPending) { ytPlayer.playVideo(); ytPlayPending = false; }
+          if (ytPlayPending) {
+            document.getElementById('spare-video-hero').style.display = 'block';
+            ytPlayer.playVideo();
+            ytPlayPending = false;
+          }
         }
       }
     });
@@ -3113,8 +3116,11 @@ document.head.appendChild(o)}initApollo();</script>
       events: {
         onReady: function() {
           ytReady2 = true;
-          document.getElementById('spare-video-catering').style.display = 'block';
-          if (ytPlayPending2) { ytPlayer2.playVideo(); ytPlayPending2 = false; }
+          if (ytPlayPending2) {
+            document.getElementById('spare-video-catering').style.display = 'block';
+            ytPlayer2.playVideo();
+            ytPlayPending2 = false;
+          }
         }
       }
     });
@@ -3125,6 +3131,7 @@ document.head.appendChild(o)}initApollo();</script>
     const overlay = document.getElementById('v-overlay-hero');
     if (poster)  poster.style.display  = 'none';
     if (overlay) overlay.style.display = 'none';
+    document.getElementById('spare-video-hero').style.display = 'block';
     if (ytReady) { ytPlayer.playVideo(); }
     else         { ytPlayPending = true; }
   }
@@ -3134,6 +3141,7 @@ document.head.appendChild(o)}initApollo();</script>
     const overlay = document.getElementById('v-overlay-catering');
     if (poster)  poster.style.display  = 'none';
     if (overlay) overlay.style.display = 'none';
+    document.getElementById('spare-video-catering').style.display = 'block';
     if (ytReady2) { ytPlayer2.playVideo(); }
     else          { ytPlayPending2 = true; }
   }
