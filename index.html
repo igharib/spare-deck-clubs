@@ -253,6 +253,13 @@
         width: min(100%, 300px);
         margin: 0 auto;
       }
+      #s-5 .slide-visual {
+        align-items: center;
+      }
+      #s-5 .screenshot {
+        width: min(100%, 300px);
+        margin: 0 auto;
+      }
     }
     .comm-showcase {
       width: 100%;
@@ -805,6 +812,11 @@
         object-position: center;
         border-radius: 18px;
         box-shadow: 0 16px 40px rgba(0,196,204,0.18), 0 2px 12px rgba(0,0,0,0.08);
+      }
+      #s-5 .screenshot {
+        object-fit: contain;
+        width: auto;
+        max-width: 220px;
       }
       #s-2 .screenshot {
         max-height: 56vh;
@@ -1776,10 +1788,7 @@ document.head.appendChild(o)}initApollo();</script>
   <div class="slide" id="s-5">
     <div class="slide-inner">
       <div class="slide-visual">
-        <picture>
-          <source media="(max-width: 860px)" srcset="assets/marketplace-phone.png" />
-          <img src="assets/cafeteria-experience.jpg" alt="Commerce and marketplace" class="screenshot" />
-        </picture>
+        <img src="assets/marketplace-phone.png" alt="Commerce and marketplace" class="screenshot" />
       </div>
       <div class="slide-content">
         <div class="slide-tag"><span class="tag-dot"></span> Commerce & Marketplace</div>
