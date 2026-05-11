@@ -6,6 +6,14 @@ import path from 'node:path';
 const repoRoot = path.resolve(import.meta.dirname, '..');
 const html = fs.readFileSync(path.join(repoRoot, 'index.html'), 'utf8');
 
+test('index includes the GTM container in head and noscript fallback in body', () => {
+  assert.match(html, /<!-- Google Tag Manager -->/);
+  assert.match(html, /googletagmanager\.com\/gtm\.js\?id='\+i\+dl/);
+  assert.match(html, /GTM-WC8BVPNT/);
+  assert.match(html, /<body>\s*<!-- Google Tag Manager \(noscript\) -->/);
+  assert.match(html, /<noscript><iframe src="https:\/\/www\.googletagmanager\.com\/ns\.html\?id=GTM-WC8BVPNT"/);
+});
+
 test('index includes the standard GA4 tag snippet in head', () => {
   assert.match(html, /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-PF82P3VX1M"><\/script>/);
   assert.match(html, /function gtag\(\)\{dataLayer\.push\(arguments\);\}/);
