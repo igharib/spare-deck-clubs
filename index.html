@@ -16,7 +16,9 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-PF82P3VX1M');
+    gtag('config', 'G-PF82P3VX1M', {
+      send_page_view: false
+    });
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1265,6 +1267,9 @@
       box-shadow: 0 10px 22px rgba(15,23,42,0.08), 0 1px 4px rgba(15,23,42,0.06);
     }
   </style>
+  <script>
+    window._hsq = window._hsq || [];
+  </script>
   <!-- Start of HubSpot Embed Code -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4312659.js"></script>
   <!-- End of HubSpot Embed Code -->
@@ -1448,7 +1453,7 @@ document.head.appendChild(o)}initApollo();</script>
         <line x1="2" y1="13.5" x2="16" y2="13.5"/>
       </svg>
     </button>
-    <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="nav-cta">Book a Demo</a>
+    <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="nav-cta" onclick="trackBookDemoClick('nav_sidebar')">Book a Demo</a>
   </div>
 </nav>
 
@@ -1522,7 +1527,7 @@ document.head.appendChild(o)}initApollo();</script>
       <button class="mob-nav-item" data-mob-slide="14" onclick="mobGoTo(14)" style="color:var(--teal);font-weight:700;margin-bottom:10px;">
         <span class="mob-nav-dot" style="background:var(--teal);"></span> Get Started
       </button>
-      <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="mob-nav-cta-btn">Book a Demo →</a>
+      <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="mob-nav-cta-btn" onclick="trackBookDemoClick('mobile_school_nav')">Book a Demo →</a>
     </div>
     </div><!-- /mob-school-nav -->
 
@@ -1587,7 +1592,7 @@ document.head.appendChild(o)}initApollo();</script>
         <button class="mob-nav-item" data-mob-slide="21" onclick="mobGoTo(21)" style="color:var(--teal);font-weight:700;margin-bottom:10px;">
           <span class="mob-nav-dot" style="background:var(--teal);"></span> Get Started
         </button>
-        <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="mob-nav-cta-btn">Book a Demo →</a>
+        <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="mob-nav-cta-btn" onclick="trackBookDemoClick('mobile_catering_nav')">Book a Demo →</a>
       </div>
     </div><!-- /mob-catering-nav -->
 
@@ -1611,7 +1616,7 @@ document.head.appendChild(o)}initApollo();</script>
         <h1 style="font-size:clamp(1.8rem,2.8vw,2.8rem); margin-bottom:14px; letter-spacing:-1.2px;">Run your school.<br>Not your <span class="accent">spreadsheets.</span></h1>
         <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.7; margin-bottom:24px;">Spare replaces the patchwork of tools with one unified platform: payments, cafeteria, operations, marketplace, and parent communication.</p>
         <div class="intro-cta-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
-          <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary">Book a Demo</a>
+          <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary" onclick="trackBookDemoClick('school_intro_hero')">Book a Demo</a>
           <button class="btn btn-outline" onclick="openDownload()">Download PDF</button>
           <button class="btn btn-ghost" onclick="goTo(1)">Explore Platform</button>
         </div>
@@ -2202,7 +2207,7 @@ document.head.appendChild(o)}initApollo();</script>
         Spare brings payments, operations, communication, and commerce into one unified platform, helping schools simplify workflows, improve visibility, and deliver a better experience for everyone.
       </p>
       <div class="hero-actions" style="justify-content:center; margin-bottom:28px;">
-        <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-white">Book a Demo</a>
+        <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-white" onclick="trackBookDemoClick('school_cta_slide')">Book a Demo</a>
         <button class="btn btn-outline-white" onclick="openDownload()">Download PDF</button>
       </div>
       <div class="cta-trust">
@@ -2299,7 +2304,7 @@ document.head.appendChild(o)}initApollo();</script>
         <h1 style="font-size:clamp(1.8rem,2.8vw,2.8rem); margin-bottom:14px; letter-spacing:-1.2px;">Built for catering<br>operations <span class="accent">at scale.</span></h1>
         <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.7; margin-bottom:24px;">Spare gives catering companies the tools to manage menus, POS, multi-location reporting, and parent ordering, all in one platform.</p>
         <div class="intro-cta-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
-          <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary">Book a Demo</a>
+          <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary" onclick="trackBookDemoClick('catering_intro_hero')">Book a Demo</a>
           <button class="btn btn-outline" onclick="openDownload()">Download PDF</button>
           <button class="btn btn-ghost" onclick="goTo(17)">Explore Platform</button>
         </div>
@@ -2480,7 +2485,7 @@ document.head.appendChild(o)}initApollo();</script>
         Spare gives catering companies cashless POS, digital menus, pre-orders, multi-location management, and real-time reporting, all in one platform built for school environments.
       </p>
       <div class="hero-actions" style="justify-content:center; margin-bottom:28px;">
-        <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-white">Book a Demo</a>
+        <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-white" onclick="trackBookDemoClick('catering_cta_slide')">Book a Demo</a>
         <button class="btn btn-outline-white" onclick="openDownload()">Download PDF</button>
       </div>
       <div class="cta-trust">
@@ -2776,7 +2781,7 @@ document.head.appendChild(o)}initApollo();</script>
   let animating = false;
   let currentPersona = 'school';
   let analyticsVirtualTrackingReady = false;
-  let lastTrackedLocation = window.location.href;
+  let lastTrackedLocation = '';
 
   const slides = Array.from(document.querySelectorAll('.slide'));
   const navBtns = Array.from(document.querySelectorAll('.nav-btn'));
@@ -2820,19 +2825,73 @@ document.head.appendChild(o)}initApollo();</script>
     };
   }
 
-  function trackVirtualPageView() {
-    if (!analyticsVirtualTrackingReady || typeof window.gtag !== 'function') return;
-
-    const meta = getVirtualPageMeta();
-    const pageReferrer = lastTrackedLocation || document.referrer || '';
-    lastTrackedLocation = meta.location;
-
+  function trackGa4PageView(meta, pageReferrer) {
+    if (typeof window.gtag !== 'function') return;
     window.gtag('event', 'page_view', {
       page_title: meta.title,
       page_location: meta.location,
       page_path: meta.path,
       page_referrer: pageReferrer
     });
+  }
+
+  function trackHubSpotPageView(meta) {
+    window._hsq = window._hsq || [];
+    window._hsq.push(['setPath', meta.path]);
+    window._hsq.push(['trackPageView']);
+  }
+
+  function getInteractionMeta() {
+    const meta = getVirtualPageMeta();
+    return {
+      persona: currentPersona,
+      slide_slug: GA_SLUGS[current] || ('slide-' + current),
+      slide_label: labels[current],
+      page_path: meta.path
+    };
+  }
+
+  function trackGa4Event(eventName, params = {}) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', eventName, params);
+  }
+
+  function trackHubSpotEvent(eventName, params = {}) {
+    window._hsq = window._hsq || [];
+    window._hsq.push([
+      'trackEvent',
+      {
+        id: eventName,
+        ...params
+      }
+    ]);
+  }
+
+  function trackInteraction(eventName, params = {}) {
+    if (!analyticsVirtualTrackingReady) return;
+
+    const eventParams = {
+      ...getInteractionMeta(),
+      ...params
+    };
+
+    trackGa4Event(eventName, eventParams);
+    trackHubSpotEvent(eventName, eventParams);
+  }
+
+  function trackBookDemoClick(location) {
+    trackInteraction('book_demo_click', { cta_location: location });
+  }
+
+  function trackVirtualPageView() {
+    if (!analyticsVirtualTrackingReady) return;
+
+    const meta = getVirtualPageMeta();
+    const pageReferrer = lastTrackedLocation || document.referrer || '';
+
+    trackHubSpotPageView(meta);
+    trackGa4PageView(meta, pageReferrer);
+    lastTrackedLocation = meta.location;
   }
 
   function syncMobileNavHeight() {
@@ -2906,6 +2965,7 @@ document.head.appendChild(o)}initApollo();</script>
 
   function switchPersona(p) {
     if (p === currentPersona) return;
+    trackInteraction('persona_switch', { target_persona: p });
     currentPersona = p;
     NAV_ORDER = p === 'school' ? SCHOOL_NAV_ORDER : CATERING_NAV_ORDER;
     syncTourConfig();
@@ -3241,6 +3301,7 @@ document.head.appendChild(o)}initApollo();</script>
 
   // Download modal
   function openDownload() {
+    trackInteraction('download_pdf_open', { modal_name: 'deck_download' });
     document.getElementById('dl-modal').classList.remove('hidden');
     document.getElementById('dl-form-wrap').classList.remove('hidden');
     document.getElementById('dl-success').classList.add('hidden');
@@ -3258,6 +3319,7 @@ document.head.appendChild(o)}initApollo();</script>
 
   // Calculator modal
   function openCalculator() {
+    trackInteraction('calculator_open', { modal_name: 'marketplace_calculator' });
     document.getElementById('calc-modal').classList.remove('hidden');
     document.getElementById('calc-error').style.display = 'none';
     document.getElementById('calc-form').reset();
@@ -3292,6 +3354,7 @@ document.head.appendChild(o)}initApollo();</script>
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
+        trackInteraction('calculator_launch', { destination: 'marketplace_calculator' });
         window.open('https://marketplace-calculator-opal.vercel.app', '_blank');
         closeCalculator();
       } else {
@@ -3326,6 +3389,7 @@ document.head.appendChild(o)}initApollo();</script>
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
+        trackInteraction('get_deck_submit_success', { form_name: 'deck_download' });
         document.getElementById('dl-form-wrap').classList.add('hidden');
         document.getElementById('dl-success').classList.remove('hidden');
       } else {
@@ -3585,7 +3649,7 @@ document.head.appendChild(o)}initApollo();</script>
       updateUI();
     }
     analyticsVirtualTrackingReady = true;
-    lastTrackedLocation = window.location.href;
+    trackVirtualPageView();
   })();
 </script>
 <script type="text/javascript">

@@ -9,12 +9,29 @@ const html = fs.readFileSync(path.join(repoRoot, 'index.html'), 'utf8');
 test('index includes the standard GA4 tag snippet in head', () => {
   assert.match(html, /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-PF82P3VX1M"><\/script>/);
   assert.match(html, /function gtag\(\)\{dataLayer\.push\(arguments\);\}/);
-  assert.match(html, /gtag\('config', 'G-PF82P3VX1M'\);/);
+  assert.match(html, /gtag\('config', 'G-PF82P3VX1M', \{\s*send_page_view: false\s*\}\);/);
 });
 
-test('index tracks virtual pageviews for slide deck navigation', () => {
+test('index tracks virtual pageviews for slide deck navigation in GA4 and HubSpot', () => {
   assert.match(html, /const GA_SLUGS = \[/);
   assert.match(html, /function trackVirtualPageView\(/);
+  assert.match(html, /window\._hsq = window\._hsq \|\| \[\];/);
+  assert.match(html, /window\._hsq\.push\(\['setPath', meta\.path\]\);/);
+  assert.match(html, /window\._hsq\.push\(\['trackPageView'\]\);/);
   assert.match(html, /function switchPersona\(p\)[\s\S]*trackVirtualPageView\(\);/);
   assert.match(html, /function goTo\(idx, dir\)[\s\S]*trackVirtualPageView\(\);/);
+  assert.match(html, /analyticsVirtualTrackingReady = true;[\s\S]*trackVirtualPageView\(\);/);
+});
+
+test('index tracks CTA and persona interaction events in GA4 and HubSpot', () => {
+  assert.match(html, /function trackInteraction\(eventName, params = \{\}\)/);
+  assert.match(html, /function trackHubSpotEvent\(eventName, params = \{\}\)/);
+  assert.match(html, /function trackBookDemoClick\(location\)/);
+  assert.match(html, /trackInteraction\('book_demo_click', \{ cta_location: location \}\);/);
+  assert.match(html, /function switchPersona\(p\)[\s\S]*trackInteraction\('persona_switch', \{ target_persona: p \}\);/);
+  assert.match(html, /function openDownload\(\)[\s\S]*trackInteraction\('download_pdf_open', \{ modal_name: 'deck_download' \}\);/);
+  assert.match(html, /function openCalculator\(\)[\s\S]*trackInteraction\('calculator_open', \{ modal_name: 'marketplace_calculator' \}\);/);
+  assert.match(html, /function submitDownload\(e\)[\s\S]*trackInteraction\('get_deck_submit_success', \{ form_name: 'deck_download' \}\);/);
+  assert.match(html, /function submitCalculator\(e\)[\s\S]*trackInteraction\('calculator_launch', \{ destination: 'marketplace_calculator' \}\);/);
+  assert.match(html, /onclick="trackBookDemoClick\('nav_sidebar'\)"/);
 });
