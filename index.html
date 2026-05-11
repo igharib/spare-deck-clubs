@@ -9,6 +9,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PF82P3VX1M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PF82P3VX1M');
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -2736,9 +2745,38 @@ document.head.appendChild(o)}initApollo();</script>
 </div>
 
 <script>
+  const GA_SLUGS = [
+    'intro',
+    'platform-overview',
+    'payments-financials',
+    'cafeteria-experience',
+    'management-operations',
+    'commerce-marketplace',
+    'communication-engagement',
+    'parent-app-experience',
+    'admin-experience',
+    'cafeteria-point-of-sale',
+    'parent-app-tour',
+    'scale-and-trust',
+    'onboarding-and-support',
+    'trusted-payments',
+    'get-started',
+    'schools-we-serve',
+    'catering-intro',
+    'catering-overview',
+    'menu-management',
+    'multi-location',
+    'reporting-and-analytics',
+    'catering-get-started',
+    'dedicated-parent-app',
+    'inventory-and-stock-management'
+  ];
+  const GA_TITLE_PREFIX = 'Spare Deck';
   let current = 0;
   let animating = false;
   let currentPersona = 'school';
+  let analyticsVirtualTrackingReady = false;
+  let lastTrackedLocation = window.location.href;
 
   const slides = Array.from(document.querySelectorAll('.slide'));
   const navBtns = Array.from(document.querySelectorAll('.nav-btn'));
@@ -2767,6 +2805,35 @@ document.head.appendChild(o)}initApollo();</script>
   const cafeteriaTitle = document.getElementById('cafeteria-title');
   const cafeteriaSub = document.getElementById('cafeteria-sub');
   const cafeteriaList = document.getElementById('cafeteria-list');
+
+  function getPersonaQuery() {
+    return currentPersona === 'catering' ? '?p=catering' : '';
+  }
+
+  function getVirtualPageMeta() {
+    const slug = GA_SLUGS[current] || ('slide-' + current);
+    const path = window.location.pathname + getPersonaQuery() + '#' + slug;
+    return {
+      path,
+      location: window.location.origin + path,
+      title: GA_TITLE_PREFIX + ' - ' + labels[current]
+    };
+  }
+
+  function trackVirtualPageView() {
+    if (!analyticsVirtualTrackingReady || typeof window.gtag !== 'function') return;
+
+    const meta = getVirtualPageMeta();
+    const pageReferrer = lastTrackedLocation || document.referrer || '';
+    lastTrackedLocation = meta.location;
+
+    window.gtag('event', 'page_view', {
+      page_title: meta.title,
+      page_location: meta.location,
+      page_path: meta.path,
+      page_referrer: pageReferrer
+    });
+  }
 
   function syncMobileNavHeight() {
     if (window.innerWidth > 860) {
@@ -2860,6 +2927,7 @@ document.head.appendChild(o)}initApollo();</script>
     updateUI();
     syncMobileNavHeight();
     history.replaceState(null, '', p === 'catering' ? '?p=catering' : window.location.pathname);
+    trackVirtualPageView();
   }
 
   function goTo(idx, dir) {
@@ -2892,6 +2960,7 @@ document.head.appendChild(o)}initApollo();</script>
     });
 
     updateUI();
+    trackVirtualPageView();
     if (idx === 11) setTimeout(animateStats, 300);
     if (idx === 10) setTimeout(initTour, 120);
   }
@@ -3515,6 +3584,8 @@ document.head.appendChild(o)}initApollo();</script>
       syncPersonaCopy();
       updateUI();
     }
+    analyticsVirtualTrackingReady = true;
+    lastTrackedLocation = window.location.href;
   })();
 </script>
 <script type="text/javascript">
