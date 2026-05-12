@@ -15,10 +15,9 @@ test('index includes the GTM container in head and noscript fallback in body', (
 });
 
 test('index includes the Zoho SalesIQ widget before closing body', () => {
-  assert.match(html, /<script type = "text\/javascript" id = "zsiqchat">/);
-  assert.match(html, /widgetcode: "siq93f5982906e13c86fd752d6d37194d3f4938738ad178cbd91f75048dd0fc02f6"/);
-  assert.match(html, /s\.src = "https:\/\/salesiq\.zoho\.com\/widget";/);
-  assert.match(html, /<script type = "text\/javascript" id = "zsiqchat">[\s\S]*<\/script>\s*<\/body>/);
+  assert.match(html, /<script>window\.\$zoho=window\.\$zoho \|\| \{\};\$zoho\.salesiq=\$zoho\.salesiq\|\|\{ready:function\(\)\{\}\}<\/script>/);
+  assert.match(html, /<script id="zsiqscript" src="https:\/\/salesiq\.zohopublic\.com\/widget\?wc=siq93f5982906e13c86fd752d6d37194d3f4938738ad178cbd91f75048dd0fc02f6" defer><\/script>/);
+  assert.match(html, /<script>window\.\$zoho=window\.\$zoho \|\| \{\};\$zoho\.salesiq=\$zoho\.salesiq\|\|\{ready:function\(\)\{\}\}<\/script>\s*<script id="zsiqscript" src="https:\/\/salesiq\.zohopublic\.com\/widget\?wc=siq93f5982906e13c86fd752d6d37194d3f4938738ad178cbd91f75048dd0fc02f6" defer><\/script>\s*<\/body>/);
 });
 
 test('index no longer includes the Crisp chat widget', () => {
