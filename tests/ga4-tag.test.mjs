@@ -21,6 +21,12 @@ test('index includes the Zoho SalesIQ widget before closing body', () => {
   assert.match(html, /<script type = "text\/javascript" id = "zsiqchat">[\s\S]*<\/script>\s*<\/body>/);
 });
 
+test('index no longer includes the Crisp chat widget', () => {
+  assert.doesNotMatch(html, /window\.\$crisp=\[\];/);
+  assert.doesNotMatch(html, /window\.CRISP_WEBSITE_ID=/);
+  assert.doesNotMatch(html, /client\.crisp\.chat\/l\.js/);
+});
+
 test('index includes the standard GA4 tag snippet in head', () => {
   assert.match(html, /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-PF82P3VX1M"><\/script>/);
   assert.match(html, /function gtag\(\)\{dataLayer\.push\(arguments\);\}/);
