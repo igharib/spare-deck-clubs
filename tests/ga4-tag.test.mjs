@@ -14,6 +14,13 @@ test('index includes the GTM container in head and noscript fallback in body', (
   assert.match(html, /<noscript><iframe src="https:\/\/www\.googletagmanager\.com\/ns\.html\?id=GTM-WC8BVPNT"/);
 });
 
+test('index includes the Zoho SalesIQ widget before closing body', () => {
+  assert.match(html, /<script type = "text\/javascript" id = "zsiqchat">/);
+  assert.match(html, /widgetcode: "siq93f5982906e13c86fd752d6d37194d3f4938738ad178cbd91f75048dd0fc02f6"/);
+  assert.match(html, /s\.src = "https:\/\/salesiq\.zoho\.com\/widget";/);
+  assert.match(html, /<script type = "text\/javascript" id = "zsiqchat">[\s\S]*<\/script>\s*<\/body>/);
+});
+
 test('index includes the standard GA4 tag snippet in head', () => {
   assert.match(html, /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-PF82P3VX1M"><\/script>/);
   assert.match(html, /function gtag\(\)\{dataLayer\.push\(arguments\);\}/);
