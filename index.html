@@ -1636,7 +1636,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="intro-cta-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
           <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary" onclick="trackBookDemoClick('school_intro_hero')">Book a Demo</a>
           <button class="btn btn-outline" onclick="openDownload()">Download PDF</button>
-          <button class="btn btn-ghost" onclick="goTo(1)">Explore Platform</button>
+          <button class="btn btn-ghost" onclick="trackInteraction('explore_platform_click',{cta_location:'school_intro_hero'}); goTo(1)">Explore Platform</button>
         </div>
         <div class="intro-stats" style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding-top:20px; border-top:1px solid var(--border);">
           <div class="trust-item"><strong>100K+</strong><span>Students</span></div>
@@ -2324,7 +2324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="intro-cta-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
           <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary" onclick="trackBookDemoClick('catering_intro_hero')">Book a Demo</a>
           <button class="btn btn-outline" onclick="openDownload()">Download PDF</button>
-          <button class="btn btn-ghost" onclick="goTo(17)">Explore Platform</button>
+          <button class="btn btn-ghost" onclick="trackInteraction('explore_platform_click',{cta_location:'catering_intro_hero'}); goTo(17)">Explore Platform</button>
         </div>
         <div class="intro-stats" style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding-top:20px; border-top:1px solid var(--border);">
           <div class="trust-item"><strong>10M+</strong><span>Transactions</span></div>
@@ -2870,19 +2870,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function trackGa4Event(eventName, params = {}) {
+    // Custom parameters sent here must be registered as Custom Dimensions/Metrics
+    // in the GA4 property before they appear in reports:
+    //   GA4 → Admin → Custom definitions → Custom dimensions → Create dimension
+    // Dimensions to register (scope: Event):
+    //   persona       → "Visitor persona (school/catering)"
+    //   slide_slug    → "Slide slug"
+    //   slide_label   → "Slide label"
+    //   cta_location  → "CTA location"
+    //   modal_name    → "Modal name"
+    //   target_persona → "Target persona (after switch)"
     if (typeof window.gtag !== 'function') return;
     window.gtag('event', eventName, params);
   }
 
   function trackHubSpotEvent(eventName, params = {}) {
+    // Uses trackCustomBehavioralEvent so clicks appear as named events in
+    // HubSpot Analytics (Contacts → Events / Analytics Tools → Custom Events).
+    // Each event name must be pre-registered in HubSpot under:
+    //   Reports → Analytics Tools → Custom Behavioral Events → Create event
+    // Internal name format: pe4312659_{eventName}
+    // Events fired from this page:
+    //   pe4312659_book_demo_click   (properties: cta_location, persona, slide_slug, slide_label)
+    //   pe4312659_download_pdf_open (properties: modal_name, persona, slide_slug)
+    //   pe4312659_get_deck_submit_success (properties: form_name, persona)
+    //   pe4312659_calculator_open   (properties: modal_name, persona, slide_slug)
+    //   pe4312659_calculator_launch (properties: destination, persona)
+    //   pe4312659_explore_platform_click (properties: cta_location, persona)
+    //   pe4312659_persona_switch    (properties: target_persona, slide_slug)
     window._hsq = window._hsq || [];
-    window._hsq.push([
-      'trackEvent',
-      {
-        id: eventName,
-        ...params
-      }
-    ]);
+    window._hsq.push(['trackCustomBehavioralEvent', {
+      name: 'pe4312659_' + eventName,
+      properties: params
+    }]);
   }
 
   function trackInteraction(eventName, params = {}) {
@@ -3676,6 +3696,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function(){var d=document;var s=d.createElement("script");
   s.src="https://client.crisp.chat/l.js";s.async=1;
   d.getElementsByTagName("head")[0].appendChild(s);})();
+</script>
+<script type = "text/javascript" id = "zsiqchat">
+	var $zoho = $zoho || {};
+	$zoho.salesiq = $zoho.salesiq || {
+		widgetcode: "siq93f5982906e13c86fd752d6d37194d3f4938738ad178cbd91f75048dd0fc02f6",
+		values: {},
+		ready: function(){}
+	};
+	var d = document;
+	s = d.createElement("script");
+	s.type = "text/javascript";
+	s.id = "zsiqscript";
+	s.defer = true;
+	s.src = "https://salesiq.zoho.com/widget";
+	t = d.getElementsByTagName("script")[0];
+	t.parentNode.insertBefore(s, t);
 </script>
 </body>
 </html>
