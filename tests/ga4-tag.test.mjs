@@ -18,7 +18,22 @@ test('index includes the Zoho SalesIQ widget before closing body', () => {
   assert.match(html, /<script type = "text\/javascript" id = "zsiqchat">/);
   assert.match(html, /widgetcode: "siq93f5982906e13c86fd752d6d37194d3f4938738ad178cbd91f75048dd0fc02f6"/);
   assert.match(html, /s\.src = "https:\/\/salesiq\.zoho\.com\/widget";/);
-  assert.match(html, /<script type = "text\/javascript" id = "zsiqchat">[\s\S]*<\/script>\s*<\/body>/);
+  assert.match(html, /<script type = "text\/javascript" id = "zsiqchat">[\s\S]*<\/script>[\s\S]*<\/body>/);
+});
+
+test('all html pages include the Tawk.to embed before closing body', () => {
+  const htmlPages = [
+    'index.html',
+    'mockup-visuals.html',
+    'mockup-catering-overview.html',
+  ];
+
+  for (const page of htmlPages) {
+    const pageHtml = fs.readFileSync(path.join(repoRoot, page), 'utf8');
+    assert.match(pageHtml, /s1\.src='https:\/\/embed\.tawk\.to\/6a03c3a3f9cfec1c3250ec1c\/1jofb8e10';/);
+    assert.match(pageHtml, /s1\.setAttribute\('crossorigin','\*'\);/);
+    assert.match(pageHtml, /s1\.src='https:\/\/embed\.tawk\.to\/6a03c3a3f9cfec1c3250ec1c\/1jofb8e10';[\s\S]*<\/body>/);
+  }
 });
 
 test('index includes the standard GA4 tag snippet in head', () => {
