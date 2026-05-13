@@ -721,7 +721,14 @@
         overflow: hidden;
       }
       .intro-diagram--motion {
+        display: block !important;
         padding: 12px 20px 10px !important;
+      }
+      .intro-diagram--motion .hero-motion-card,
+      .intro-video .video-wrap {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
       }
       .intro-diagram img {
         width: 100% !important;
@@ -783,6 +790,12 @@
       .platform-grid { grid-template-columns: 1fr; }
       .why-grid-sm { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
+      .intro-diagram--motion .hero-motion-card,
+      .intro-video .video-wrap {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+      }
       .hero-motion-card {
         width: 100%;
         max-width: none;
@@ -1035,9 +1048,20 @@
       }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-motion-track,
       .hero-motion-core {
         animation: none !important;
+      }
+      .hero-motion-track--left {
+        animation-duration: 40s !important;
+      }
+      .hero-motion-track--right {
+        animation-duration: 44s !important;
+      }
+      .hero-motion-card--catering .hero-motion-track--left {
+        animation-duration: 32s !important;
+      }
+      .hero-motion-card--catering .hero-motion-track--right {
+        animation-duration: 36s !important;
       }
     }
 
