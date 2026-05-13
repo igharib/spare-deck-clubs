@@ -16,13 +16,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-WC8BVPNT');</script>
-  <!-- End Google Tag Manager -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PF82P3VX1M"></script>
   <script>
@@ -725,6 +718,7 @@
         padding: 12px 20px 10px !important;
       }
       .intro-diagram--motion .hero-motion-card,
+      .intro-diagram--motion .spare-platform-card,
       .intro-video .video-wrap {
         width: 100% !important;
         max-width: none !important;
@@ -736,7 +730,8 @@
         height: auto !important;
         display: block !important;
       }
-      .hero-motion-card {
+      .hero-motion-card,
+      .spare-platform-card {
         width: 100%;
         max-width: none;
         flex: 0 0 100%;
@@ -744,27 +739,37 @@
         aspect-ratio: 16 / 9;
         border-radius: 24px;
       }
-      .hero-motion-core {
+      .hero-motion-core,
+      .spare-platform-card__core {
         min-width: 0;
         padding: 0;
       }
-      .hero-motion-core img {
+      .hero-motion-core img,
+      .spare-platform-card__core img {
         width: 152px;
       }
-      .hero-motion-lane--top { top: 22%; }
-      .hero-motion-lane--bottom { top: 68%; }
-      .hero-motion-pill {
+      .hero-motion-lane--top,
+      .spare-platform-card__lane--top { top: 22%; }
+      .hero-motion-lane--bottom,
+      .spare-platform-card__lane--bottom { top: 68%; }
+      .hero-motion-pill,
+      .spare-platform-card__pill {
         padding: 10px 14px;
         font-size: 0.77rem;
       }
-      .hero-motion-lane {
+      .hero-motion-lane,
+      .spare-platform-card__lane {
         overflow: hidden;
         touch-action: pan-y;
       }
-      .hero-motion-track--left { animation: marquee-left 22s linear infinite; }
-      .hero-motion-track--right { animation: marquee-right 24s linear infinite; }
-      .hero-motion-card--catering .hero-motion-track--left { animation-duration: 18s; }
-      .hero-motion-card--catering .hero-motion-track--right { animation-duration: 20s; }
+      .hero-motion-track--left,
+      .spare-platform-card__track--left { animation: marquee-left 22s linear infinite; }
+      .hero-motion-track--right,
+      .spare-platform-card__track--right { animation: marquee-right 24s linear infinite; }
+      .hero-motion-card--catering .hero-motion-track--left,
+      .spare-platform-card--catering .spare-platform-card__track--left { animation-duration: 18s; }
+      .hero-motion-card--catering .hero-motion-track--right,
+      .spare-platform-card--catering .spare-platform-card__track--right { animation-duration: 20s; }
       .intro-video {
         flex-shrink: 0 !important;
         padding: 12px 20px 20px !important;
@@ -791,53 +796,65 @@
       .why-grid-sm { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .intro-diagram--motion .hero-motion-card,
+      .intro-diagram--motion .spare-platform-card,
       .intro-video .video-wrap {
         width: 100% !important;
         max-width: none !important;
         margin: 0 !important;
       }
-      .hero-motion-card {
+      .hero-motion-card,
+      .spare-platform-card {
         width: 100%;
         max-width: none;
         flex: 0 0 100%;
         min-height: 0;
         aspect-ratio: 16 / 9;
       }
-      .hero-motion-center {
+      .hero-motion-center,
+      .spare-platform-card__center {
         inset: 50% auto auto 50%;
       }
-      .hero-motion-core {
+      .hero-motion-core,
+      .spare-platform-card__core {
         min-width: 0;
         padding: 0;
       }
-      .hero-motion-core span {
+      .hero-motion-core span,
+      .spare-platform-card__core span {
         font-size: 0.58rem;
         letter-spacing: 0.14em;
         max-width: 240px;
       }
-      .hero-motion-core img {
+      .hero-motion-core img,
+      .spare-platform-card__core img {
         width: 104px;
         transform: translateY(8px);
       }
-      .hero-motion-lane--top { top: 22%; }
-      .hero-motion-lane--bottom { top: 66%; }
-      .hero-motion-glow {
+      .hero-motion-lane--top,
+      .spare-platform-card__lane--top { top: 22%; }
+      .hero-motion-lane--bottom,
+      .spare-platform-card__lane--bottom { top: 66%; }
+      .hero-motion-glow,
+      .spare-platform-card__glow {
         right: 18px;
         bottom: 24px;
         width: 120px;
         height: 84px;
       }
-      .hero-motion-card::after {
+      .hero-motion-card::after,
+      .spare-platform-card::after {
         right: -74px;
         bottom: -102px;
         width: 210px;
         height: 210px;
       }
-      .hero-motion-pill {
+      .hero-motion-pill,
+      .spare-platform-card__pill {
         padding: 8px 11px;
         font-size: 0.66rem;
       }
-      .hero-motion-pill::before {
+      .hero-motion-pill::before,
+      .spare-platform-card__pill::before {
         width: 7px;
         height: 7px;
       }
@@ -887,10 +904,12 @@
       .logo-item img { filter: grayscale(0) opacity(1); }
     }
 
+    /* Spare Platform Card */
     .intro-diagram--motion {
       padding: 24px 32px 12px !important;
     }
-    .hero-motion-card {
+    .hero-motion-card,
+    .spare-platform-card {
       position: relative;
       width: min(100%, 560px);
       min-height: 320px;
@@ -904,7 +923,8 @@
         0 28px 64px rgba(15, 23, 42, 0.1),
         inset 0 0 0 1px rgba(255, 255, 255, 0.8);
     }
-    .hero-motion-card::before {
+    .hero-motion-card::before,
+    .spare-platform-card::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -916,7 +936,8 @@
       pointer-events: none;
       z-index: 0;
     }
-    .hero-motion-card::after {
+    .hero-motion-card::after,
+    .spare-platform-card::after {
       content: "";
       position: absolute;
       right: -42px;
@@ -932,7 +953,8 @@
       pointer-events: none;
       z-index: 1;
     }
-    .hero-motion-glow {
+    .hero-motion-glow,
+    .spare-platform-card__glow {
       position: absolute;
       right: 34px;
       bottom: 34px;
@@ -944,14 +966,16 @@
       z-index: 1;
       pointer-events: none;
     }
-    .hero-motion-center {
+    .hero-motion-center,
+    .spare-platform-card__center {
       position: absolute;
       inset: 50% auto auto 50%;
       transform: translate(-50%, -50%);
       z-index: 3;
       pointer-events: none;
     }
-    .hero-motion-core {
+    .hero-motion-core,
+    .spare-platform-card__core {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -960,7 +984,8 @@
       padding: 0;
       animation: heroCoreFloat 7s ease-in-out infinite;
     }
-    .hero-motion-core span {
+    .hero-motion-core span,
+    .spare-platform-card__core span {
       font-size: 0.66rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -971,7 +996,8 @@
       text-align: center;
       text-shadow: 0 1px 0 rgba(255,255,255,0.8);
     }
-    .hero-motion-core img {
+    .hero-motion-core img,
+    .spare-platform-card__core img {
       width: 184px;
       height: auto;
       display: block;
@@ -981,7 +1007,8 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
-    .hero-motion-lane {
+    .hero-motion-lane,
+    .spare-platform-card__lane {
       position: absolute;
       left: 0;
       width: 100%;
@@ -990,26 +1017,35 @@
       -webkit-mask: linear-gradient(90deg, transparent 0, #fff 12%, #fff 88%, transparent 100%);
       mask: linear-gradient(90deg, transparent 0, #fff 12%, #fff 88%, transparent 100%);
     }
-    .hero-motion-lane--top { top: 24%; }
-    .hero-motion-lane--bottom { top: 66%; }
-    .hero-motion-track {
+    .hero-motion-lane--top,
+    .spare-platform-card__lane--top { top: 24%; }
+    .hero-motion-lane--bottom,
+    .spare-platform-card__lane--bottom { top: 66%; }
+    .hero-motion-track,
+    .spare-platform-card__track {
       display: flex;
       align-items: center;
       gap: 14px;
       width: max-content;
       will-change: transform;
     }
-    .hero-motion-track--left { animation: marquee-left 28s linear infinite; }
-    .hero-motion-track--right { animation: marquee-right 31s linear infinite; }
-    .hero-motion-card--catering .hero-motion-track--left { animation-duration: 21s; }
-    .hero-motion-card--catering .hero-motion-track--right { animation-duration: 23s; }
-    .hero-motion-set {
+    .hero-motion-track--left,
+    .spare-platform-card__track--left { animation: marquee-left 28s linear infinite; }
+    .hero-motion-track--right,
+    .spare-platform-card__track--right { animation: marquee-right 31s linear infinite; }
+    .hero-motion-card--catering .hero-motion-track--left,
+    .spare-platform-card--catering .spare-platform-card__track--left { animation-duration: 21s; }
+    .hero-motion-card--catering .hero-motion-track--right,
+    .spare-platform-card--catering .spare-platform-card__track--right { animation-duration: 23s; }
+    .hero-motion-set,
+    .spare-platform-card__set {
       display: flex;
       align-items: center;
       gap: 14px;
       padding-inline: 14px;
     }
-    .hero-motion-pill {
+    .hero-motion-pill,
+    .spare-platform-card__pill {
       flex-shrink: 0;
       display: inline-flex;
       align-items: center;
@@ -1026,7 +1062,8 @@
       white-space: nowrap;
       backdrop-filter: blur(8px);
     }
-    .hero-motion-pill::before {
+    .hero-motion-pill::before,
+    .spare-platform-card__pill::before {
       content: "";
       width: 8px;
       height: 8px;
@@ -1035,32 +1072,40 @@
       box-shadow: 0 0 0 5px rgba(0, 196, 204, 0.12);
       flex-shrink: 0;
     }
-    .hero-motion-pill:nth-child(3n) {
+    .hero-motion-pill:nth-child(3n),
+    .spare-platform-card__pill:nth-child(3n) {
       background: #f7fbfc;
     }
-    .hero-motion-pill:nth-child(4n) {
+    .hero-motion-pill:nth-child(4n),
+    .spare-platform-card__pill:nth-child(4n) {
       background: #ffffff;
       border-color: rgba(177, 232, 235, 0.95);
     }
     @media (hover: hover) {
-      .hero-motion-card:hover .hero-motion-track {
+      .hero-motion-card:hover .hero-motion-track,
+      .spare-platform-card:hover .spare-platform-card__track {
         animation-play-state: paused;
       }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-motion-core {
+      .hero-motion-core,
+      .spare-platform-card__core {
         animation: none !important;
       }
-      .hero-motion-track--left {
+      .hero-motion-track--left,
+      .spare-platform-card__track--left {
         animation-duration: 40s !important;
       }
-      .hero-motion-track--right {
+      .hero-motion-track--right,
+      .spare-platform-card__track--right {
         animation-duration: 44s !important;
       }
-      .hero-motion-card--catering .hero-motion-track--left {
+      .hero-motion-card--catering .hero-motion-track--left,
+      .spare-platform-card--catering .spare-platform-card__track--left {
         animation-duration: 32s !important;
       }
-      .hero-motion-card--catering .hero-motion-track--right {
+      .hero-motion-card--catering .hero-motion-track--right,
+      .spare-platform-card--catering .spare-platform-card__track--right {
         animation-duration: 36s !important;
       }
     }
@@ -1919,58 +1964,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- Top panel: school platform motion card -->
         <div class="intro-diagram intro-diagram--motion" style="display:flex; align-items:center; justify-content:center; background:#fff; overflow:hidden;">
-          <div class="hero-motion-card" aria-label="Spare school platform areas including School Fees, Parent App, Communication, Pickup, Transport, Event Tickets, LMS Integration, Multi-country Support, Cafeteria, Meal Plans, Marketplace, Activities, ECAs, Payments, and Centralized Reporting.">
-            <div class="hero-motion-glow"></div>
-            <div class="hero-motion-lane hero-motion-lane--top">
-              <div class="hero-motion-track hero-motion-track--left">
-                <div class="hero-motion-set">
-                  <span class="hero-motion-pill">School Fees</span>
-                  <span class="hero-motion-pill">Parent App</span>
-                  <span class="hero-motion-pill">Communication</span>
-                  <span class="hero-motion-pill">Pickup</span>
-                  <span class="hero-motion-pill">Transport</span>
-                  <span class="hero-motion-pill">Event Tickets</span>
-                  <span class="hero-motion-pill">LMS Integration</span>
-                  <span class="hero-motion-pill">Multi-country Support</span>
+          <div class="hero-motion-card spare-platform-card" aria-label="Spare school platform areas including School Fees, Parent App, Communication, Pickup, Transport, Event Tickets, LMS Integration, Multi-country Support, Cafeteria, Meal Plans, Marketplace, Activities, ECAs, Payments, and Centralized Reporting.">
+            <div class="hero-motion-glow spare-platform-card__glow"></div>
+            <div class="hero-motion-lane hero-motion-lane--top spare-platform-card__lane spare-platform-card__lane--top">
+              <div class="hero-motion-track hero-motion-track--left spare-platform-card__track spare-platform-card__track--left">
+                <div class="hero-motion-set spare-platform-card__set">
+                  <span class="hero-motion-pill spare-platform-card__pill">School Fees</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Parent App</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Pickup</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Transport</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Event Tickets</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">LMS Integration</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
                 </div>
-                <div class="hero-motion-set" aria-hidden="true">
-                  <span class="hero-motion-pill">School Fees</span>
-                  <span class="hero-motion-pill">Parent App</span>
-                  <span class="hero-motion-pill">Communication</span>
-                  <span class="hero-motion-pill">Pickup</span>
-                  <span class="hero-motion-pill">Transport</span>
-                  <span class="hero-motion-pill">Event Tickets</span>
-                  <span class="hero-motion-pill">LMS Integration</span>
-                  <span class="hero-motion-pill">Multi-country Support</span>
+                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
+                  <span class="hero-motion-pill spare-platform-card__pill">School Fees</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Parent App</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Pickup</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Transport</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Event Tickets</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">LMS Integration</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
                 </div>
               </div>
             </div>
 
-            <div class="hero-motion-center">
-              <div class="hero-motion-core">
+            <div class="hero-motion-center spare-platform-card__center">
+              <div class="hero-motion-core spare-platform-card__core">
                 <img src="assets/spare-logo.svg" alt="Spare" />
               </div>
             </div>
 
-            <div class="hero-motion-lane hero-motion-lane--bottom">
-              <div class="hero-motion-track hero-motion-track--right">
-                <div class="hero-motion-set">
-                  <span class="hero-motion-pill">Cafeteria</span>
-                  <span class="hero-motion-pill">Meal Plans</span>
-                  <span class="hero-motion-pill">Marketplace</span>
-                  <span class="hero-motion-pill">Activities</span>
-                  <span class="hero-motion-pill">ECAs</span>
-                  <span class="hero-motion-pill">Payments</span>
-                  <span class="hero-motion-pill">Centralized Reporting</span>
+            <div class="hero-motion-lane hero-motion-lane--bottom spare-platform-card__lane spare-platform-card__lane--bottom">
+              <div class="hero-motion-track hero-motion-track--right spare-platform-card__track spare-platform-card__track--right">
+                <div class="hero-motion-set spare-platform-card__set">
+                  <span class="hero-motion-pill spare-platform-card__pill">Cafeteria</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Marketplace</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Activities</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">ECAs</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Payments</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
                 </div>
-                <div class="hero-motion-set" aria-hidden="true">
-                  <span class="hero-motion-pill">Cafeteria</span>
-                  <span class="hero-motion-pill">Meal Plans</span>
-                  <span class="hero-motion-pill">Marketplace</span>
-                  <span class="hero-motion-pill">Activities</span>
-                  <span class="hero-motion-pill">ECAs</span>
-                  <span class="hero-motion-pill">Payments</span>
-                  <span class="hero-motion-pill">Centralized Reporting</span>
+                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
+                  <span class="hero-motion-pill spare-platform-card__pill">Cafeteria</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Marketplace</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Activities</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">ECAs</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Payments</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
                 </div>
               </div>
             </div>
@@ -2657,50 +2702,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="intro-right" style="display:grid; grid-template-rows:1fr 1fr; height:100vh; overflow:hidden;">
         <div class="intro-diagram intro-diagram--motion" style="display:flex; align-items:center; justify-content:center; background:#fff; overflow:hidden;">
-          <div class="hero-motion-card hero-motion-card--catering" aria-label="Spare catering platform areas including Online Ordering, Meal Plans, Subscriptions, Allergens, Communication, Multi-country Support, Cashless, Stock Management, Point of Sale, Flexible Discounts, and Centralized Reporting.">
-            <div class="hero-motion-glow"></div>
-            <div class="hero-motion-lane hero-motion-lane--top">
-              <div class="hero-motion-track hero-motion-track--left">
-                <div class="hero-motion-set">
-                  <span class="hero-motion-pill">Online Ordering</span>
-                  <span class="hero-motion-pill">Meal Plans</span>
-                  <span class="hero-motion-pill">Subscriptions</span>
-                  <span class="hero-motion-pill">Allergens</span>
-                  <span class="hero-motion-pill">Communication</span>
-                  <span class="hero-motion-pill">Multi-country Support</span>
+          <div class="hero-motion-card hero-motion-card--catering spare-platform-card spare-platform-card--catering" aria-label="Spare catering platform areas including Online Ordering, Meal Plans, Subscriptions, Allergens, Communication, Multi-country Support, Cashless, Stock Management, Point of Sale, Flexible Discounts, and Centralized Reporting.">
+            <div class="hero-motion-glow spare-platform-card__glow"></div>
+            <div class="hero-motion-lane hero-motion-lane--top spare-platform-card__lane spare-platform-card__lane--top">
+              <div class="hero-motion-track hero-motion-track--left spare-platform-card__track spare-platform-card__track--left">
+                <div class="hero-motion-set spare-platform-card__set">
+                  <span class="hero-motion-pill spare-platform-card__pill">Online Ordering</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Subscriptions</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Allergens</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
                 </div>
-                <div class="hero-motion-set" aria-hidden="true">
-                  <span class="hero-motion-pill">Online Ordering</span>
-                  <span class="hero-motion-pill">Meal Plans</span>
-                  <span class="hero-motion-pill">Subscriptions</span>
-                  <span class="hero-motion-pill">Allergens</span>
-                  <span class="hero-motion-pill">Communication</span>
-                  <span class="hero-motion-pill">Multi-country Support</span>
+                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
+                  <span class="hero-motion-pill spare-platform-card__pill">Online Ordering</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Subscriptions</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Allergens</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
                 </div>
               </div>
             </div>
 
-            <div class="hero-motion-center">
-              <div class="hero-motion-core">
+            <div class="hero-motion-center spare-platform-card__center">
+              <div class="hero-motion-core spare-platform-card__core">
                 <img src="assets/spare-logo.svg" alt="Spare" />
               </div>
             </div>
 
-            <div class="hero-motion-lane hero-motion-lane--bottom">
-              <div class="hero-motion-track hero-motion-track--right">
-                <div class="hero-motion-set">
-                  <span class="hero-motion-pill">Cashless</span>
-                  <span class="hero-motion-pill">Stock Management</span>
-                  <span class="hero-motion-pill">Point of Sale</span>
-                  <span class="hero-motion-pill">Flexible Discounts</span>
-                  <span class="hero-motion-pill">Centralized Reporting</span>
+            <div class="hero-motion-lane hero-motion-lane--bottom spare-platform-card__lane spare-platform-card__lane--bottom">
+              <div class="hero-motion-track hero-motion-track--right spare-platform-card__track spare-platform-card__track--right">
+                <div class="hero-motion-set spare-platform-card__set">
+                  <span class="hero-motion-pill spare-platform-card__pill">Cashless</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Stock Management</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Point of Sale</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Flexible Discounts</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
                 </div>
-                <div class="hero-motion-set" aria-hidden="true">
-                  <span class="hero-motion-pill">Cashless</span>
-                  <span class="hero-motion-pill">Stock Management</span>
-                  <span class="hero-motion-pill">Point of Sale</span>
-                  <span class="hero-motion-pill">Flexible Discounts</span>
-                  <span class="hero-motion-pill">Centralized Reporting</span>
+                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
+                  <span class="hero-motion-pill spare-platform-card__pill">Cashless</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Stock Management</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Point of Sale</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Flexible Discounts</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
                 </div>
               </div>
             </div>
@@ -3554,7 +3599,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   stageEl.addEventListener('touchcancel', () => { touchPinch = false; touchActive = false; touchScrollEl = null; clearSwipeHints(); });
 
   function initHeroMotionTouchControl() {
-    const cards = Array.from(document.querySelectorAll('.hero-motion-card'));
+    const cards = Array.from(document.querySelectorAll('.spare-platform-card'));
     const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
     cards.forEach(card => {
@@ -3566,7 +3611,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       const setRate = rate => {
         const playbackRate = clamp(rate, 0.45, 2.4);
-        card.querySelectorAll('.hero-motion-track').forEach(track => {
+        card.querySelectorAll('.spare-platform-card__track').forEach(track => {
           track.getAnimations().forEach(animation => {
             animation.playbackRate = playbackRate;
           });
