@@ -713,12 +713,63 @@
         border-bottom: 1px solid var(--border);
         overflow: hidden;
       }
+      .intro-diagram--motion {
+        display: block !important;
+        padding: 12px 20px 10px !important;
+      }
+      .intro-diagram--motion .hero-motion-card,
+      .intro-diagram--motion .spare-platform-card,
+      .intro-video .video-wrap {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+      }
       .intro-diagram img {
         width: 100% !important;
         max-height: none !important;
         height: auto !important;
         display: block !important;
       }
+      .hero-motion-card,
+      .spare-platform-card {
+        width: 100%;
+        max-width: none;
+        flex: 0 0 100%;
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+        border-radius: 24px;
+      }
+      .hero-motion-core,
+      .spare-platform-card__core {
+        min-width: 0;
+        padding: 0;
+      }
+      .hero-motion-core img,
+      .spare-platform-card__core img {
+        width: 152px;
+      }
+      .hero-motion-lane--top,
+      .spare-platform-card__lane--top { top: 22%; }
+      .hero-motion-lane--bottom,
+      .spare-platform-card__lane--bottom { top: 68%; }
+      .hero-motion-pill,
+      .spare-platform-card__pill {
+        padding: 10px 14px;
+        font-size: 0.77rem;
+      }
+      .hero-motion-lane,
+      .spare-platform-card__lane {
+        overflow: hidden;
+        touch-action: pan-y;
+      }
+      .hero-motion-track--left,
+      .spare-platform-card__track--left { animation: marquee-left 22s linear infinite; }
+      .hero-motion-track--right,
+      .spare-platform-card__track--right { animation: marquee-right 24s linear infinite; }
+      .hero-motion-card--catering .hero-motion-track--left,
+      .spare-platform-card--catering .spare-platform-card__track--left { animation-duration: 18s; }
+      .hero-motion-card--catering .hero-motion-track--right,
+      .spare-platform-card--catering .spare-platform-card__track--right { animation-duration: 20s; }
       .intro-video {
         flex-shrink: 0 !important;
         padding: 12px 20px 20px !important;
@@ -744,6 +795,69 @@
       .platform-grid { grid-template-columns: 1fr; }
       .why-grid-sm { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
+      .intro-diagram--motion .hero-motion-card,
+      .intro-diagram--motion .spare-platform-card,
+      .intro-video .video-wrap {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+      }
+      .hero-motion-card,
+      .spare-platform-card {
+        width: 100%;
+        max-width: none;
+        flex: 0 0 100%;
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+      }
+      .hero-motion-center,
+      .spare-platform-card__center {
+        inset: 50% auto auto 50%;
+      }
+      .hero-motion-core,
+      .spare-platform-card__core {
+        min-width: 0;
+        padding: 0;
+      }
+      .hero-motion-core span,
+      .spare-platform-card__core span {
+        font-size: 0.58rem;
+        letter-spacing: 0.14em;
+        max-width: 240px;
+      }
+      .hero-motion-core img,
+      .spare-platform-card__core img {
+        width: 104px;
+        transform: translateY(8px);
+      }
+      .hero-motion-lane--top,
+      .spare-platform-card__lane--top { top: 22%; }
+      .hero-motion-lane--bottom,
+      .spare-platform-card__lane--bottom { top: 66%; }
+      .hero-motion-glow,
+      .spare-platform-card__glow {
+        right: 18px;
+        bottom: 24px;
+        width: 120px;
+        height: 84px;
+      }
+      .hero-motion-card::after,
+      .spare-platform-card::after {
+        right: -74px;
+        bottom: -102px;
+        width: 210px;
+        height: 210px;
+      }
+      .hero-motion-pill,
+      .spare-platform-card__pill {
+        padding: 8px 11px;
+        font-size: 0.66rem;
+      }
+      .hero-motion-pill::before,
+      .spare-platform-card__pill::before {
+        width: 7px;
+        height: 7px;
+      }
     }
 
     /* Slides where the visual comes first in DOM but should appear after content on mobile */
@@ -788,6 +902,212 @@
       .logo-track { gap: 16px; }
       .logo-marquee-wrap { margin-top: 20px; gap: 16px; }
       .logo-item img { filter: grayscale(0) opacity(1); }
+    }
+
+    /* Spare Platform Card */
+    .intro-diagram--motion {
+      padding: 24px 32px 12px !important;
+    }
+    .hero-motion-card,
+    .spare-platform-card {
+      position: relative;
+      width: min(100%, 560px);
+      min-height: 320px;
+      aspect-ratio: 16 / 10.5;
+      border-radius: 28px;
+      overflow: hidden;
+      isolation: isolate;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: #fff;
+      box-shadow:
+        0 28px 64px rgba(15, 23, 42, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    }
+    .hero-motion-card::before,
+    .spare-platform-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+      background-size: 26px 26px, 26px 26px;
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-motion-card::after,
+    .spare-platform-card::after {
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -78px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 196, 204, 0.14);
+      box-shadow:
+        0 0 0 38px rgba(0, 196, 204, 0.05),
+        0 0 0 76px rgba(0, 196, 204, 0.025);
+      opacity: 0.95;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-motion-glow,
+    .spare-platform-card__glow {
+      position: absolute;
+      right: 34px;
+      bottom: 34px;
+      width: 172px;
+      height: 112px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0, 196, 204, 0.12) 0%, rgba(0, 196, 204, 0.04) 52%, transparent 78%);
+      filter: blur(18px);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-motion-center,
+    .spare-platform-card__center {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-motion-core,
+    .spare-platform-card__core {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      min-width: 0;
+      padding: 0;
+      animation: heroCoreFloat 7s ease-in-out infinite;
+    }
+    .hero-motion-core span,
+    .spare-platform-card__core span {
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #6b7f96;
+      font-weight: 700;
+      max-width: 320px;
+      line-height: 1.35;
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .hero-motion-core img,
+    .spare-platform-card__core img {
+      width: 184px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 10px 20px rgba(28, 171, 204, 0.12));
+    }
+    @keyframes heroCoreFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .hero-motion-lane,
+    .spare-platform-card__lane {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      z-index: 2;
+      -webkit-mask: linear-gradient(90deg, transparent 0, #fff 12%, #fff 88%, transparent 100%);
+      mask: linear-gradient(90deg, transparent 0, #fff 12%, #fff 88%, transparent 100%);
+    }
+    .hero-motion-lane--top,
+    .spare-platform-card__lane--top { top: 24%; }
+    .hero-motion-lane--bottom,
+    .spare-platform-card__lane--bottom { top: 66%; }
+    .hero-motion-track,
+    .spare-platform-card__track {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: max-content;
+      will-change: transform;
+    }
+    .hero-motion-track--left,
+    .spare-platform-card__track--left { animation: marquee-left 28s linear infinite; }
+    .hero-motion-track--right,
+    .spare-platform-card__track--right { animation: marquee-right 31s linear infinite; }
+    .hero-motion-card--catering .hero-motion-track--left,
+    .spare-platform-card--catering .spare-platform-card__track--left { animation-duration: 21s; }
+    .hero-motion-card--catering .hero-motion-track--right,
+    .spare-platform-card--catering .spare-platform-card__track--right { animation-duration: 23s; }
+    .hero-motion-set,
+    .spare-platform-card__set {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-inline: 14px;
+    }
+    .hero-motion-pill,
+    .spare-platform-card__pill {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(208, 218, 232, 0.95);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+      color: var(--text);
+      font-size: 0.83rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+    }
+    .hero-motion-pill::before,
+    .spare-platform-card__pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #2af1e3 0%, #1cabcc 100%);
+      box-shadow: 0 0 0 5px rgba(0, 196, 204, 0.12);
+      flex-shrink: 0;
+    }
+    .hero-motion-pill:nth-child(3n),
+    .spare-platform-card__pill:nth-child(3n) {
+      background: #f7fbfc;
+    }
+    .hero-motion-pill:nth-child(4n),
+    .spare-platform-card__pill:nth-child(4n) {
+      background: #ffffff;
+      border-color: rgba(177, 232, 235, 0.95);
+    }
+    @media (hover: hover) {
+      .hero-motion-card:hover .hero-motion-track,
+      .spare-platform-card:hover .spare-platform-card__track {
+        animation-play-state: paused;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-motion-core,
+      .spare-platform-card__core {
+        animation: none !important;
+      }
+      .hero-motion-track--left,
+      .spare-platform-card__track--left {
+        animation-duration: 40s !important;
+      }
+      .hero-motion-track--right,
+      .spare-platform-card__track--right {
+        animation-duration: 44s !important;
+      }
+      .hero-motion-card--catering .hero-motion-track--left,
+      .spare-platform-card--catering .spare-platform-card__track--left {
+        animation-duration: 32s !important;
+      }
+      .hero-motion-card--catering .hero-motion-track--right,
+      .spare-platform-card--catering .spare-platform-card__track--right {
+        animation-duration: 36s !important;
+      }
     }
 
     .mob-only { display: none !important; }
@@ -1642,10 +1962,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- RIGHT: two equal panels stacked -->
       <div class="intro-right" style="display:grid; grid-template-rows:1fr 1fr; height:100vh; overflow:hidden;">
 
-        <!-- Top panel: diagram -->
-        <div class="intro-diagram" style="display:flex; align-items:center; justify-content:center; padding:24px 32px 12px; background:#fff; overflow:hidden;">
-          <img src="assets/platform-circle-diagram.png?v=3" alt="All your school operations in one platform"
-            style="max-width:100%; max-height:100%; object-fit:contain; display:block;" />
+        <!-- Top panel: school platform motion card -->
+        <div class="intro-diagram intro-diagram--motion" style="display:flex; align-items:center; justify-content:center; background:#fff; overflow:hidden;">
+          <div class="hero-motion-card spare-platform-card" aria-label="Spare school platform areas including School Fees, Parent App, Communication, Pickup, Transport, Event Tickets, LMS Integration, Multi-country Support, Cafeteria, Meal Plans, Marketplace, Activities, ECAs, Payments, and Centralized Reporting.">
+            <div class="hero-motion-glow spare-platform-card__glow"></div>
+            <div class="hero-motion-lane hero-motion-lane--top spare-platform-card__lane spare-platform-card__lane--top">
+              <div class="hero-motion-track hero-motion-track--left spare-platform-card__track spare-platform-card__track--left">
+                <div class="hero-motion-set spare-platform-card__set">
+                  <span class="hero-motion-pill spare-platform-card__pill">School Fees</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Parent App</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Pickup</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Transport</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Event Tickets</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">LMS Integration</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
+                </div>
+                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
+                  <span class="hero-motion-pill spare-platform-card__pill">School Fees</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Parent App</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Pickup</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Transport</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Event Tickets</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">LMS Integration</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-motion-center spare-platform-card__center">
+              <div class="hero-motion-core spare-platform-card__core">
+                <img src="assets/spare-logo.svg" alt="Spare" />
+              </div>
+            </div>
+
+            <div class="hero-motion-lane hero-motion-lane--bottom spare-platform-card__lane spare-platform-card__lane--bottom">
+              <div class="hero-motion-track hero-motion-track--right spare-platform-card__track spare-platform-card__track--right">
+                <div class="hero-motion-set spare-platform-card__set">
+                  <span class="hero-motion-pill spare-platform-card__pill">Cafeteria</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Marketplace</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Activities</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">ECAs</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Payments</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
+                </div>
+                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
+                  <span class="hero-motion-pill spare-platform-card__pill">Cafeteria</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Marketplace</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Activities</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">ECAs</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Payments</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Bottom panel: video -->
@@ -2327,9 +2701,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="intro-right" style="display:grid; grid-template-rows:1fr 1fr; height:100vh; overflow:hidden;">
-        <div style="display:flex; align-items:center; justify-content:center; padding:24px 32px 12px; background:#fff; overflow:hidden;">
-          <img src="assets/payments-financials.jpg" alt="Cashless cafeteria payments"
-            style="max-width:100%; max-height:100%; object-fit:cover; border-radius:12px; display:block;" />
+        <div class="intro-diagram intro-diagram--motion" style="display:flex; align-items:center; justify-content:center; background:#fff; overflow:hidden;">
+          <div class="hero-motion-card hero-motion-card--catering spare-platform-card spare-platform-card--catering" aria-label="Spare catering platform areas including Online Ordering, Meal Plans, Subscriptions, Allergens, Communication, Multi-country Support, Cashless, Stock Management, Point of Sale, Flexible Discounts, and Centralized Reporting.">
+            <div class="hero-motion-glow spare-platform-card__glow"></div>
+            <div class="hero-motion-lane hero-motion-lane--top spare-platform-card__lane spare-platform-card__lane--top">
+              <div class="hero-motion-track hero-motion-track--left spare-platform-card__track spare-platform-card__track--left">
+                <div class="hero-motion-set spare-platform-card__set">
+                  <span class="hero-motion-pill spare-platform-card__pill">Online Ordering</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Subscriptions</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Allergens</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
+                </div>
+                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
+                  <span class="hero-motion-pill spare-platform-card__pill">Online Ordering</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Subscriptions</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Allergens</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-motion-center spare-platform-card__center">
+              <div class="hero-motion-core spare-platform-card__core">
+                <img src="assets/spare-logo.svg" alt="Spare" />
+              </div>
+            </div>
+
+            <div class="hero-motion-lane hero-motion-lane--bottom spare-platform-card__lane spare-platform-card__lane--bottom">
+              <div class="hero-motion-track hero-motion-track--right spare-platform-card__track spare-platform-card__track--right">
+                <div class="hero-motion-set spare-platform-card__set">
+                  <span class="hero-motion-pill spare-platform-card__pill">Cashless</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Stock Management</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Point of Sale</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Flexible Discounts</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
+                </div>
+                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
+                  <span class="hero-motion-pill spare-platform-card__pill">Cashless</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Stock Management</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Point of Sale</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Flexible Discounts</span>
+                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="intro-video" style="display:flex; flex-direction:column; justify-content:center; padding:12px 32px 20px; background:var(--bg-subtle); overflow:hidden;">
           <div class="video-wrap" style="flex:1; max-height:100%;">
@@ -3178,6 +3598,85 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   stageEl.addEventListener('touchcancel', () => { touchPinch = false; touchActive = false; touchScrollEl = null; clearSwipeHints(); });
 
+  function initHeroMotionTouchControl() {
+    const cards = Array.from(document.querySelectorAll('.spare-platform-card'));
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+    cards.forEach(card => {
+      let startX = 0;
+      let startY = 0;
+      let gestureActive = false;
+      let horizontalIntent = false;
+      let returnAnim = 0;
+
+      const setRate = rate => {
+        const playbackRate = clamp(rate, 0.45, 2.4);
+        card.querySelectorAll('.spare-platform-card__track').forEach(track => {
+          track.getAnimations().forEach(animation => {
+            animation.playbackRate = playbackRate;
+          });
+        });
+        card.dataset.heroPlaybackRate = String(playbackRate);
+      };
+
+      const resetRate = () => {
+        const from = parseFloat(card.dataset.heroPlaybackRate || '1');
+        cancelAnimationFrame(returnAnim);
+        const startedAt = performance.now();
+        const duration = 240;
+
+        const tick = now => {
+          const progress = Math.min((now - startedAt) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          setRate(from + (1 - from) * eased);
+          if (progress < 1) returnAnim = requestAnimationFrame(tick);
+        };
+
+        returnAnim = requestAnimationFrame(tick);
+      };
+
+      card.addEventListener('touchstart', e => {
+        if (window.innerWidth > 860 || e.touches.length !== 1) return;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        gestureActive = true;
+        horizontalIntent = false;
+        cancelAnimationFrame(returnAnim);
+      }, { passive: true });
+
+      card.addEventListener('touchmove', e => {
+        if (!gestureActive || window.innerWidth > 860 || e.touches.length !== 1) return;
+        const dx = e.touches[0].clientX - startX;
+        const dy = e.touches[0].clientY - startY;
+
+        if (!horizontalIntent) {
+          if (Math.abs(dx) < 14) return;
+          if (Math.abs(dx) <= Math.abs(dy)) return;
+          horizontalIntent = true;
+        }
+
+        const normalized = clamp(dx / 120, -1, 1);
+        const nextRate = normalized >= 0
+          ? 1 + normalized * 1.35
+          : 1 + normalized * 0.55;
+
+        setRate(nextRate);
+        e.preventDefault();
+      }, { passive: false });
+
+      const finishGesture = () => {
+        if (!gestureActive) return;
+        gestureActive = false;
+        resetRate();
+      };
+
+      card.addEventListener('touchend', finishGesture, { passive: true });
+      card.addEventListener('touchcancel', finishGesture, { passive: true });
+    });
+  }
+
+  initHeroMotionTouchControl();
+
   // Video iframe touch guard, intercepts touches on the Drive embed
   const videoGuard = document.getElementById('video-touch-guard');
   if (videoGuard) {
@@ -3403,7 +3902,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     e.preventDefault();
     const form = document.getElementById('dl-form');
     const btn = document.getElementById('dl-submit-btn');
+    const errEl = document.getElementById('dl-error');
+
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const phone = form.querySelector('[name="phone"]').value.trim();
+
     if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    if (name.split(' ').filter(Boolean).length < 2) {
+      errEl.textContent = 'Please enter your full name.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (/^(gmail|yahoo|hotmail|outlook|icloud|aol|proton|mail)\./i.test(email.split('@')[1])) {
+      errEl.textContent = 'Please use your work email address.';
+      errEl.style.display = 'block';
+      return;
+    }
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length < 5) {
+      errEl.textContent = 'Please enter a valid phone number.';
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
 
     btn.textContent = 'Sending...';
     btn.disabled = true;
@@ -3683,29 +4206,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     trackVirtualPageView();
   })();
 </script>
-<script type="text/javascript">
-  window.$crisp=[];
-  window.CRISP_WEBSITE_ID="e2f010f0-d46a-41e0-8efd-6c8e3b9c5824";
-  (function(){var d=document;var s=d.createElement("script");
-  s.src="https://client.crisp.chat/l.js";s.async=1;
-  d.getElementsByTagName("head")[0].appendChild(s);})();
-</script>
-<script type = "text/javascript" id = "zsiqchat">
-	var $zoho = $zoho || {};
-	$zoho.salesiq = $zoho.salesiq || {
-		widgetcode: "siq93f5982906e13c86fd752d6d37194d3f4938738ad178cbd91f75048dd0fc02f6",
-		values: {},
-		ready: function(){}
-	};
-	var d = document;
-	s = d.createElement("script");
-	s.type = "text/javascript";
-	s.id = "zsiqscript";
-	s.defer = true;
-	s.src = "https://salesiq.zoho.com/widget";
-	t = d.getElementsByTagName("script")[0];
-	t.parentNode.insertBefore(s, t);
-</script>
+<script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script>
+<script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq93f5982906e13c86fd752d6d37194d3f4938738ad178cbd91f75048dd0fc02f6" defer></script>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
