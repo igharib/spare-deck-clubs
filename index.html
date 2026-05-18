@@ -3766,7 +3766,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     e.preventDefault();
     const form = document.getElementById('dl-form');
     const btn = document.getElementById('dl-submit-btn');
+    const errEl = document.getElementById('dl-error');
+
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const phone = form.querySelector('[name="phone"]').value.trim();
+
     if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    if (name.split(' ').filter(Boolean).length < 2) {
+      errEl.textContent = 'Please enter your full name.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (/^(gmail|yahoo|hotmail|outlook|icloud|aol|proton|mail)\./i.test(email.split('@')[1])) {
+      errEl.textContent = 'Please use your work email address.';
+      errEl.style.display = 'block';
+      return;
+    }
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length < 5) {
+      errEl.textContent = 'Please enter a valid phone number.';
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
 
     btn.textContent = 'Sending...';
     btn.disabled = true;
