@@ -2199,7 +2199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>15M+ products sold:</strong> Proven at scale across schools in 8+ countries</span></li>
         </ul>
         <div class="hero-actions" style="margin-top: 24px;">
-          <button onclick="openCalculator()" class="btn btn-outline">
+          <button onclick="trackInteraction('calculator_launch',{destination:'marketplace_calculator'});window.open('https://marketplace-calculator-opal.vercel.app','_blank')" class="btn btn-outline">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             School Marketplace Revenue Calculator
           </button>
@@ -3085,92 +3085,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- Calculator modal -->
-<div class="modal-overlay hidden" id="calc-modal" onclick="handleCalcModalClick(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeCalculator()">&#215;</button>
-    <div id="calc-form-wrap">
-      <h3>School Marketplace Revenue Calculator</h3>
-      <p class="modal-sub">Fill in your details to access the calculator.</p>
-      <form id="calc-form" onsubmit="submitCalculator(event)" novalidate>
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" name="name" placeholder="Your full name" required />
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" name="email" placeholder="you@school.com" required />
-        </div>
-        <div class="form-group">
-          <label>School / Company Name</label>
-          <input type="text" name="company" placeholder="School or organization name" required />
-        </div>
-        <div class="form-group">
-          <label>Phone Number</label>
-          <div class="phone-input-wrap">
-            <select name="phone_code">
-              <option value="+1">🇺🇸 +1</option>
-              <option value="+44">🇬🇧 +44</option>
-              <option value="+971" selected>🇦🇪 +971</option>
-              <option value="+966">🇸🇦 +966</option>
-              <option value="+965">🇰🇼 +965</option>
-              <option value="+974">🇶🇦 +974</option>
-              <option value="+973">🇧🇭 +973</option>
-              <option value="+968">🇴🇲 +968</option>
-              <option value="+20">🇪🇬 +20</option>
-              <option value="+961">🇱🇧 +961</option>
-              <option value="+962">🇯🇴 +962</option>
-              <option value="+60">🇲🇾 +60</option>
-              <option value="+65">🇸🇬 +65</option>
-              <option value="+91">🇮🇳 +91</option>
-              <option value="+92">🇵🇰 +92</option>
-              <option value="+880">🇧🇩 +880</option>
-              <option value="+234">🇳🇬 +234</option>
-              <option value="+27">🇿🇦 +27</option>
-              <option value="+33">🇫🇷 +33</option>
-              <option value="+49">🇩🇪 +49</option>
-              <option value="+39">🇮🇹 +39</option>
-              <option value="+34">🇪🇸 +34</option>
-              <option value="+61">🇦🇺 +61</option>
-              <option value="+64">🇳🇿 +64</option>
-              <option value="+55">🇧🇷 +55</option>
-              <option value="+52">🇲🇽 +52</option>
-            </select>
-            <input type="tel" name="phone" placeholder="Phone number" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Country</label>
-          <select name="country" required>
-            <option value="" disabled selected>Select your country</option>
-            <option>United Arab Emirates</option>
-            <option>Saudi Arabia</option>
-            <option>Kuwait</option>
-            <option>Qatar</option>
-            <option>Bahrain</option>
-            <option>Oman</option>
-            <option>Egypt</option>
-            <option>Lebanon</option>
-            <option>Jordan</option>
-            <option>Malaysia</option>
-            <option>Singapore</option>
-            <option>India</option>
-            <option>Pakistan</option>
-            <option>United Kingdom</option>
-            <option>United States</option>
-            <option>France</option>
-            <option>Germany</option>
-            <option>Australia</option>
-            <option>Nigeria</option>
-            <option>South Africa</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary form-submit" id="calc-submit-btn">Open Calculator</button>
-        <div id="calc-error" style="color:#ef4444; font-size:0.82rem; margin-top:10px; display:none;">Something went wrong. Please try again.</div>
-      </form>
-    </div>
-  </div>
-</div>
 
 <!-- Swipe progress indicators (mobile only) -->
 <div id="swipe-hint-next" class="swipe-hint swipe-hint--next">
@@ -3847,45 +3761,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (e.target === document.getElementById('dl-modal')) closeDownload();
   }
 
-  // Calculator modal
-  function openCalculator() {
-    trackInteraction('calculator_open', { modal_name: 'marketplace_calculator' });
-    document.getElementById('calc-modal').classList.remove('hidden');
-    document.getElementById('calc-error').style.display = 'none';
-    document.getElementById('calc-form').reset();
-  }
-
-  function closeCalculator() {
-    document.getElementById('calc-modal').classList.add('hidden');
-  }
-
-  function handleCalcModalClick(e) {
-    if (e.target === document.getElementById('calc-modal')) closeCalculator();
-  }
-
-  function submitCalculator(e) {
-    e.preventDefault();
-    const form = document.getElementById('calc-form');
-    const btn = document.getElementById('calc-submit-btn');
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-
-    const data = new FormData(form);
-    data.append('_subject', 'Spare - Marketplace Calculator Access');
-    data.append('_captcha', 'false');
-    data.append('_template', 'table');
-
-    fetch('https://formsubmit.co/ajax/ismail@paywithspare.com', {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    }).catch(() => {});
-
-    trackInteraction('calculator_launch', { destination: 'marketplace_calculator' });
-    window.open('https://marketplace-calculator-opal.vercel.app', '_blank');
-    closeCalculator();
-    btn.textContent = 'Open Calculator';
-    btn.disabled = false;
-  }
 
   async function submitDownload(e) {
     e.preventDefault();
