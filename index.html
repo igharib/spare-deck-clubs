@@ -3863,39 +3863,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (e.target === document.getElementById('calc-modal')) closeCalculator();
   }
 
-  async function submitCalculator(e) {
+  function submitCalculator(e) {
     e.preventDefault();
     const form = document.getElementById('calc-form');
     const btn = document.getElementById('calc-submit-btn');
     if (!form.checkValidity()) { form.reportValidity(); return; }
-
-    btn.textContent = 'Opening...';
-    btn.disabled = true;
 
     const data = new FormData(form);
     data.append('_subject', 'Spare - Marketplace Calculator Access');
     data.append('_captcha', 'false');
     data.append('_template', 'table');
 
-    try {
-      const res = await fetch('https://formsubmit.co/ajax/ismail@paywithspare.com', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        trackInteraction('calculator_launch', { destination: 'marketplace_calculator' });
-        window.open('https://marketplace-calculator-opal.vercel.app', '_blank');
-        closeCalculator();
-      } else {
-        throw new Error();
-      }
-    } catch {
-      document.getElementById('calc-error').style.display = 'block';
-    } finally {
-      btn.textContent = 'Open Calculator';
-      btn.disabled = false;
-    }
+    fetch('https://formsubmit.co/ajax/ismail@paywithspare.com', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).catch(() => {});
+
+    trackInteraction('calculator_launch', { destination: 'marketplace_calculator' });
+    window.open('https://marketplace-calculator-opal.vercel.app', '_blank');
+    closeCalculator();
+    btn.textContent = 'Open Calculator';
+    btn.disabled = false;
   }
 
   async function submitDownload(e) {
