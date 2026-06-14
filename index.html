@@ -3624,9 +3624,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         const idx = slides.indexOf(entry.target);
-        if (idx === -1 || idx === current) return;
-        current = idx;
+        if (idx === -1) return;
         if (idx === 10) animateStats();
+        if (idx === current) return;
+        current = idx;
         clearTimeout(mobTrackTimer);
         mobTrackTimer = setTimeout(() => trackVirtualPageView(), 600);
       });
@@ -4034,7 +4035,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   };
 
+  const YT_VIDEO_ID = 'EdrYTFpQ7bY';
+
   function playVideoHero() {
+    if (window.innerWidth <= 860) { window.open('https://youtu.be/' + YT_VIDEO_ID, '_blank'); return; }
     const poster  = document.getElementById('spare-video-poster');
     const overlay = document.getElementById('v-overlay-hero');
     if (poster)  poster.style.display  = 'none';
@@ -4045,6 +4049,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function playVideoPromo() {
+    if (window.innerWidth <= 860) { window.open('https://youtu.be/' + YT_VIDEO_ID, '_blank'); return; }
     const poster  = document.getElementById('spare-video-promo-poster');
     const overlay = document.getElementById('v-overlay-promo');
     if (poster)  poster.style.display  = 'none';
@@ -4055,6 +4060,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function playVideoCatering() {
+    if (window.innerWidth <= 860) { window.open('https://youtu.be/' + YT_VIDEO_ID, '_blank'); return; }
     const poster  = document.getElementById('spare-video-catering-poster');
     const overlay = document.getElementById('v-overlay-catering');
     if (poster)  poster.style.display  = 'none';
