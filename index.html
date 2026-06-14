@@ -3656,7 +3656,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('mob-school-nav').classList.toggle('hidden', p !== 'school');
     document.getElementById('mob-catering-nav').classList.toggle('hidden', p !== 'catering');
 
-    const targetSlide = NAV_ORDER.includes(current) ? current : NAV_ORDER[0];
+    const targetSlide = NAV_ORDER[0];
     slides[current].classList.remove('active');
     current = targetSlide;
     slides[current].classList.add('active');
@@ -3668,6 +3668,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     history.replaceState(null, '', p === 'catering' ? '?p=catering' : window.location.pathname);
     trackVirtualPageView();
     updateMobSlides();
+    if (window.innerWidth <= 860) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }
 
   function goTo(idx, dir) {
@@ -4452,6 +4455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       syncTourConfig();
       syncPersonaCopy();
       updateUI();
+      if (window.innerWidth <= 860) window.scrollTo({ top: 0, behavior: 'instant' });
     }
     analyticsVirtualTrackingReady = true;
     trackVirtualPageView();
