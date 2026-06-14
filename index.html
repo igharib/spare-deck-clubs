@@ -3963,7 +3963,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   function mobGoTo(idx) {
     closeMobNav();
-    setTimeout(() => goTo(idx), 80); // small delay so drawer closes smoothly first
+    setTimeout(() => {
+      if (window.innerWidth <= 860) {
+        const sl = slides[idx];
+        if (sl && !sl.classList.contains('mob-hidden')) {
+          sl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        goTo(idx);
+      }
+    }, 80);
   }
 
   // Keep mobile nav dots in sync with current slide (called from updateUI)
