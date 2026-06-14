@@ -3626,6 +3626,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const idx = slides.indexOf(entry.target);
         if (idx === -1 || idx === current) return;
         current = idx;
+        if (idx === 10) animateStats();
         clearTimeout(mobTrackTimer);
         mobTrackTimer = setTimeout(() => trackVirtualPageView(), 600);
       });
