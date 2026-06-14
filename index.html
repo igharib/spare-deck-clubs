@@ -330,6 +330,12 @@
       color: var(--teal-dark);
       flex-shrink: 0;
     }
+    .nutr-nav-row { display:flex; align-items:center; gap:14px; margin-top:10px; justify-content:center; }
+    .nutr-nav-btn { background:#f0f0f2; border:none; border-radius:50%; width:32px; height:32px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text); transition:background .15s; }
+    .nutr-nav-btn:hover { background:var(--teal-light); color:var(--teal-dark); }
+    .nutr-dots { display:flex; gap:6px; align-items:center; }
+    .nutr-dot { width:7px; height:7px; border-radius:50%; background:var(--border); transition:background .2s; }
+    .nutr-dot.active { background:var(--teal); }
     .dash-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1144,6 +1150,9 @@
     .swipe-hint.ready   { opacity: 1;    transform: translateX(-50%) scale(1.18); }
 
     @media (max-width: 860px) {
+      .intro-feat-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
       #s-3 .slide-visual, #s-5 .slide-visual { order: 2; }
       #s-3 .slide-content, #s-5 .slide-content { order: 1; }
       .mob-only { display: flex !important; }
@@ -1553,6 +1562,17 @@
       #persona-float { display: none; }
       .pt-btn { padding: 11px 12px; font-size: 0.94rem; font-weight: 700; }
     }
+
+    /* ── Mobile continuous scroll ── */
+    @media (max-width: 860px) {
+      html, body { overflow-y: auto !important; height: auto !important; }
+      #stage { position: static !important; overflow: visible !important; height: auto !important; flex: none !important; }
+      #nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; z-index: 50 !important; }
+      body { padding-top: var(--mobile-nav-h, 57px) !important; }
+      .slide { position: relative !important; inset: auto !important; opacity: 1 !important; pointer-events: all !important; transform: none !important; transition: none !important; min-height: 100vh; border-bottom: 1px solid #E2E8F0; }
+      .slide.mob-hidden { display: none !important; }
+      #nav-arrows { display: none !important; }
+    }
     .persona-nav { display: contents; }
     .persona-nav.hidden { display: none; }
     .mob-persona-toggle {
@@ -1694,6 +1714,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="nav-btn" data-slide="10" onclick="goTo(10)" style="padding-left:22px;font-size:0.78rem;">
       <span class="nb-dot"></span> ↳ Guided Tour
     </button>
+    <button class="nav-btn" data-slide="26" onclick="goTo(26)">
+      <span class="nb-dot"></span> Promo Video
+    </button>
     <button class="nav-btn" data-slide="8" onclick="goTo(8)">
       <span class="nb-dot"></span> Admin Dashboard
     </button>
@@ -1754,6 +1777,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </button>
       <button class="nav-btn" data-slide="10" onclick="goTo(10)" style="padding-left:22px;font-size:0.78rem;">
         <span class="nb-dot"></span> ↳ Guided Tour
+      </button>
+      <button class="nav-btn" data-slide="26" onclick="goTo(26)">
+        <span class="nb-dot"></span> Promo Video
       </button>
       <button class="nav-btn" data-slide="8" onclick="goTo(8)">
         <span class="nb-dot"></span> Admin Dashboard
@@ -1852,6 +1878,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button class="mob-nav-item mob-nav-item-sub" data-mob-slide="10" onclick="mobGoTo(10)">
       <span class="mob-nav-dot"></span> ↳ Guided Tour
     </button>
+    <button class="mob-nav-item" data-mob-slide="26" onclick="mobGoTo(26)">
+      <span class="mob-nav-dot"></span> Promo Video
+    </button>
     <button class="mob-nav-item" data-mob-slide="8" onclick="mobGoTo(8)">
       <span class="mob-nav-dot"></span> Admin Dashboard
     </button>
@@ -1914,6 +1943,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </button>
       <button class="mob-nav-item mob-nav-item-sub" data-mob-slide="10" onclick="mobGoTo(10)">
         <span class="mob-nav-dot"></span> ↳ Guided Tour
+      </button>
+      <button class="mob-nav-item" data-mob-slide="26" onclick="mobGoTo(26)">
+        <span class="mob-nav-dot"></span> Promo Video
       </button>
       <button class="mob-nav-item" data-mob-slide="8" onclick="mobGoTo(8)">
         <span class="mob-nav-dot"></span> Admin Dashboard
@@ -1978,82 +2010,110 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- RIGHT: two equal panels stacked -->
       <div class="intro-right" style="display:grid; grid-template-rows:1fr 1fr; height:100vh; overflow:hidden;">
 
-        <!-- Top panel: school platform motion card -->
-        <div class="intro-diagram intro-diagram--motion" style="display:flex; align-items:center; justify-content:center; background:#fff; overflow:hidden;">
-          <div class="hero-motion-card spare-platform-card" aria-label="Spare school platform areas including School Fees, Parent App, Communication, Pickup, Transport, Event Tickets, LMS Integration, Multi-country Support, Cafeteria, Meal Plans, Marketplace, Activities, ECAs, Payments, and Centralized Reporting.">
-            <div class="hero-motion-glow spare-platform-card__glow"></div>
-            <div class="hero-motion-lane hero-motion-lane--top spare-platform-card__lane spare-platform-card__lane--top">
-              <div class="hero-motion-track hero-motion-track--left spare-platform-card__track spare-platform-card__track--left">
-                <div class="hero-motion-set spare-platform-card__set">
-                  <span class="hero-motion-pill spare-platform-card__pill">School Fees</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Parent App</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Pickup</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Transport</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Event Tickets</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">LMS Integration</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
-                </div>
-                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
-                  <span class="hero-motion-pill spare-platform-card__pill">School Fees</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Parent App</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Pickup</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Transport</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Event Tickets</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">LMS Integration</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
-                </div>
-              </div>
+        <!-- Top panel: platform overview grid -->
+        <div style="display:flex; flex-direction:column; justify-content:center; padding:20px 28px 16px; background:#fff; overflow:hidden; border-bottom:1px solid var(--border);">
+          <div class="intro-feat-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px;">
+            <div class="pg-card" onclick="goTo(3)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Cafeteria Management</h4></div>
             </div>
-
-            <div class="hero-motion-center spare-platform-card__center">
-              <div class="hero-motion-core spare-platform-card__core">
-                <img src="assets/spare-logo.svg" alt="Spare" />
-              </div>
+            <div class="pg-card" onclick="goTo(2)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Cashless Payments</h4></div>
             </div>
-
-            <div class="hero-motion-lane hero-motion-lane--bottom spare-platform-card__lane spare-platform-card__lane--bottom">
-              <div class="hero-motion-track hero-motion-track--right spare-platform-card__track spare-platform-card__track--right">
-                <div class="hero-motion-set spare-platform-card__set">
-                  <span class="hero-motion-pill spare-platform-card__pill">Cafeteria</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Marketplace</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Activities</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">ECAs</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Payments</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
-                </div>
-                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
-                  <span class="hero-motion-pill spare-platform-card__pill">Cafeteria</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Marketplace</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Activities</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">ECAs</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Payments</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
-                </div>
-              </div>
+            <div class="pg-card" onclick="goTo(2)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">School Fees</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(3)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Online Ordering</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(5)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">In-App Marketplace</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(6)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">In-App Communication</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(4)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Transport Scheduling</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(5)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Extra Curricular</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(5)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7.5A5.5 5.5 0 017.5 2h9A5.5 5.5 0 0122 7.5v0A5.5 5.5 0 0116.5 13h-9A5.5 5.5 0 012 7.5z"/><path d="M8 13v8M16 13v8M12 13v8"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Event Ticketing</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(8)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Centralized Reporting</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(11)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Multi-Country Support</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(4)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Student Pickup</h4></div>
             </div>
           </div>
         </div>
 
-        <!-- Bottom panel: video -->
-        <div class="intro-video" style="display:flex; flex-direction:column; justify-content:center; padding:12px 32px 20px; background:var(--bg-subtle); overflow:hidden;">
-          <div class="video-wrap" style="flex:1; max-height:100%;">
-            <!-- Poster shown until play is clicked -->
-            <img id="spare-video-poster" src="assets/live-at-cisa.png"
-                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right bottom;display:block;border-radius:inherit;" alt="Spare at CISA" />
-            <!-- YouTube IFrame API target -->
-            <div id="spare-video-hero" style="display:none;position:absolute;inset:0;width:100%;height:100%;"></div>
-            <div class="v-overlay" id="v-overlay-hero" onclick="playVideoHero()">
-              <div class="hero-play-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <!-- Bottom panel: schools we serve (logo marquee) -->
+        <div style="display:flex; flex-direction:column; justify-content:center; padding:20px 28px; background:var(--bg-subtle); overflow:hidden;">
+          <div class="logo-marquee-wrap" style="margin-top:0; gap:10px;">
+            <div class="logo-marquee logo-marquee--left">
+              <div class="logo-track">
+                <div class="logo-item"><img src="assets/logos/JESS.png" alt="JESS Dubai" /></div>
+                <div class="logo-item"><img src="assets/logos/KCbahamas.png" alt="King's College Bahamas" /></div>
+                <div class="logo-item"><img src="assets/logos/AIS-dubai.png" alt="Australian International School Dubai" /></div>
+                <div class="logo-item"><img src="assets/logos/DESS.png" alt="DESS" /></div>
+                <div class="logo-item"><img src="assets/logos/Metropolitan.png" alt="Metropolitan School" /></div>
+                <div class="logo-item"><img src="assets/logos/dbs.png" alt="Dubai British School" /></div>
+                <div class="logo-item"><img src="assets/logos/KCALICANTE.png" alt="King's College Alicante" /></div>
+                <div class="logo-item"><img src="assets/logos/UAS.png" alt="Universal American School" /></div>
+                <div class="logo-item"><img src="assets/logos/DC.svg.png" alt="Dubai College" /></div>
+                <div class="logo-item"><img src="assets/logos/AIS.png" alt="American International School" /></div>
+                <div class="logo-item"><img src="assets/logos/KINGS-Charmartin.png" alt="King's College Chamartín" /></div>
+                <div class="logo-item"><img src="assets/logos/DIS2.png" alt="Deira International School" /></div>
+                <!-- duplicate for loop -->
+                <div class="logo-item"><img src="assets/logos/JESS.png" alt="JESS Dubai" /></div>
+                <div class="logo-item"><img src="assets/logos/KCbahamas.png" alt="King's College Bahamas" /></div>
+                <div class="logo-item"><img src="assets/logos/AIS-dubai.png" alt="Australian International School Dubai" /></div>
+                <div class="logo-item"><img src="assets/logos/DESS.png" alt="DESS" /></div>
+                <div class="logo-item"><img src="assets/logos/Metropolitan.png" alt="Metropolitan School" /></div>
+                <div class="logo-item"><img src="assets/logos/dbs.png" alt="Dubai British School" /></div>
               </div>
             </div>
-            <div class="video-touch-guard" id="video-touch-guard"></div>
+            <div class="logo-marquee logo-marquee--right">
+              <div class="logo-track">
+                <div class="logo-item"><img src="assets/logos/NIS.png" alt="NIS" /></div>
+                <div class="logo-item"><img src="assets/logos/AFLEC.png" alt="AFLEC" /></div>
+                <div class="logo-item"><img src="assets/logos/Mermoz.png" alt="Lycée Mermoz" /></div>
+                <div class="logo-item"><img src="assets/logos/CAC.png" alt="CAC" /></div>
+                <div class="logo-item"><img src="assets/logos/LFIGP.png" alt="Lycée Français International" /></div>
+                <div class="logo-item"><img src="assets/logos/Citizens.svg" alt="Citizens School" /></div>
+                <div class="logo-item"><img src="assets/logos/DHA.png" alt="DHA School" /></div>
+                <div class="logo-item"><img src="assets/logos/LFIB.png" alt="Lycée Français International de Bahreïn" /></div>
+                <div class="logo-item"><img src="assets/logos/DUNE.png" alt="Dune" /></div>
+                <div class="logo-item"><img src="assets/logos/sisd3.png" alt="SISD" /></div>
+                <div class="logo-item"><img src="assets/logos/BSB.png" alt="British School of Bahrain" /></div>
+                <div class="logo-item"><img src="assets/logos/Clarion.png" alt="Clarion School" /></div>
+                <!-- duplicate for loop -->
+                <div class="logo-item"><img src="assets/logos/NIS.png" alt="NIS" /></div>
+                <div class="logo-item"><img src="assets/logos/AFLEC.png" alt="AFLEC" /></div>
+                <div class="logo-item"><img src="assets/logos/Mermoz.png" alt="Lycée Mermoz" /></div>
+                <div class="logo-item"><img src="assets/logos/CAC.png" alt="CAC" /></div>
+                <div class="logo-item"><img src="assets/logos/LFIGP.png" alt="Lycée Français International" /></div>
+                <div class="logo-item"><img src="assets/logos/Citizens.svg" alt="Citizens School" /></div>
+              </div>
+            </div>
           </div>
-          <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:8px; font-weight:500;">Spare Live @ CISA</p>
         </div>
 
       </div>
@@ -2717,69 +2777,107 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="intro-right" style="display:grid; grid-template-rows:1fr 1fr; height:100vh; overflow:hidden;">
-        <div class="intro-diagram intro-diagram--motion" style="display:flex; align-items:center; justify-content:center; background:#fff; overflow:hidden;">
-          <div class="hero-motion-card hero-motion-card--catering spare-platform-card spare-platform-card--catering" aria-label="Spare catering platform areas including Online Ordering, Meal Plans, Subscriptions, Allergens, Communication, Multi-country Support, Cashless, Stock Management, Point of Sale, Flexible Discounts, and Centralized Reporting.">
-            <div class="hero-motion-glow spare-platform-card__glow"></div>
-            <div class="hero-motion-lane hero-motion-lane--top spare-platform-card__lane spare-platform-card__lane--top">
-              <div class="hero-motion-track hero-motion-track--left spare-platform-card__track spare-platform-card__track--left">
-                <div class="hero-motion-set spare-platform-card__set">
-                  <span class="hero-motion-pill spare-platform-card__pill">Online Ordering</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Subscriptions</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Allergens</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
-                </div>
-                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
-                  <span class="hero-motion-pill spare-platform-card__pill">Online Ordering</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Meal Plans</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Subscriptions</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Allergens</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Communication</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Multi-country Support</span>
-                </div>
+
+        <!-- Top panel: catering overview grid -->
+        <div style="display:flex; flex-direction:column; justify-content:center; padding:20px 28px 16px; background:#fff; overflow:hidden; border-bottom:1px solid var(--border);">
+          <div class="intro-feat-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:6px;">
+            <div class="pg-card" onclick="goTo(3)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Online Ordering</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(2)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Cashless Payments</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(3)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="12" y1="9" x2="12" y2="15"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Meal Plans</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(23)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Stock Management</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(2)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Flexible Discounts</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(6)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Parent Communication</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(18)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Allergen Blocking</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(9)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Point of Sale</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(19)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Multi-Country</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(2)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Service Fees</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(24)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Nutrition Tracking</h4></div>
+            </div>
+            <div class="pg-card" onclick="goTo(20)" style="padding:8px 10px; gap:7px; align-items:center;">
+              <div class="pg-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+              <div class="pg-info"><h4 style="font-size:0.67rem;">Centralized Dashboard</h4></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom panel: schools we serve (logo marquee) -->
+        <div style="display:flex; flex-direction:column; justify-content:center; padding:20px 28px; background:var(--bg-subtle); overflow:hidden;">
+          <div class="logo-marquee-wrap" style="margin-top:0; gap:10px;">
+            <div class="logo-marquee logo-marquee--left">
+              <div class="logo-track">
+                <div class="logo-item"><img src="assets/logos/JESS.png" alt="JESS Dubai" /></div>
+                <div class="logo-item"><img src="assets/logos/KCbahamas.png" alt="King's College Bahamas" /></div>
+                <div class="logo-item"><img src="assets/logos/AIS-dubai.png" alt="Australian International School Dubai" /></div>
+                <div class="logo-item"><img src="assets/logos/DESS.png" alt="DESS" /></div>
+                <div class="logo-item"><img src="assets/logos/Metropolitan.png" alt="Metropolitan School" /></div>
+                <div class="logo-item"><img src="assets/logos/dbs.png" alt="Dubai British School" /></div>
+                <div class="logo-item"><img src="assets/logos/KCALICANTE.png" alt="King's College Alicante" /></div>
+                <div class="logo-item"><img src="assets/logos/UAS.png" alt="Universal American School" /></div>
+                <div class="logo-item"><img src="assets/logos/DC.svg.png" alt="Dubai College" /></div>
+                <div class="logo-item"><img src="assets/logos/AIS.png" alt="American International School" /></div>
+                <div class="logo-item"><img src="assets/logos/KINGS-Charmartin.png" alt="King's College Chamartín" /></div>
+                <div class="logo-item"><img src="assets/logos/DIS2.png" alt="Deira International School" /></div>
+                <div class="logo-item"><img src="assets/logos/JESS.png" alt="JESS Dubai" /></div>
+                <div class="logo-item"><img src="assets/logos/KCbahamas.png" alt="King's College Bahamas" /></div>
+                <div class="logo-item"><img src="assets/logos/AIS-dubai.png" alt="Australian International School Dubai" /></div>
+                <div class="logo-item"><img src="assets/logos/Metropolitan.png" alt="Metropolitan School" /></div>
               </div>
             </div>
-
-            <div class="hero-motion-center spare-platform-card__center">
-              <div class="hero-motion-core spare-platform-card__core">
-                <img src="assets/spare-logo.svg" alt="Spare" />
-              </div>
-            </div>
-
-            <div class="hero-motion-lane hero-motion-lane--bottom spare-platform-card__lane spare-platform-card__lane--bottom">
-              <div class="hero-motion-track hero-motion-track--right spare-platform-card__track spare-platform-card__track--right">
-                <div class="hero-motion-set spare-platform-card__set">
-                  <span class="hero-motion-pill spare-platform-card__pill">Cashless</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Stock Management</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Point of Sale</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Flexible Discounts</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
-                </div>
-                <div class="hero-motion-set spare-platform-card__set" aria-hidden="true">
-                  <span class="hero-motion-pill spare-platform-card__pill">Cashless</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Stock Management</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Point of Sale</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Flexible Discounts</span>
-                  <span class="hero-motion-pill spare-platform-card__pill">Centralized Reporting</span>
-                </div>
+            <div class="logo-marquee logo-marquee--right">
+              <div class="logo-track">
+                <div class="logo-item"><img src="assets/logos/NIS.png" alt="NIS" /></div>
+                <div class="logo-item"><img src="assets/logos/AFLEC.png" alt="AFLEC" /></div>
+                <div class="logo-item"><img src="assets/logos/Mermoz.png" alt="Lycée Mermoz" /></div>
+                <div class="logo-item"><img src="assets/logos/CAC.png" alt="CAC" /></div>
+                <div class="logo-item"><img src="assets/logos/LFIGP.png" alt="Lycée Français International" /></div>
+                <div class="logo-item"><img src="assets/logos/Citizens.svg" alt="Citizens School" /></div>
+                <div class="logo-item"><img src="assets/logos/DHA.png" alt="DHA School" /></div>
+                <div class="logo-item"><img src="assets/logos/LFIB.png" alt="Lycée Français International de Bahreïn" /></div>
+                <div class="logo-item"><img src="assets/logos/DUNE.png" alt="Dune" /></div>
+                <div class="logo-item"><img src="assets/logos/sisd3.png" alt="SISD" /></div>
+                <div class="logo-item"><img src="assets/logos/BSB.png" alt="British School of Bahrain" /></div>
+                <div class="logo-item"><img src="assets/logos/Clarion.png" alt="Clarion School" /></div>
+                <div class="logo-item"><img src="assets/logos/NIS.png" alt="NIS" /></div>
+                <div class="logo-item"><img src="assets/logos/AFLEC.png" alt="AFLEC" /></div>
+                <div class="logo-item"><img src="assets/logos/Mermoz.png" alt="Lycée Mermoz" /></div>
+                <div class="logo-item"><img src="assets/logos/Citizens.svg" alt="Citizens School" /></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="intro-video" style="display:flex; flex-direction:column; justify-content:center; padding:12px 32px 20px; background:var(--bg-subtle); overflow:hidden;">
-          <div class="video-wrap" style="flex:1; max-height:100%;">
-            <img id="spare-video-catering-poster" src="assets/live-at-cisa.png"
-                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right bottom;display:block;border-radius:inherit;" alt="Spare at CISA" />
-            <div id="spare-video-catering" style="display:none;position:absolute;inset:0;width:100%;height:100%;"></div>
-            <div class="v-overlay" id="v-overlay-catering" onclick="playVideoCatering()" style="background:transparent;">
-              <div class="hero-play-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              </div>
-            </div>
-          </div>
-          <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:8px; font-weight:500;">Spare Live @ CISA</p>
-        </div>
+
       </div>
     </div>
   </div>
@@ -2990,7 +3088,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- 24 · NUTRITION EDGE (CATERING) -->
   <div class="slide" id="s-24">
-    <div class="slide-inner" style="align-items:flex-start; gap:40px;">
+    <div class="slide-inner" style="align-items:center; gap:40px;">
       <div class="slide-content" style="max-width:480px;">
         <div class="slide-tag"><span class="tag-dot"></span> Nutrition Intelligence</div>
         <h2>The Nutrition Edge<br>for Modern Caterers.</h2>
@@ -3008,37 +3106,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="slide-visual" style="flex:1; display:flex; flex-direction:column; gap:16px; min-width:0;">
-        <!-- Comparison table -->
-        <div style="background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden; font-size:0.78rem;">
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; background:var(--teal); color:#fff; font-weight:600; padding:10px 14px; gap:8px;">
-            <span>Feature</span><span>Legacy Catering</span><span>Our Platform</span>
+      <div class="slide-visual" style="align-self:stretch; justify-content:center;">
+        <div class="comm-showcase" style="height:100%;">
+          <div>
+            <div class="iph-wrap">
+              <div class="iph">
+                <div class="iph-isle"><div></div></div>
+                <div class="iph-vp" id="nutr-cat-vp">
+                  <div class="ts on">
+                    <div class="a-scr">
+                      <img src="assets/Nutrition1.png" alt="Nutrition dashboard" style="width:100%;display:block;" draggable="false" />
+                    </div>
+                  </div>
+                  <div class="ts">
+                    <div class="a-scr">
+                      <img src="assets/Nutrition2.png" alt="Nutrition analytics" style="width:100%;display:block;" draggable="false" />
+                    </div>
+                  </div>
+                </div>
+                <div class="iph-bar"><div></div></div>
+              </div>
+            </div>
+            <div class="nutr-nav-row">
+              <button class="nutr-nav-btn" onclick="nutrSwitch('nutr-cat-vp',-1)">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M10 4l-4 4 4 4"/></svg>
+              </button>
+              <div class="nutr-dots" id="nutr-cat-vp-dots">
+                <div class="nutr-dot active"></div>
+                <div class="nutr-dot"></div>
+              </div>
+              <button class="nutr-nav-btn" onclick="nutrSwitch('nutr-cat-vp',1)">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M6 4l4 4-4 4"/></svg>
+              </button>
+            </div>
           </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:9px 14px; gap:8px; border-bottom:1px solid var(--border); align-items:center;">
-            <span style="font-weight:500; color:var(--text);">Nutritional Accuracy</span>
-            <span style="color:var(--text-muted);">Estimated / Static</span>
-            <span style="color:var(--teal-dark); font-weight:600;">Dynamic / Precise</span>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:9px 14px; gap:8px; border-bottom:1px solid var(--border); background:var(--bg-subtle); align-items:center;">
-            <span style="font-weight:500; color:var(--text);">Parent Visibility</span>
-            <span style="color:var(--text-muted);">Monthly PDF Menu</span>
-            <span style="color:var(--teal-dark); font-weight:600;">Daily Live Dashboard</span>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:9px 14px; gap:8px; border-bottom:1px solid var(--border); align-items:center;">
-            <span style="font-weight:500; color:var(--text);">KPI Customization</span>
-            <span style="color:var(--text-muted);">None</span>
-            <span style="color:var(--teal-dark); font-weight:600;">Fully Scalable</span>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:9px 14px; gap:8px; background:var(--bg-subtle); align-items:center;">
-            <span style="font-weight:500; color:var(--text);">Clinical Reporting</span>
-            <span style="color:var(--text-muted);">Manual / Reactive</span>
-            <span style="color:var(--teal-dark); font-weight:600;">Automated / Proactive</span>
-          </div>
-        </div>
-        <!-- App screenshots -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-          <img src="assets/Nutrition1.png" alt="Nutrition tracking dashboard" class="ui-visual" style="border-radius:10px; width:100%; object-fit:cover;" />
-          <img src="assets/Nutrition2.png" alt="Nutrition analytics view" class="ui-visual" style="border-radius:10px; width:100%; object-fit:cover;" />
         </div>
       </div>
     </div>
@@ -3059,9 +3160,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Term-Level Trend Analysis:</strong> Identify rising nutritional concerns early and share structured reports with parents and health teams</span></li>
         </ul>
       </div>
-      <div class="slide-visual">
-        <img src="assets/Nutrition1.png" alt="Nutrition module dashboard" class="ui-visual" />
+      <div class="slide-visual" style="justify-content:center;">
+        <div class="comm-showcase" style="height:100%;">
+          <div>
+            <div class="iph-wrap">
+              <div class="iph">
+                <div class="iph-isle"><div></div></div>
+                <div class="iph-vp" id="nutr-school-vp">
+                  <div class="ts on">
+                    <div class="a-scr">
+                      <img src="assets/Nutrition1.png" alt="Nutrition dashboard" style="width:100%;display:block;" draggable="false" />
+                    </div>
+                  </div>
+                  <div class="ts">
+                    <div class="a-scr">
+                      <img src="assets/Nutrition2.png" alt="Nutrition analytics" style="width:100%;display:block;" draggable="false" />
+                    </div>
+                  </div>
+                </div>
+                <div class="iph-bar"><div></div></div>
+              </div>
+            </div>
+            <div class="nutr-nav-row">
+              <button class="nutr-nav-btn" onclick="nutrSwitch('nutr-school-vp',-1)">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M10 4l-4 4 4 4"/></svg>
+              </button>
+              <div class="nutr-dots" id="nutr-school-vp-dots">
+                <div class="nutr-dot active"></div>
+                <div class="nutr-dot"></div>
+              </div>
+              <button class="nutr-nav-btn" onclick="nutrSwitch('nutr-school-vp',1)">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M6 4l4 4-4 4"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+
+  <!-- 26 · PROMO VIDEO -->
+  <div class="slide" id="s-26">
+    <div class="slide-inner centered" style="padding:40px 52px;">
+      <div class="slide-tag"><span class="tag-dot"></span> Promo Video</div>
+      <h2 style="margin-bottom:8px;">See Spare in action.</h2>
+      <p class="slide-sub" style="max-width:480px; margin-bottom:28px;">Watch how Spare runs a real cafeteria operation — live at CISA.</p>
+      <div class="video-wrap" style="width:100%; max-width:800px; border-radius:14px; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.12);">
+        <img id="spare-video-promo-poster" src="assets/live-at-cisa.png"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:inherit;" alt="Spare Live at CISA" />
+        <div id="spare-video-promo" style="display:none;position:absolute;inset:0;width:100%;height:100%;"></div>
+        <div class="v-overlay" id="v-overlay-promo" onclick="playVideoPromo()">
+          <div class="hero-play-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+        </div>
+        <div class="video-touch-guard" id="video-touch-guard"></div>
+      </div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-top:12px; font-weight:500;">Spare Live @ CISA</p>
     </div>
   </div>
 
@@ -3236,11 +3391,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     'Parent App Tour','Scale & Trust','Onboarding','Secure Payments','Get Started',
     'Schools',
     'Intro','Overview','Menu Management','Multi-Location','Reporting','Get Started',
-    'Parent App','Inventory','Nutrition','Nutrition'
+    'Parent App','Inventory','Nutrition','Nutrition','Promo Video'
   ];
 
-  const SCHOOL_NAV_ORDER   = [0, 1, 15, 2, 3, 4, 25, 5, 6, 7, 10, 8, 11, 12, 13, 14];
-  const CATERING_NAV_ORDER = [16, 17, 15, 3, 18, 23, 24, 2, 9, 6, 7, 10, 8, 19, 20, 11, 12, 13, 21];
+  const SCHOOL_NAV_ORDER   = [0, 1, 15, 2, 3, 4, 25, 5, 6, 7, 10, 26, 8, 11, 12, 13, 14];
+  const CATERING_NAV_ORDER = [16, 17, 15, 3, 18, 23, 24, 2, 9, 6, 7, 10, 26, 8, 19, 20, 11, 12, 13, 21];
   let NAV_ORDER = SCHOOL_NAV_ORDER;
   const paymentsSub = document.getElementById('payments-sub');
   const paymentsVisual = document.getElementById('payments-visual');
@@ -3422,6 +3577,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }
 
+  function updateMobSlides() {
+    if (window.innerWidth > 860) return;
+    const order = currentPersona === 'school' ? SCHOOL_NAV_ORDER : CATERING_NAV_ORDER;
+    slides.forEach((sl, i) => {
+      const pos = order.indexOf(i);
+      sl.classList.toggle('mob-hidden', pos === -1);
+      sl.style.order = pos === -1 ? '' : String(pos);
+    });
+    document.getElementById('stage').scrollTop = 0;
+  }
+
+  function enableMobScroll() {
+    console.log('[mob] innerWidth=', window.innerWidth);
+    if (window.innerWidth > 860) { console.log('[mob] skipping — desktop'); return; }
+    document.documentElement.style.overflow = 'visible';
+    document.documentElement.style.height = 'auto';
+    document.body.style.overflow = 'visible';
+    document.body.style.height = 'auto';
+    const stage = document.getElementById('stage');
+    stage.style.overflowY = 'auto';
+    stage.style.overflowX = 'hidden';
+    stage.style.position = 'relative';
+    stage.style.height = '100vh';
+    stage.style.display = 'flex';
+    stage.style.flexDirection = 'column';
+    slides.forEach(sl => {
+      sl.style.position = 'relative';
+      sl.style.top = 'auto';
+      sl.style.right = 'auto';
+      sl.style.bottom = 'auto';
+      sl.style.left = 'auto';
+      sl.style.opacity = '1';
+      sl.style.pointerEvents = 'all';
+      sl.style.transform = 'none';
+      sl.style.transition = 'none';
+      sl.style.minHeight = '100vh';
+      sl.style.borderBottom = '1px solid #E2E8F0';
+      sl.style.overflow = 'visible';
+    });
+    document.getElementById('nav-arrows').style.display = 'none';
+
+    // Track slide views on mobile scroll
+    let mobTrackTimer = null;
+    const mobObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const idx = slides.indexOf(entry.target);
+        if (idx === -1 || idx === current) return;
+        current = idx;
+        clearTimeout(mobTrackTimer);
+        mobTrackTimer = setTimeout(() => trackVirtualPageView(), 600);
+      });
+    }, { threshold: 0.5 });
+    slides.forEach(sl => mobObserver.observe(sl));
+
+    const cs = getComputedStyle(stage);
+    console.log('[mob] stage overflowY=', cs.overflowY, 'position=', cs.position, 'height=', cs.height);
+    const sl0 = slides[0];
+    const cs2 = getComputedStyle(sl0);
+    console.log('[mob] slide[0] position=', cs2.position, 'opacity=', cs2.opacity, 'display=', cs2.display);
+    console.log('[mob] body overflowY=', getComputedStyle(document.body).overflowY);
+  }
+
   function switchPersona(p) {
     if (p === currentPersona) return;
     trackInteraction('persona_switch', { target_persona: p });
@@ -3447,6 +3665,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     syncMobileNavHeight();
     history.replaceState(null, '', p === 'catering' ? '?p=catering' : window.location.pathname);
     trackVirtualPageView();
+    updateMobSlides();
   }
 
   function goTo(idx, dir) {
@@ -3506,9 +3725,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (activeBtn) activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     syncMobNav(current);
     // Re-enable video guard when returning to intro slide
-    if (videoGuard) videoGuard.style.pointerEvents = current === 0 ? '' : 'none';
+    if (videoGuard) videoGuard.style.pointerEvents = current === 26 ? '' : 'none';
   }
 
+  enableMobScroll();
+  updateMobSlides();
   window.addEventListener('resize', syncMobileNavHeight, { passive: true });
   window.addEventListener('orientationchange', syncMobileNavHeight, { passive: true });
   if (window.visualViewport) {
@@ -3762,6 +3983,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.head.appendChild(s);
   })();
 
+  let ytPlayer3, ytReady3 = false, ytPlayPending3 = false;
+
   window.onYouTubeIframeAPIReady = function() {
     ytPlayer = new YT.Player('spare-video-hero', {
       videoId: 'EdrYTFpQ7bY',
@@ -3791,6 +4014,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
       }
     });
+    ytPlayer3 = new YT.Player('spare-video-promo', {
+      videoId: 'EdrYTFpQ7bY',
+      playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
+      events: {
+        onReady: function() {
+          ytReady3 = true;
+          if (ytPlayPending3) {
+            document.getElementById('spare-video-promo').style.display = 'block';
+            ytPlayer3.playVideo();
+            ytPlayPending3 = false;
+          }
+        }
+      }
+    });
   };
 
   function playVideoHero() {
@@ -3801,6 +4038,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('spare-video-hero').style.display = 'block';
     if (ytReady) { ytPlayer.playVideo(); }
     else         { ytPlayPending = true; }
+  }
+
+  function playVideoPromo() {
+    const poster  = document.getElementById('spare-video-promo-poster');
+    const overlay = document.getElementById('v-overlay-promo');
+    if (poster)  poster.style.display  = 'none';
+    if (overlay) overlay.style.display = 'none';
+    document.getElementById('spare-video-promo').style.display = 'block';
+    if (ytReady3) { ytPlayer3.playVideo(); }
+    else          { ytPlayPending3 = true; }
   }
 
   function playVideoCatering() {
@@ -4089,6 +4336,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }
   function tourPrev() { if (tourStep > 0) tourRender(tourStep - 1, -1); }
+
+  // Nutrition phone switcher (shared by school s-25 and catering s-24)
+  function nutrSwitch(vpId, dir) {
+    const vp = document.getElementById(vpId);
+    if (!vp) return;
+    const screens = Array.from(vp.querySelectorAll('.ts'));
+    const cur = screens.findIndex(s => s.classList.contains('on'));
+    const next = (cur + dir + screens.length) % screens.length;
+    if (next === cur) return;
+    const outCls = dir > 0 ? 'out-l' : 'out-r';
+    const inCls  = dir > 0 ? 'in-r'  : 'in-l';
+    screens[cur].classList.remove('on');
+    screens[cur].classList.add(outCls);
+    screens[next].classList.add(inCls);
+    screens[next].classList.add('on');
+    // Reset scroll on the incoming screen
+    const scr = screens[next].querySelector('.a-scr');
+    if (scr) scr.scrollTop = 0;
+    // Update dots
+    const dotsEl = document.getElementById(vpId + '-dots');
+    if (dotsEl) {
+      dotsEl.querySelectorAll('.nutr-dot').forEach((d, i) => d.classList.toggle('active', i === next));
+    }
+    setTimeout(() => {
+      screens[cur].classList.remove(outCls);
+      screens[next].classList.remove(inCls);
+    }, 300);
+  }
 
   // Jump to screen via dropdown or bottom nav
   function tourNavGo(scrId) {
