@@ -636,6 +636,8 @@
         overflow-x: hidden;
         height: calc(100dvh - var(--mobile-nav-h, 57px));
         flex: 1 1 auto;
+        display: flex !important;
+        flex-direction: column !important;
       }
       /* All slides stacked as one continuous page on mobile */
       .slide {
@@ -655,6 +657,8 @@
         opacity: 1 !important;
         pointer-events: all !important;
         display: flex !important;
+        width: 100% !important;
+        flex-shrink: 0 !important;
       }
       .slide.exit-up, .slide.exit-down {
         opacity: 1 !important;
@@ -1729,7 +1733,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="nav-sections" id="navSections">
     <div class="persona-nav hidden" id="school-nav">
-    <button class="nav-btn active" data-slide="0" onclick="goTo(0)" style="font-weight:700; color:var(--text);">
+    <button class="nav-btn active" data-slide="0" onclick="goTo(0)">
       <span class="nb-dot"></span> Intro
     </button>
 
@@ -1788,7 +1792,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div><!-- /school-nav -->
 
     <div class="persona-nav hidden" id="catering-nav">
-      <button class="nav-btn" data-slide="16" onclick="goTo(16)" style="font-weight:700; color:var(--text);">
+      <button class="nav-btn" data-slide="16" onclick="goTo(16)">
         <span class="nb-dot"></span> Intro
       </button>
       <div class="nav-group-label">Platform</div>
@@ -1852,7 +1856,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- CLUBS NAV -->
     <div class="persona-nav" id="clubs-nav">
-      <button class="nav-btn" data-slide="31" onclick="goTo(31)" style="font-weight:700; color:var(--text);"><span class="nb-dot"></span> Intro</button>
+      <button class="nav-btn" data-slide="31" onclick="goTo(31)" style="font-weight:600;"><span class="nb-dot"></span> Intro</button>
       <button class="nav-btn" data-slide="32" onclick="goTo(32)"><span class="nb-dot"></span> The Problem</button>
       <div class="nav-group-label">Platform</div>
       <button class="nav-btn" data-slide="24" onclick="goTo(24)"><span class="nb-dot"></span> Overview</button>
@@ -3303,7 +3307,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.7; margin-bottom:24px;">Spare unifies every part of a large club's operation: memberships, multiple F&amp;B vendors, facility bookings, member communication, and club commerce, into one platform your admin team and members will actually use.</p>
         <div class="intro-cta-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
           <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary" onclick="trackBookDemoClick('sports_intro_hero')">Book a Demo</a>
-          <button class="btn btn-ghost" onclick="switchClubPersona('sports'); goTo(40)">Explore Member App</button>
+          <button class="btn btn-ghost" onclick="switchClubPersona('sports'); goTo(63)">Explore Member App</button>
         </div>
         <div class="intro-stats" style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding-top:20px; border-top:1px solid var(--border);">
           <div class="trust-item"><strong>100K+</strong><span>Members Served</span></div>
@@ -3388,8 +3392,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="slide-sub">Multiple outlets, no shared system. Spare brings everything under one roof.</p>
         <ul class="flist">
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Fragmented Payments</strong>: Each outlet runs its own register; members carry cash per vendor</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Manual Fee Chasing</strong>: Renewals collected via calls and WhatsApp with no automation</span></li>
-          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Spreadsheet Renewals</strong>: No self-service; memberships tracked entirely on shared files</span></li>
+          <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Manual Fee Chasing</strong>: Renewals collected via cash, calls and WhatsApp with no automation</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Lost Member Cards</strong>: Physical cards lost easily, unlinked from payments and spending data</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Blind Attendance</strong>: Session tracking on paper, no real-time visibility for management</span></li>
           <li><span class="ck"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1.5 5 4 7.5 8.5 2.5"/></svg></span><span><strong>Booking Chaos</strong>: Phone/WhatsApp bookings lead to double-bookings and disputes</span></li>
@@ -3831,7 +3834,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="intro-cta-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
           <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary" onclick="trackBookDemoClick('social_intro_hero')">Book a Demo</a>
           <button class="btn btn-outline" onclick="openDownload()">Download PDF</button>
-          <button class="btn btn-ghost" onclick="switchClubPersona('social'); goTo(40)">Explore Member App</button>
+          <button class="btn btn-ghost" onclick="switchClubPersona('social'); goTo(63)">Explore Member App</button>
         </div>
         <div class="intro-stats" style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding-top:20px; border-top:1px solid var(--border);">
           <div class="trust-item"><strong>100K+</strong><span>Members Served</span></div>
@@ -4099,7 +4102,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="intro-cta-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
           <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary" onclick="trackBookDemoClick('eca_intro_hero')">Book a Demo</a>
           <button class="btn btn-outline" onclick="openDownload()">Download PDF</button>
-          <button class="btn btn-ghost" onclick="switchClubPersona('eca'); goTo(40)">Explore Member App</button>
+          <button class="btn btn-ghost" onclick="switchClubPersona('eca'); goTo(63)">Explore Member App</button>
         </div>
         <div class="intro-stats" style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding-top:20px; border-top:1px solid var(--border);">
           <div class="trust-item"><strong>100K+</strong><span>Students</span></div>
@@ -4318,7 +4321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="intro-cta-row" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;">
           <a href="https://calendly.com/spare2024/meeting-with-spare" target="_blank" class="btn btn-primary" onclick="trackBookDemoClick('fitness_intro_hero')">Book a Demo</a>
           <button class="btn btn-outline" onclick="openDownload()">Download PDF</button>
-          <button class="btn btn-ghost" onclick="switchClubPersona('fitness'); goTo(40)">Explore Member App</button>
+          <button class="btn btn-ghost" onclick="switchClubPersona('fitness'); goTo(63)">Explore Member App</button>
         </div>
         <div class="intro-stats" style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding-top:20px; border-top:1px solid var(--border);">
           <div class="trust-item"><strong>100K+</strong><span>Members Served</span></div>
@@ -5238,7 +5241,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!isMobileLayout()) return;
     document.querySelectorAll('.slide').forEach(el => {
       const id = parseInt(el.id.replace('s-', ''), 10);
-      el.classList.toggle('mob-show', NAV_ORDER.includes(id));
+      const pos = NAV_ORDER.indexOf(id);
+      const show = pos !== -1;
+      el.classList.toggle('mob-show', show);
+      el.style.order = show ? pos : '';
     });
   }
 
