@@ -1718,6 +1718,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="nb-dot"></span> Schools We Serve
     </button>
 
+    <div class="nav-group-label">Product</div>
+    <button class="nav-btn" data-slide="7" onclick="goTo(7)">
+      <span class="nb-dot"></span> Parent App
+    </button>
+    <button class="nav-btn" data-slide="10" onclick="goTo(10)" style="padding-left:22px;font-size:0.78rem;">
+      <span class="nb-dot"></span> ↳ Guided Tour
+    </button>
+    <button class="nav-btn" data-slide="26" onclick="goTo(26)">
+      <span class="nb-dot"></span> Promo Video
+    </button>
+    <button class="nav-btn" data-slide="8" onclick="goTo(8)">
+      <span class="nb-dot"></span> Admin Dashboard
+    </button>
+
     <div class="nav-group-label">Capabilities</div>
     <button class="nav-btn" data-slide="2" onclick="goTo(2)">
       <span class="nb-dot"></span> Payments
@@ -1736,20 +1750,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </button>
     <button class="nav-btn" data-slide="6" onclick="goTo(6)">
       <span class="nb-dot"></span> Communication
-    </button>
-
-    <div class="nav-group-label">Product</div>
-    <button class="nav-btn" data-slide="7" onclick="goTo(7)">
-      <span class="nb-dot"></span> Parent App
-    </button>
-    <button class="nav-btn" data-slide="10" onclick="goTo(10)" style="padding-left:22px;font-size:0.78rem;">
-      <span class="nb-dot"></span> ↳ Guided Tour
-    </button>
-    <button class="nav-btn" data-slide="26" onclick="goTo(26)">
-      <span class="nb-dot"></span> Promo Video
-    </button>
-    <button class="nav-btn" data-slide="8" onclick="goTo(8)">
-      <span class="nb-dot"></span> Admin Dashboard
     </button>
 
     <div class="nav-group-label">Why Spare</div>
@@ -1882,6 +1882,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="mob-nav-dot"></span> Schools We Serve
     </button>
 
+    <div class="mob-nav-group">Product</div>
+    <button class="mob-nav-item" data-mob-slide="7" onclick="mobGoTo(7)">
+      <span class="mob-nav-dot"></span> Parent App
+    </button>
+    <button class="mob-nav-item mob-nav-item-sub" data-mob-slide="10" onclick="mobGoTo(10)">
+      <span class="mob-nav-dot"></span> ↳ Guided Tour
+    </button>
+    <button class="mob-nav-item" data-mob-slide="26" onclick="mobGoTo(26)">
+      <span class="mob-nav-dot"></span> Promo Video
+    </button>
+    <button class="mob-nav-item" data-mob-slide="8" onclick="mobGoTo(8)">
+      <span class="mob-nav-dot"></span> Admin Dashboard
+    </button>
+
     <div class="mob-nav-group">Capabilities</div>
     <button class="mob-nav-item" data-mob-slide="2" onclick="mobGoTo(2)">
       <span class="mob-nav-dot"></span> Payments
@@ -1900,20 +1914,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </button>
     <button class="mob-nav-item" data-mob-slide="6" onclick="mobGoTo(6)">
       <span class="mob-nav-dot"></span> Communication
-    </button>
-
-    <div class="mob-nav-group">Product</div>
-    <button class="mob-nav-item" data-mob-slide="7" onclick="mobGoTo(7)">
-      <span class="mob-nav-dot"></span> Parent App
-    </button>
-    <button class="mob-nav-item mob-nav-item-sub" data-mob-slide="10" onclick="mobGoTo(10)">
-      <span class="mob-nav-dot"></span> ↳ Guided Tour
-    </button>
-    <button class="mob-nav-item" data-mob-slide="26" onclick="mobGoTo(26)">
-      <span class="mob-nav-dot"></span> Promo Video
-    </button>
-    <button class="mob-nav-item" data-mob-slide="8" onclick="mobGoTo(8)">
-      <span class="mob-nav-dot"></span> Admin Dashboard
     </button>
 
     <div class="mob-nav-group">Why Spare</div>
@@ -3425,7 +3425,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     'Parent App','Inventory','Nutrition','Nutrition','Promo Video'
   ];
 
-  const SCHOOL_NAV_ORDER   = [0, 1, 15, 2, 3, 4, 25, 5, 6, 7, 10, 26, 8, 11, 12, 13, 14];
+  const SCHOOL_NAV_ORDER   = [0, 1, 15, 7, 10, 26, 8, 2, 3, 4, 25, 5, 6, 11, 12, 13, 14];
   const CATERING_NAV_ORDER = [16, 17, 15, 3, 18, 23, 24, 2, 9, 6, 7, 10, 26, 8, 19, 20, 11, 12, 13, 21];
   let NAV_ORDER = SCHOOL_NAV_ORDER;
   const paymentsSub = document.getElementById('payments-sub');
