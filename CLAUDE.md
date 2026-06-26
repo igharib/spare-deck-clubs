@@ -1,6 +1,6 @@
-# Spare — Landing Page
+# Spare — Clubs & Catering Deck
 
-A single-page product landing / sales deck for Spare ("Transforming School Operations"). Structured as a slide-based presentation with a persistent left nav.
+A single-page sales deck for Spare targeting **clubs and catering venues** (distinct from `spare-landing` which covers schools). Structured as a slide-based presentation with a persistent left nav.
 
 ## Dev Server
 
